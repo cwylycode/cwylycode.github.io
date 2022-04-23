@@ -1,9 +1,0 @@
-{
-  "name": "cwylycode.github.io",
-  "version": "1.0.0",
-  "description": "website",
-  "homepage": "https://github.com/cwylycode/cwylycode.github.io",
-  "dependencies": {
-    "animejs": "^3.2.1"
-  }
-}

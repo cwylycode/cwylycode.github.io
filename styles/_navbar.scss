@@ -1,0 +1,37 @@
+.sidebar {
+  background-color: $color-bg-secondary;
+  width: 10rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  .nav_links li a {
+    text-align: center;
+    width: 100%;
+    display: block;
+    font-size: 1.2rem;
+    color: $color-text-secondary;
+    line-height: 3rem;
+    border-bottom: 1px solid #282828;
+    text-transform: uppercase;
+
+    &:hover {}
+  }
+
+  .nav_soc {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    li {
+      padding: 1rem;
+    }
+
+    svg {
+      fill: $color-text-secondary;
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}
