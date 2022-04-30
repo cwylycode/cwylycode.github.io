@@ -27,16 +27,13 @@
   <meta property="twitter:site" content="">
 
   <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous">
   <script defer="true" src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
     integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
     crossorigin="anonymous"></script>
   <script defer="true" type="module" src="scripts/main.js"></script>
 </head>
 
-<body>
+<body class="theme-dark">
   <noscript>
     <div style="background-color: rgb(128, 0, 0); color: white;">
       Hey, just a heads up - this site kinda needs javascript on for things like animations, navigation and other stuff.
@@ -45,14 +42,24 @@
   </noscript>
 
   <div class="wrapper">
+
     <div class="sidebar">
-      <img class="" src="./dev/smiley.jpg" alt="Smile pic!" title="Click my face to return to Tech main page!">
+      <div id="home-icon">
+        <a href="#">
+          <svg id="e1tLMz8hdxq1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 512 512" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+            <path
+              d="M0,256.00001C0,114.61511,114.61511,0,256,0s256,114.61511,256,256.00001-114.61511,256.00001-256,256.00001-256-114.61511-256-256.00001ZM255.99997,486.99999c127.57778,0,231-103.42222,231-231s-103.42222-231-231-231-231,103.42222-231,231s103.42222,231,231,231Z"
+              stroke-width="0" />
+          </svg>
+        </a>
+      </div>
       <nav>
         <ul class="nav_links">
-          <li><a href="#">about</a></li>
-          <li><a href="#">skillz</a></li>
-          <li><a href="#">showcase</a></li>
-          <li><a href="#">contact</a></li>
+          <li><a class="page-link" href="#">about</a></li>
+          <li><a class="page-link" href="#">skillz</a></li>
+          <li><a class="page-link" href="#">showcase</a></li>
+          <li><a class="page-link" href="#">contact</a></li>
         </ul>
         <ul class="nav_soc">
           <li>
@@ -99,12 +106,26 @@
           </li>
         </ul>
       </nav>
-      <img class="" src="./dev/smiley.jpg" alt="Smile pic!" title="Click my face to return to Tech main page!">
+      <div id="bottom-icon">
+        <svg id="e1tLMz8hdxq1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 512 512" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+          <path
+            d="M0,256.00001C0,114.61511,114.61511,0,256,0s256,114.61511,256,256.00001-114.61511,256.00001-256,256.00001-256-114.61511-256-256.00001ZM255.99997,486.99999c127.57778,0,231-103.42222,231-231s-103.42222-231-231-231-231,103.42222-231,231s103.42222,231,231,231Z"
+            stroke-width="0" />
+        </svg>
+      </div>
     </div>
+
+    <!-- Loaded page goes here -->
     <div class="page">
-      <!-- Loaded page goes here -->
     </div>
+
   </div>
+
+  <!-- <script src="https://www.google-analytics.com/analytics.js"></script> -->
+  <!-- Haha! Made ya look! No web tracking for me! -->
+  <!-- B-B-buT...hOW wilL yoU kNow wHEN PeOPlE VISIt yOuR wEBsITE?! -->
+  <!-- I guess I'll know when I get a job from it! Besides, everyone should be using browsers with tracking protection on, anyway. So...the point is moot. -->
 
 </body>
 

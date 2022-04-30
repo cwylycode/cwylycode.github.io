@@ -10,8 +10,10 @@
 }
 
 .sidebar {
-  background-color: #202020;
+  background-color: var(--color-bg-secondary);
+  position: fixed;
   width: 10rem;
+  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -21,9 +23,26 @@
           flex-direction: column;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.sidebar #home-icon, .sidebar #bottom-icon {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sidebar #home-icon {
+  fill: var(--color-graphic-secondary);
+  max-width: 3rem;
+}
+
+.sidebar #bottom-icon {
+  fill: var(--color-graphic-primary);
+  max-width: 5rem;
 }
 
 .sidebar .nav_links li a {
@@ -31,9 +50,9 @@
   width: 100%;
   display: block;
   font-size: 1.2rem;
-  color: #c8c8c8;
+  color: var(--color-txt-secondary);
   line-height: 3rem;
-  border-bottom: 1px solid #282828;
+  border-bottom: 1px solid var(--color-bg-primary);
   text-transform: uppercase;
 }
 
@@ -53,19 +72,41 @@
 }
 
 .sidebar .nav_soc svg {
-  fill: #c8c8c8;
+  fill: var(--color-graphic-secondary);
   width: 2rem;
   height: 2rem;
 }
 
-body {
-  background-color: #282828;
-  color: white;
-  font-family: Poppins, Arial, monospace;
+.theme-light {
+  --font-primary: Poppins, Arial, monospace;
+  --color-bg-primary: white;
+  --color-bg-secondary: #eee;
+  --color-txt-primary: #282828;
+  --color-txt-secondary: #202020;
+  --color-graphic-primary: #282828;
+  --color-graphic-secondary: black;
 }
 
-img {
-  max-width: 512px;
+.theme-dark {
+  --font-primary: Poppins, Arial, monospace;
+  --color-bg-primary: #282828;
+  --color-bg-secondary: #202020;
+  --color-txt-primary: white;
+  --color-txt-secondary: #c8c8c8;
+  --color-graphic-primary: #c8c8c8;
+  --color-graphic-secondary: white;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-txt-primary);
+  font-family: var(--font-primary);
+}
+
+img,
+svg {
+  max-width: 256px;
+  max-height: 256px;
 }
 
 .wrapper {
@@ -78,5 +119,9 @@ img {
           flex-direction: row;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
+}
+
+.page {
+  padding-left: 10rem;
 }
 /*# sourceMappingURL=main.css.map */
