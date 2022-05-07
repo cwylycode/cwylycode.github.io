@@ -10,6 +10,16 @@ body {
   background-color: themed(color-bg-primary);
   color: themed(color-txt-primary);
   font-family: themed(font-primary);
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+main {
+  padding-left: sidebarPadding();
+}
+
+h1 {
+  font-size: 5rem;
 }
 
 img,
@@ -22,8 +32,4 @@ svg {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-}
-
-.page {
-  padding-left: sidebarPadding();
 }

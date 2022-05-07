@@ -6,7 +6,6 @@
           box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-  font-size: 100%;
 }
 
 .sidebar {
@@ -95,12 +94,23 @@
   --color-txt-secondary: #c8c8c8;
   --color-graphic-primary: #c8c8c8;
   --color-graphic-secondary: white;
+  --accent-1: #29ffc3;
 }
 
 body {
   background-color: var(--color-bg-primary);
   color: var(--color-txt-primary);
   font-family: var(--font-primary);
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+main {
+  padding-left: 10rem;
+}
+
+h1 {
+  font-size: 5rem;
 }
 
 img,
@@ -119,9 +129,5 @@ svg {
           flex-direction: row;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-}
-
-.page {
-  padding-left: 10rem;
 }
 /*# sourceMappingURL=main.css.map */
