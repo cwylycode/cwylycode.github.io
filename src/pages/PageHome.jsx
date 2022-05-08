@@ -1,8 +1,13 @@
-export function PageHome() {
+export default function PageHome() {
   return (
-    <div>
-      <h1>Hello</h1>
-      <p>How nice of you to die.</p>
-    </div>
+    <>
+      <h3>The name's Wyly...</h3>
+      <div className="home-title">
+        <h1>Colin Wyly</h1>
+        <h2>Coder | Developer | Tech Guy</h2>
+      </div>
+      <p>(... oh and it's pronounced 'why-lee')</p>
+      <p>Great! Now that the formalities are out of the way...</p>
+    </>
   )
 }

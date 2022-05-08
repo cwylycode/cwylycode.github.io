@@ -2,16 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './styles/main.css'
 
-import { Navbar } from './components/Navbar'
-import { PageHome } from './pages/PageHome'
+import Navbar from './components/Navbar'
+import PageHome from './pages/PageHome'
 
 function App() {
   return (
     <div className='wrapper'>
       <Navbar />
-      <div className="page">
+      <main className="page">
         <PageHome />
-      </div>
+      </main>
     </div>
   )
 }
