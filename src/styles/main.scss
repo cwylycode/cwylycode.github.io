@@ -1,35 +1,53 @@
-@import "./reset";
-@import "./themes";
-@import "./responsive";
+@import "./themed.css";
 
-@import "./navbar";
-
-@include generateThemes();
+:root {
+  --primary-bg: green;
+  --text-color: yellow;
+}
 
 body {
-  background-color: themed(color-bg-primary);
-  color: themed(color-txt-primary);
-  font-family: themed(font-primary);
-  overflow-x: hidden;
-  overflow-y: scroll;
+  background-color: teal;
+  margin: 0;
+
+  & * {
+    margin: 0;
+  }
 }
 
-main {
-  padding-left: sidebarPadding();
-}
 
-h1 {
-  font-size: 5rem;
-}
 
-img,
-svg {
-  max-width: 256px;
-  max-height: 256px;
-}
+// @import "./reset";
+// @import "./themes";
+// @import "./responsive";
 
-.wrapper {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
+// @import "./navbar";
+
+// @include generateThemes();
+
+// body {
+//   background-color: themed(color-bg-primary);
+//   color: themed(color-txt-primary);
+//   font-family: themed(font-primary);
+//   overflow-x: hidden;
+//   overflow-y: scroll;
+// }
+
+// main {
+//   padding-left: sidebarPadding();
+// }
+
+// h1 {
+//   font-size: 5rem;
+// }
+
+// img,
+// svg {
+//   max-width: 256px;
+//   max-height: 256px;
+// }
+
+// .wrapper {
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: nowrap;
+// }
