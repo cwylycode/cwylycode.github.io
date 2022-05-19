@@ -7,12 +7,14 @@
     "predeploy": "npm run build && cp 404.html dist/",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mantine/core": "^4.2.4",
-    "@mantine/hooks": "^4.2.4",
+    "@chakra-ui/react": "^2.0.2",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "framer-motion": "^6.3.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-icons": "^4.3.1"
@@ -21,7 +23,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
-    "gh-pages": "^3.2.3",
-    "vite": "^2.9.5"
+    "typescript": "^4.6.3",
+    "vite": "^2.9.9"
   }
 }
