@@ -1,46 +1,69 @@
-import { ReactNode } from 'react'
+import { ReactNode, useRef } from 'react'
 import {
   Box,
   useColorModeValue,
-  Drawer,
-  DrawerContent,
   useDisclosure,
+  Collapse,
+  useOutsideClick,
+  Fade,
 } from '@chakra-ui/react'
 
 import Navbar from './Navbar'
 import NavMenu from './NavMenu'
 
 const PAGE_MARGIN: number = 52
+const NAVBAR_HEIGHT: number = 20
 
 export default function AppShell({ children }: { children: ReactNode }) {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const { isOpen, onToggle } = useDisclosure()
+  const mobileCollapseRef = useRef<HTMLDivElement>(null)
+
+  useOutsideClick({
+    ref: mobileCollapseRef,
+    handler: () => { isOpen ? onToggle() : null }
+  })
+
   return (
     <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
-      <NavMenu
-        onClose={() => onClose}
-        marginFactor={PAGE_MARGIN}
-        display={{ base: 'none', md: 'block' }}
-      />
-      <Drawer
-        autoFocus={false}
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
-        size="full"
-      >
-        <DrawerContent>
+      <Fade in={isOpen}>
+        <Box
+          display={{ base: 'unset', md: 'none' }}
+          position='fixed'
+          width='100vw'
+          height='100vh'
+          backgroundColor='blackAlpha.800'
+        />
+      </Fade>
+
+      <Box
+        ref={mobileCollapseRef}
+        position='sticky'
+        top='0'>
+        <Navbar
+          onOpen={onToggle}
+          display={{ base: 'flex', md: 'none' }}
+          height={NAVBAR_HEIGHT}
+        />
+        <Collapse in={isOpen}>
           <NavMenu
-            onClose={onClose}
-            marginFactor={PAGE_MARGIN}
+            position='fixed'
+            top={NAVBAR_HEIGHT}
+            display={{ base: 'block', md: 'none' }}
+            width='full'
+            paddingTop='2'
+            paddingBottom='5'
           />
-        </DrawerContent>
-      </Drawer>
-      <Navbar
-        onOpen={onOpen}
-        display={{ base: 'flex', md: 'none' }}
+        </Collapse>
+      </Box>
+
+      <NavMenu
+        position='fixed'
+        display={{ base: 'none', md: 'block' }}
+        width={{ base: 'full', md: PAGE_MARGIN }}
+        height="full"
       />
+
       <Box ml={{ base: 0, md: PAGE_MARGIN }} p="4">
         {children}
       </Box>

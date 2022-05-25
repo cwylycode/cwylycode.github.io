@@ -1,6 +1,9 @@
-import { ChakraProvider, Heading } from '@chakra-ui/react'
-import AppShell from './components/AppShell'
 import { useEffect } from 'react'
+import {
+  ChakraProvider,
+  Heading,
+} from '@chakra-ui/react'
+import AppShell from './components/AppShell'
 
 import { themeLight } from './themes/light'
 
@@ -13,7 +16,7 @@ export default function App() {
   return (
     <ChakraProvider theme={themeLight}>
       <AppShell>
-        <Heading as='h1'>Hello</Heading>
+        <Heading>Hello</Heading>
         <div>
           <h1>Greets</h1>
           <p>Hi</p>

@@ -9,14 +9,15 @@ interface NavLinkProps extends FlexProps {
 
 export default function NavLink({ name, icon, ...props }: NavLinkProps) {
   return (
-    // Change to buttons
-    <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    <Link
+      onClick={() => { console.log("hi") }}
+      style={{ textDecoration: 'none' }}
+    >
       <Flex
         justifyContent="center"
         align="center"
         px="4"
         py="2"
-        borderBottom='1px'
         role="group"
         cursor="pointer"
         _hover={{
@@ -35,6 +36,7 @@ export default function NavLink({ name, icon, ...props }: NavLinkProps) {
         />
         <Text>{name}</Text>
         <Icon
+          transform='scale(-1,1)'
           ml="4"
           fontSize="16"
           _groupHover={{

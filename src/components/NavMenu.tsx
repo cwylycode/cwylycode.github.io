@@ -1,6 +1,5 @@
-import { CloseButton } from "@chakra-ui/close-button"
 import { useColorModeValue } from "@chakra-ui/color-mode"
-import { Box, BoxProps, Flex } from "@chakra-ui/layout"
+import { Box, BoxProps, Divider, Flex } from "@chakra-ui/react"
 
 import {
   BsInfoCircle,
@@ -12,27 +11,39 @@ import {
 import Logo from "./Logo"
 import NavLink from "./NavLink"
 
-interface NavMenuProps extends BoxProps {
-  onClose: () => void
-  marginFactor: number | string
-}
-
-export default function NavMenu({ onClose, marginFactor, ...props }: NavMenuProps) {
+export default function NavMenu({ ...props }: BoxProps) {
   return (
     <Box
       bg={useColorModeValue('white', 'gray.900')}
-      w={{ base: 'full', md: marginFactor }}
-      pos="fixed"
-      h="full"
       {...props}
     >
-      <Flex h="20" alignItems="center" justifyContent="center">
+      <Flex
+        display={{ base: 'none', md: 'flex' }}
+        h="20"
+        alignItems="center"
+        justifyContent="center"
+      >
         <Logo />
-        <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
+
       <NavLink name="ABOUT" icon={BsInfoCircle} />
+      <Divider
+        width={{ base: '75%', md: 'auto' }}
+        mx='auto'
+        my={{ base: '3', md: '0' }}
+      />
       <NavLink name="SKILLZ" icon={BsLightning} />
+      <Divider
+        width={{ base: '75%', md: 'auto' }}
+        mx='auto'
+        my={{ base: '3', md: '0' }}
+      />
       <NavLink name="SHOWCASE" icon={BsTrophy} />
+      <Divider
+        width={{ base: '75%', md: 'auto' }}
+        mx='auto'
+        my={{ base: '3', md: '0' }}
+      />
       <NavLink name="CONTACT" icon={BsChatText} />
     </Box>
   )

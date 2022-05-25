@@ -3,7 +3,7 @@ import {
   useColorModeValue,
   Flex,
   FlexProps,
-  Box
+  Box,
 } from "@chakra-ui/react"
 import { FaHamburger } from 'react-icons/fa'
 import Logo from "./Logo"
@@ -13,27 +13,26 @@ interface NavbarProps extends FlexProps {
 }
 export default function Navbar({ onOpen, ...props }: NavbarProps) {
   return (
-    <Flex
-      position='sticky'
-      top='0'
-      px="4"
-      height="20"
-      alignItems="center"
-      bg={useColorModeValue('white', 'gray.900')}
-      justifyContent="flex-start"
-      {...props}
-    >
-      <IconButton
-        variant="ghost"
-        position='absolute'
-        fontSize='32px'
-        onClick={onOpen}
-        aria-label="open menu"
-        icon={<FaHamburger />}
-      />
-      <Box margin='auto'>
-        <Logo />
-      </Box>
-    </Flex>
+    <>
+      <Flex
+        px="4"
+        alignItems="center"
+        bg={useColorModeValue('white', 'gray.900')}
+        justifyContent="flex-start"
+        {...props}
+      >
+        <IconButton
+          variant="ghost"
+          position='absolute'
+          fontSize='32px'
+          onClick={onOpen}
+          aria-label="open menu"
+          icon={<FaHamburger />}
+        />
+        <Box margin='auto'>
+          <Logo />
+        </Box>
+      </Flex>
+    </>
   )
 }
