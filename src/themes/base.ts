@@ -1,9 +1,24 @@
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme, theme, } from "@chakra-ui/react"
 
-export const themeBase = {
+// console.log(theme.styles)
+
+const base//: typeof theme
+  = {
   fonts: {
-    body: `Poppins, sans-serif`,
-    heading: 'Poppins, sans-serif',
+    body: `Poppins, ${theme.fonts?.body}`,
+    heading: `Poppins, ${theme.fonts.heading}`,
     mono: 'mono, monospace'
-  }
+  },
+  components: {
+    Button: {
+      baseStyle: {
+        fontWeight: 'normal',
+      },
+      defaultProps: {
+        size: 'lg',
+      },
+    }
+  },
 }
+
+export const themeBase = extendTheme(base)

@@ -1,4 +1,3 @@
-import { useColorModeValue } from "@chakra-ui/color-mode"
 import { Box, BoxProps, Divider, Flex } from "@chakra-ui/react"
 
 import {
@@ -14,7 +13,7 @@ import NavLink from "./NavLink"
 export default function NavMenu({ ...props }: BoxProps) {
   return (
     <Box
-      bg={useColorModeValue('white', 'gray.900')}
+      backgroundColor='themed.accent1'
       {...props}
     >
       <Flex

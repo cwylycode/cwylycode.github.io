@@ -1,6 +1,5 @@
 import {
   IconButton,
-  useColorModeValue,
   Flex,
   FlexProps,
   Box,
@@ -17,11 +16,11 @@ export default function Navbar({ onOpen, ...props }: NavbarProps) {
       <Flex
         px="4"
         alignItems="center"
-        bg={useColorModeValue('white', 'gray.900')}
         justifyContent="flex-start"
         {...props}
       >
         <IconButton
+          color='themed.secondary'
           variant="ghost"
           position='absolute'
           fontSize='32px'

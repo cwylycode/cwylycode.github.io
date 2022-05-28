@@ -1,7 +1,6 @@
 import { ReactNode, useRef } from 'react'
 import {
   Box,
-  useColorModeValue,
   useDisclosure,
   Collapse,
   useOutsideClick,
@@ -25,7 +24,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
   })
 
   return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+    <Box minH="100vh">
       <Fade in={isOpen}>
         <Box
           display={{ base: 'unset', md: 'none' }}
@@ -33,14 +32,18 @@ export default function AppShell({ children }: { children: ReactNode }) {
           width='100vw'
           height='100vh'
           backgroundColor='blackAlpha.800'
+          zIndex='1'
         />
       </Fade>
 
       <Box
         ref={mobileCollapseRef}
         position='sticky'
-        top='0'>
+        top='0'
+        zIndex='1'
+      >
         <Navbar
+          backgroundColor='themed.accent1'
           onOpen={onToggle}
           display={{ base: 'flex', md: 'none' }}
           height={NAVBAR_HEIGHT}
