@@ -1,28 +1,51 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Button,
   ChakraProvider,
   Heading,
-  useBoolean,
 } from '@chakra-ui/react'
 import AppShell from './components/AppShell'
 
 import { themeLight } from './themes/light'
 import { themeDark } from './themes/dark'
 
+const SYSTEM_THEME = function () {
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return 'dark'
+  }
+  return 'light'
+}()
+
+interface themesNames {
+  light: string,
+  dark: string,
+  hacker: string,
+  random: string
+}
+
+const themes = {
+  light: themeLight,
+  dark: themeDark,
+  hacker: {},
+  random: {}
+}
+
 export default function App() {
 
-  const [theme, setTheme] = useBoolean(true)
+  const [currentTheme, setTheme] = useState<string>(SYSTEM_THEME)
 
   useEffect(() => {
     localStorage.removeItem("chakra-ui-color-mode")
   }, [])
 
   return (
-    <ChakraProvider resetCSS theme={theme ? themeLight : themeDark}>
-      <AppShell>
+    <ChakraProvider
+      theme={themes[currentTheme as keyof themesNames]}
+      resetCSS
+    >
+      <AppShell theme={currentTheme} setTheme={setTheme}>
         <Heading>Hello</Heading>
-        <Button my='10' onClick={setTheme.toggle}>Toggle Theme</Button>
+        <Button my='10' onClick={() => { alert('You clicked da button!') }}>A Button</Button>
         <div>
           <h1>Greets</h1>
           <p>Hi</p>

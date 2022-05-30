@@ -22,7 +22,7 @@ const light//: typeof theme
       primary: `${theme.colors.gray[100]}`,
       secondary: `${theme.colors.gray[800]}`,
       accent1: `${theme.colors.white}`,
-      accent2: `${theme.colors.black}`,
+      accent2: `${theme.colors.gray[400]}`,
       accent3: `${theme.colors.black}`,
       accent4: `${theme.colors.black}`,
       accent5: `${theme.colors.black}`,

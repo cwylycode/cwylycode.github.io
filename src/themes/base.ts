@@ -1,11 +1,9 @@
 import { extendTheme, theme, } from "@chakra-ui/react"
 
-// console.log(theme.styles)
-
 const base//: typeof theme
   = {
   fonts: {
-    body: `Poppins, ${theme.fonts?.body}`,
+    body: `Poppins, ${theme.fonts.body}`,
     heading: `Poppins, ${theme.fonts.heading}`,
     mono: 'mono, monospace'
   },
@@ -16,6 +14,11 @@ const base//: typeof theme
       },
       defaultProps: {
         size: 'lg',
+      },
+    },
+    Divider: {
+      baseStyle: {
+        borderColor: 'themed.accent2'
       },
     }
   },

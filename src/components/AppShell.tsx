@@ -1,4 +1,4 @@
-import { ReactNode, useRef } from 'react'
+import { Dispatch, ReactNode, SetStateAction, useRef } from 'react'
 import {
   Box,
   useDisclosure,
@@ -9,11 +9,18 @@ import {
 
 import Navbar from './Navbar'
 import NavMenu from './NavMenu'
+import ThemeButtons from './ThemeButtons'
 
 const PAGE_MARGIN: number = 52
 const NAVBAR_HEIGHT: number = 20
 
-export default function AppShell({ children }: { children: ReactNode }) {
+interface AppShellProps {
+  theme: string
+  setTheme: Dispatch<SetStateAction<string>>
+  children: ReactNode
+}
+
+export default function AppShell({ theme, setTheme, children }: AppShellProps) {
 
   const { isOpen, onToggle } = useDisclosure()
   const mobileCollapseRef = useRef<HTMLDivElement>(null)
@@ -44,6 +51,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
       >
         <Navbar
           backgroundColor='themed.accent1'
+          isOpen={isOpen}
           onOpen={onToggle}
           display={{ base: 'flex', md: 'none' }}
           height={NAVBAR_HEIGHT}
@@ -56,7 +64,9 @@ export default function AppShell({ children }: { children: ReactNode }) {
             width='full'
             paddingTop='2'
             paddingBottom='5'
-          />
+          >
+            <ThemeButtons theme={theme} setTheme={setTheme} />
+          </NavMenu>
         </Collapse>
       </Box>
 
@@ -65,7 +75,9 @@ export default function AppShell({ children }: { children: ReactNode }) {
         display={{ base: 'none', md: 'block' }}
         width={{ base: 'full', md: PAGE_MARGIN }}
         height="full"
-      />
+      >
+        <ThemeButtons theme={theme} setTheme={setTheme} />
+      </NavMenu>
 
       <Box ml={{ base: 0, md: PAGE_MARGIN }} p="4">
         {children}

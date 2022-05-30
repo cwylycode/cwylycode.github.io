@@ -22,7 +22,7 @@ const dark//: typeof theme
       primary: `${theme.colors.blackAlpha[900]}`,
       secondary: `${theme.colors.gray[200]}`,
       accent1: `${theme.colors.gray[900]}`,
-      accent2: `${theme.colors.white}`,
+      accent2: `${theme.colors.gray[600]}`,
       accent3: `${theme.colors.white}`,
       accent4: `${theme.colors.white}`,
       accent5: `${theme.colors.white}`,
@@ -30,7 +30,7 @@ const dark//: typeof theme
       accent7: `${theme.colors.white}`,
       accent8: `${theme.colors.white}`,
     }
-  }
+  },
 }
 
 export const themeDark = extendTheme(
