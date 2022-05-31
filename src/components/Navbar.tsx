@@ -28,6 +28,9 @@ export default function Navbar({ isOpen, onOpen, ...props }: NavbarProps) {
         fontSize='32px'
         onClick={onOpen}
         aria-label="open menu"
+        _hover={{
+          background: 'gray.500'
+        }}
       />
       <Spacer />
       <Logo />

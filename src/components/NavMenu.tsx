@@ -85,6 +85,9 @@ export default function NavMenu({ children, ...props }: NavMenuProps) {
             variant='ghost'
             fontSize='24px'
             color='themed.secondary'
+            _hover={{
+              transform: 'scale(1.3,1.3)'
+            }}
           />
           <IconButton
             aria-label="linked in"
@@ -94,6 +97,9 @@ export default function NavMenu({ children, ...props }: NavMenuProps) {
             variant='ghost'
             fontSize='24px'
             color='themed.secondary'
+            _hover={{
+              transform: 'scale(1.3,1.3)'
+            }}
           />
         </Flex>
 

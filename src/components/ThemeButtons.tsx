@@ -32,6 +32,7 @@ export default function ThemeButtons({ theme, setTheme, ...props }: ThemeProps) 
     name: 'themebtns',
     defaultValue: theme,
     onChange: setTheme,
+    value: theme
   })
 
   return (
@@ -69,10 +70,6 @@ export default function ThemeButtons({ theme, setTheme, ...props }: ThemeProps) 
           _checked={{
             borderColor: 'gray.500',
             borderWidth: '3px',
-            // outlineWidth: 'lg',
-            // outlineColor: 'gray.500',
-            // outlineStyle: 'solid',
-            // outlineOffset: '-2px',
             svg: {
               filter: `drop-shadow(0 0 3px ${props.optionItem.glow})`
             }
