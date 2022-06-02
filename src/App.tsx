@@ -8,15 +8,16 @@ import AppShell from './components/AppShell'
 
 import { themeLight } from './themes/light'
 import { themeDark } from './themes/dark'
+import { themeHacker } from './themes/hacker'
+import { themeRandom } from './themes/random'
 
-const SYSTEM_THEME = function () {
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'dark'
-  }
-  return 'light'
-}()
+const SYSTEM_THEME = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ?
+  'dark' :
+  'light'
 
-interface themesNames {
+export let CURRENT_THEME: any = SYSTEM_THEME
+
+export interface themesNames {
   light: string,
   dark: string,
   hacker: string,
@@ -26,13 +27,14 @@ interface themesNames {
 const themes = {
   light: themeLight,
   dark: themeDark,
-  hacker: {},
-  random: {}
+  hacker: themeHacker,
+  random: themeRandom
 }
 
 export default function App() {
 
   const [currentTheme, setTheme] = useState<string>(SYSTEM_THEME)
+  CURRENT_THEME = currentTheme
 
   useEffect(() => {
     localStorage.removeItem("chakra-ui-color-mode")

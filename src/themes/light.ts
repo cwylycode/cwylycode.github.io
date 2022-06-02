@@ -19,6 +19,7 @@ const light//: typeof theme
   },
   colors: {
     themed: {
+      scheme: `${theme.colors.blue[500]}`,
       primary: `${theme.colors.gray[100]}`,
       secondary: `${theme.colors.gray[800]}`,
       accent1: `${theme.colors.white}`,
@@ -28,7 +29,6 @@ const light//: typeof theme
       accent5: `${theme.colors.black}`,
       accent6: `${theme.colors.black}`,
       accent7: `${theme.colors.black}`,
-      accent8: `${theme.colors.black}`,
     }
   },
 }

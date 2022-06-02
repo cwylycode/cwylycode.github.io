@@ -1,7 +1,7 @@
 import { themeBase } from "./base"
 import { extendTheme, theme, withDefaultColorScheme } from "@chakra-ui/react"
 
-const dark//: typeof theme
+const random//: typeof theme
   = {
   styles: {
     global: {
@@ -33,8 +33,8 @@ const dark//: typeof theme
   },
 }
 
-export const themeDark = extendTheme(
-  dark,
+export const themeRandom = extendTheme(
+  random,
   withDefaultColorScheme({
     colorScheme: 'green'
   }),

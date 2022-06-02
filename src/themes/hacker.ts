@@ -1,7 +1,7 @@
 import { themeBase } from "./base"
 import { extendTheme, theme, withDefaultColorScheme } from "@chakra-ui/react"
 
-const dark//: typeof theme
+const hacker//: typeof theme
   = {
   styles: {
     global: {
@@ -20,10 +20,10 @@ const dark//: typeof theme
   colors: {
     themed: {
       scheme: `${theme.colors.green[500]}`,
-      primary: `${theme.colors.blackAlpha[900]}`,
-      secondary: `${theme.colors.gray[200]}`,
-      accent1: `${theme.colors.gray[900]}`,
-      accent2: `${theme.colors.gray[600]}`,
+      primary: `${theme.colors.black}`,
+      secondary: `lime`,
+      accent1: `${theme.colors.black}`,
+      accent2: `limegreen`,
       accent3: `${theme.colors.white}`,
       accent4: `${theme.colors.white}`,
       accent5: `${theme.colors.white}`,
@@ -33,8 +33,8 @@ const dark//: typeof theme
   },
 }
 
-export const themeDark = extendTheme(
-  dark,
+export const themeHacker = extendTheme(
+  hacker,
   withDefaultColorScheme({
     colorScheme: 'green'
   }),
