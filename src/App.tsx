@@ -15,7 +15,7 @@ const SYSTEM_THEME = (window.matchMedia && window.matchMedia('(prefers-color-sch
   'dark' :
   'light'
 
-export let CURRENT_THEME: any = SYSTEM_THEME
+export let CURRENT_THEME: string = SYSTEM_THEME
 
 export interface themesNames {
   light: string,
