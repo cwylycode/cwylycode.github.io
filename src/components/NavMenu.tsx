@@ -1,3 +1,5 @@
+import { ReactNode } from "react"
+
 import {
   Box,
   BoxProps,
@@ -5,8 +7,8 @@ import {
   Flex,
   IconButton,
   Spacer,
+  usePrefersReducedMotion,
 } from "@chakra-ui/react"
-import { ReactNode } from "react"
 
 import {
   BsInfoCircle,
@@ -25,6 +27,9 @@ interface NavMenuProps extends BoxProps {
 }
 
 export default function NavMenu({ children, ...props }: NavMenuProps) {
+
+  const noAnim = usePrefersReducedMotion()
+
   return (
     <Box
       backgroundColor='themed.accent1'
@@ -86,7 +91,7 @@ export default function NavMenu({ children, ...props }: NavMenuProps) {
             fontSize='24px'
             color='themed.secondary'
             _hover={{
-              transform: 'scale(1.3,1.3)'
+              transform: noAnim ? 'unset' : 'scale(1.3,1.3)'
             }}
           />
           <IconButton
@@ -98,7 +103,7 @@ export default function NavMenu({ children, ...props }: NavMenuProps) {
             fontSize='24px'
             color='themed.secondary'
             _hover={{
-              transform: 'scale(1.3,1.3)'
+              transform: noAnim ? 'unset' : 'scale(1.3,1.3)'
             }}
           />
         </Flex>
