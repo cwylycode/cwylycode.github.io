@@ -31,7 +31,7 @@ export default function AppShell({ theme, setTheme, children }: AppShellProps) {
   })
 
   return (
-    <Box minH="100vh">
+    <Box id='app' minH="100vh">
       <Fade in={isOpen}>
         <Box
           display={{ base: 'unset', md: 'none' }}
@@ -44,6 +44,7 @@ export default function AppShell({ theme, setTheme, children }: AppShellProps) {
       </Fade>
 
       <Box
+        id='nav-mobile'
         ref={mobileCollapseRef}
         position='sticky'
         top='0'
@@ -79,7 +80,12 @@ export default function AppShell({ theme, setTheme, children }: AppShellProps) {
         <ThemeButtons theme={theme} setTheme={setTheme} />
       </NavMenu>
 
-      <Box ml={{ base: 0, md: PAGE_MARGIN }} p="4">
+      <Box
+        id='page'
+        minHeight='100vh'
+        ml={{ base: 0, md: PAGE_MARGIN }}
+        p="4"
+      >
         {children}
       </Box>
     </Box>

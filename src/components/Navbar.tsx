@@ -15,6 +15,7 @@ interface NavbarProps extends FlexProps {
 export default function Navbar({ isOpen, onOpen, ...props }: NavbarProps) {
   return (
     <Flex
+      id="navbar"
       px="4"
       alignItems="center"
       justifyContent="flex-start"

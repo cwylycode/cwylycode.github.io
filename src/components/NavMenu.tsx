@@ -32,6 +32,7 @@ export default function NavMenu({ children, ...props }: NavMenuProps) {
 
   return (
     <Box
+      id="nav-menu"
       backgroundColor='themed.accent1'
       {...props}
     >

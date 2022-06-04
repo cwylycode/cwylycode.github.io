@@ -29,7 +29,7 @@ export default function NavLink({ name, icon, ...props }: NavLinkProps) {
         inset: '0 0 0 0',
         transform: 'scaleX(0)',
         transition: 'transform 0.3s ease-out',
-        zIndex: '-1',
+        zIndex: -1,
         bgColor: useThemed({
           default: 'themed.scheme',
           hacker: 'maroon',
