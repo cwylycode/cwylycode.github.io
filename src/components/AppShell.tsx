@@ -5,6 +5,7 @@ import {
   Collapse,
   useOutsideClick,
   Fade,
+  Flex,
 } from '@chakra-ui/react'
 
 import Navbar from './Navbar'
@@ -84,7 +85,6 @@ export default function AppShell({ theme, setTheme, children }: AppShellProps) {
         id='page'
         minHeight='100vh'
         ml={{ base: 0, md: PAGE_MARGIN }}
-        p="4"
       >
         {children}
       </Box>
