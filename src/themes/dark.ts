@@ -19,12 +19,12 @@ const dark//: typeof theme
   },
   colors: {
     themed: {
-      scheme: `${theme.colors.green[500]}`,
+      scheme: `${theme.colors.blue[500]}`,
       primary: `${theme.colors.blackAlpha[900]}`,
       secondary: `${theme.colors.gray[200]}`,
       accent1: `${theme.colors.gray[900]}`,
       accent2: `${theme.colors.gray[600]}`,
-      accent3: `${theme.colors.white}`,
+      accent3: `${theme.colors.blue[300]}`,
       accent4: `${theme.colors.white}`,
       accent5: `${theme.colors.white}`,
       accent6: `${theme.colors.white}`,
@@ -36,7 +36,7 @@ const dark//: typeof theme
 export const themeDark = extendTheme(
   dark,
   withDefaultColorScheme({
-    colorScheme: 'green'
+    colorScheme: 'blue'
   }),
   themeBase
 )
