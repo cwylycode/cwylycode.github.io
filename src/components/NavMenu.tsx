@@ -21,6 +21,7 @@ import {
 
 import Logo from "./Logo"
 import NavLink from "./NavLink"
+import useThemed from "../hooks/use-themed"
 
 interface NavMenuProps extends BoxProps {
   children: ReactNode
@@ -34,6 +35,10 @@ export default function NavMenu({ children, ...props }: NavMenuProps) {
     <Box
       id="nav-menu"
       backgroundColor='themed.accent1'
+      /** @ts-ignore */
+      borderRightStyle={useThemed({ default: 'unset', hacker: 'dashed' })}
+      borderRightWidth={{ base: '0', md: 'thin' }}
+      borderColor='themed.secondary'
       {...props}
     >
       <Flex

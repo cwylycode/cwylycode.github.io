@@ -1,5 +1,10 @@
 import { themeBase } from "./base"
-import { color, extendTheme, theme, withDefaultColorScheme } from "@chakra-ui/react"
+import { extendTheme, theme, withDefaultVariant } from "@chakra-ui/react"
+
+const borderStyles = {
+  borderStyle: 'dashed !important',
+  borderColor: 'themed.secondary'
+}
 
 const hacker: typeof theme
   = {
@@ -20,10 +25,6 @@ const hacker: typeof theme
       '*, *::before, &::after': {
         borderColor: 'gray.700'
       },
-      '.chakra-divider': {
-        // Can't use divider component override to set borderstyle because of bug
-        borderStyle: 'dashed !important'
-      }
     },
   },
   colors: {
@@ -40,12 +41,28 @@ const hacker: typeof theme
       accent7: `${theme.colors.white}`,
     }
   },
+  components: {
+    Button: {
+      baseStyle: {
+        ...borderStyles,
+        _hover: {
+          backgroundColor: 'limegreen !important',
+          color: 'white'
+        }
+      }
+    },
+    Divider: {
+      baseStyle: {
+        ...borderStyles
+      }
+    }
+  }
 }
 
 export const themeHacker = extendTheme(
   hacker,
-  withDefaultColorScheme({
-    colorScheme: 'green'
+  withDefaultVariant({
+    variant: 'outline'
   }),
   themeBase
 )

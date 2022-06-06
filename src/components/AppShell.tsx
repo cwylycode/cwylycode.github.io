@@ -11,6 +11,7 @@ import {
 import Navbar from './Navbar'
 import NavMenu from './NavMenu'
 import ThemeButtons from './ThemeButtons'
+import useThemed from '../hooks/use-themed'
 
 const PAGE_MARGIN: number = 52
 const NAVBAR_HEIGHT: number = 20

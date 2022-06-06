@@ -61,7 +61,12 @@ export default function NavLink({ name, icon, ...props }: NavLinkProps) {
             transform: 'rotateY(3.5turn)'
           }}
         />
-        <Text>{name}</Text>
+        <Text
+          fontFamily={`${useThemed({ default: 'inherit', hacker: 'heading' })}`}
+          fontWeight={`${useThemed({ default: 'inherit', hacker: 'bold' })}`}
+        >
+          {name}
+        </Text>
         <Icon
           as={icon}
           ml="4"
