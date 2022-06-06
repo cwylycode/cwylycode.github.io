@@ -1,13 +1,68 @@
 import {
   Box,
+  Button,
   Container,
-  Flex,
   Heading,
   Spacer,
   Stack,
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react';
+import useThemed from '../hooks/use-themed';
+
+function BigButton() {
+  const buttonText = <svg viewBox="0 -100 500 500">
+    <path
+      id="curve"
+      fill='transparent'
+      d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97"
+    />
+    <path
+      id="revcurve"
+      fill='transparent'
+      d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97"
+      transform='scale(1,-1) translate(0,-300)'
+    />
+    <text fontSize='120px' fill='white' x='50'>
+      <textPath xlinkHref="#curve">
+        PUSH
+      </textPath>
+    </text>
+    <text fontSize='120px' fill='white' x='90' dominantBaseline='hanging'>
+      <textPath xlinkHref="#revcurve">
+        ME!
+      </textPath>
+    </text>
+  </svg>
+
+  return (
+    <Box
+      rounded='full'
+      bgGradient='radial(black 0%, grey 66%, white 67%, grey 70%)'
+      width='36'
+      height='36'
+      padding='2'
+      transition='all 0.3s'
+      _hover={{
+        boxShadow: `0 0 20px 5px ${useThemed({ default: 'white', light: 'black' })}`
+      }}
+    >
+      <Button
+        variant='unstyled'
+        display='block'
+        color='white'
+        bgGradient='radial(rgb(255,0,0) 0%, rgb(128,0,0) 50%, rgb(64,0,0) 100%)'
+        rounded='full'
+        width='100%'
+        height='100%'
+        fontFamily='Poppins'
+        fontWeight='extrabold'
+      >
+        {buttonText}
+      </Button>
+    </Box>
+  )
+}
 
 export default function PageHome() {
   return (
@@ -30,16 +85,19 @@ export default function PageHome() {
               maxWidth='75%'
               bgGradient='linear(90deg, themed.scheme 0%, themed.secondary 50%, themed.scheme 100%)'
             />
-            <Text fontSize={{ base: 'lg', md: '2xl', lg: '3xl' }}>
-              Coder | Developer | Tech Guy
+            <Text fontSize={{ base: 'lg', md: 'xl', lg: '2xl' }}>
+              {useThemed({
+                default: 'Coder | Developer | Tech Guy',
+                hacker: 'Coder I Developer I Tech Guy'
+              })}
             </Text>
-            <Text marginTop='5' fontSize='12px' fontWeight='normal'>
-              * It's pronounced 'why-lee' <Text as='span' marginLeft='2' fontSize='16px'>😛</Text>
+            <Text marginTop='5' fontSize='12px' fontWeight='normal' fontFamily='body'>
+              (It's pronounced 'why-lee') <Text as='span' marginLeft='2' fontSize='16px'>😛</Text>
             </Text>
           </Heading>
 
           <Text>
-            Thanks for stopping by! You can find out more about me and my work by visiting the many links peppered on this site.
+            Thanks for stopping by! You can find out more about me and my work by visiting the many links peppered all over this site.
           </Text>
 
           <Heading paddingTop='10'>
@@ -48,15 +106,18 @@ export default function PageHome() {
         </Stack>
       </Container>
 
-      <Container>
+      <Container textAlign='center'>
         <Spacer minHeight='100' />
-        <Text>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex repellat ducimus neque tempora quas deleniti eaque! Nobis, quia doloremque, libero possimus debitis pariatur iste quam sed placeat ducimus corporis id?
-          Voluptatibus molestiae aperiam eos aliquam, similique ullam exercitationem suscipit, enim fugit atque reprehenderit iste magni sit quia dignissimos tenetur magnam id! Voluptatem animi tempora, assumenda corrupti nihil excepturi officiis facilis.
-          Possimus voluptatibus nesciunt itaque natus quod consequuntur explicabo! Qui quam temporibus consequatur, nemo ex tempore rerum quos tempora voluptates, culpa nobis nisi? Animi deleniti adipisci hic quas? Corrupti, quaerat eaque.
-          Voluptatibus placeat quisquam, earum modi provident esse accusamus cum iure asperiores? Harum voluptatum nesciunt qui ex. Sunt deserunt, alias ipsum repellendus sed, totam sapiente magni architecto ipsam quisquam officia in?
-          Voluptatibus amet ex laborum officia atque assumenda maxime commodi quos fugit totam maiores aperiam a, deserunt id ea modi asperiores nam autem sunt qui repellat omnis ut optio. Magni, rerum!
-        </Text>
+        <Stack spacing='8' direction='column' alignItems='center'>
+          <Heading>
+            QUICK!<br />Blow up my website!
+          </Heading>
+          <Text>
+            Push the big red button below to explode everything!
+          </Text>
+          <BigButton />
+          <Spacer minHeight='24' />
+        </Stack>
       </Container>
     </>
   )
