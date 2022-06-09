@@ -1,28 +1,27 @@
-import { Dispatch, ReactNode, SetStateAction, useRef } from 'react'
+import { ReactNode, useRef } from 'react'
 import {
   Box,
   useDisclosure,
   Collapse,
   useOutsideClick,
   Fade,
-  Flex,
 } from '@chakra-ui/react'
 
 import Navbar from './Navbar'
 import NavMenu from './NavMenu'
 import ThemeButtons from './ThemeButtons'
-import useThemed from '../hooks/use-themed'
 
 const PAGE_MARGIN: number = 52
 const NAVBAR_HEIGHT: number = 20
 
 interface AppShellProps {
   theme: string
-  setTheme: Dispatch<SetStateAction<string>>
+  changeTheme(t: string): any
+  changePage(p: string): any
   children: ReactNode
 }
 
-export default function AppShell({ theme, setTheme, children }: AppShellProps) {
+export default function AppShell({ theme, changeTheme, changePage, children }: AppShellProps) {
 
   const { isOpen, onToggle } = useDisclosure()
   const mobileCollapseRef = useRef<HTMLDivElement>(null)
@@ -61,6 +60,7 @@ export default function AppShell({ theme, setTheme, children }: AppShellProps) {
         />
         <Collapse in={isOpen}>
           <NavMenu
+            changePage={changePage}
             position='fixed'
             top={NAVBAR_HEIGHT}
             display={{ base: 'block', md: 'none' }}
@@ -68,22 +68,24 @@ export default function AppShell({ theme, setTheme, children }: AppShellProps) {
             paddingTop='2'
             paddingBottom='5'
           >
-            <ThemeButtons theme={theme} setTheme={setTheme} />
+            <ThemeButtons theme={theme} changeTheme={changeTheme} />
           </NavMenu>
         </Collapse>
       </Box>
 
       <NavMenu
+        changePage={changePage}
         position='fixed'
         display={{ base: 'none', md: 'block' }}
         width={{ base: 'full', md: PAGE_MARGIN }}
         height="full"
       >
-        <ThemeButtons theme={theme} setTheme={setTheme} />
+        <ThemeButtons theme={theme} changeTheme={changeTheme} />
       </NavMenu>
 
       <Box
         id='page'
+        position='relative'
         minHeight='100vh'
         ml={{ base: 0, md: PAGE_MARGIN }}
       >

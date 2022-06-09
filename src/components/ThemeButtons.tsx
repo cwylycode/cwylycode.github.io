@@ -15,11 +15,6 @@ import {
   BsTerminalFill
 } from "react-icons/bs"
 
-interface ThemeProps extends BoxProps {
-  theme: string
-  setTheme: Dispatch<SetStateAction<string>>
-}
-
 function RadioButton(props: any) {
   const { getInputProps, getCheckboxProps } = useRadio(props)
   const input = getInputProps()
@@ -54,7 +49,12 @@ function RadioButton(props: any) {
   )
 }
 
-export default function ThemeButtons({ theme, setTheme, ...props }: ThemeProps) {
+interface ThemeProps extends BoxProps {
+  theme: string
+  changeTheme(t: string): any
+}
+
+export default function ThemeButtons({ theme, changeTheme, ...props }: ThemeProps) {
   const options = [
     { name: 'light', icon: BsSunFill, color: 'yellow.200', glow: '#fff346' },
     { name: 'dark', icon: BsMoonFill, color: 'cyan.300', glow: '#00a9fb' },
@@ -65,7 +65,7 @@ export default function ThemeButtons({ theme, setTheme, ...props }: ThemeProps) 
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: 'themebtns',
     defaultValue: theme,
-    onChange: setTheme,
+    onChange: changeTheme,
     value: theme
   })
 

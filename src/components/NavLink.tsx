@@ -12,15 +12,16 @@ import useThemed from "../hooks/use-themed"
 interface NavLinkProps extends FlexProps {
   name: string
   icon: IconType
+  changePage(t: string): any
 }
 
-export default function NavLink({ name, icon, ...props }: NavLinkProps) {
+export default function NavLink({ name, icon, changePage, ...props }: NavLinkProps) {
 
   const noAnim = usePrefersReducedMotion()
 
   return (
     <Link
-      onClick={() => { alert("hi link") }}
+      onClick={() => { changePage(name.toLowerCase()) }}
       textDecoration='none'
       position='relative'
       _before={{

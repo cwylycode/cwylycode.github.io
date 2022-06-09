@@ -24,10 +24,11 @@ import NavLink from "./NavLink"
 import useThemed from "../hooks/use-themed"
 
 interface NavMenuProps extends BoxProps {
+  changePage(p: string): any
   children: ReactNode
 }
 
-export default function NavMenu({ children, ...props }: NavMenuProps) {
+export default function NavMenu({ changePage, children, ...props }: NavMenuProps) {
 
   const noAnim = usePrefersReducedMotion()
 
@@ -61,25 +62,25 @@ export default function NavMenu({ children, ...props }: NavMenuProps) {
         />
 
         <Flex flexDirection='column'>
-          <NavLink name="ABOUT" icon={BsInfoCircle} />
+          <NavLink name="ABOUT" icon={BsInfoCircle} changePage={changePage} />
           <Divider
             width={{ base: '75%', md: 'full' }}
             mx='auto'
             my={{ base: '1', md: '0' }}
           />
-          <NavLink name="SKILLZ" icon={BsLightning} />
+          <NavLink name="SKILLZ" icon={BsLightning} changePage={changePage} />
           <Divider
             width={{ base: '75%', md: 'full' }}
             mx='auto'
             my={{ base: '1', md: '0' }}
           />
-          <NavLink name="SHOWCASE" icon={BsTrophy} />
+          <NavLink name="SHOWCASE" icon={BsTrophy} changePage={changePage} />
           <Divider
             width={{ base: '75%', md: 'full' }}
             mx='auto'
             my={{ base: '1', md: '0' }}
           />
-          <NavLink name="CONTACT" icon={BsChatText} />
+          <NavLink name="CONTACT" icon={BsChatText} changePage={changePage} />
         </Flex>
 
         <Spacer
