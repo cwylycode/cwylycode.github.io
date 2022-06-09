@@ -1,8 +1,12 @@
 import { themeBase } from "./base"
 import { extendTheme, theme, withDefaultColorScheme } from "@chakra-ui/react"
 
-const random//: typeof theme
-  = {
+const random: typeof theme = {
+  fonts: {
+    body: `ComicSans, ${theme.fonts.body}`,
+    heading: `ComicSans, ${theme.fonts.heading}`,
+    mono: 'mono, monospace'
+  },
   styles: {
     global: {
       body: {

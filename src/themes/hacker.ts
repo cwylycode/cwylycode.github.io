@@ -6,8 +6,7 @@ const borderStyles = {
   borderColor: 'themed.secondary'
 }
 
-const hacker: typeof theme
-  = {
+const hacker: typeof theme = {
   fonts: {
     body: `monospace, ${theme.fonts.body}`,
     heading: `asciid, ${theme.fonts.heading}`,

@@ -1,8 +1,7 @@
 import { themeBase } from "./base"
 import { extendTheme, theme, withDefaultColorScheme } from "@chakra-ui/react"
 
-const dark//: typeof theme
-  = {
+const dark: typeof theme = {
   styles: {
     global: {
       body: {
@@ -20,7 +19,7 @@ const dark//: typeof theme
   colors: {
     themed: {
       scheme: `${theme.colors.blue[500]}`,
-      primary: `${theme.colors.blackAlpha[900]}`,
+      primary: 'rgb(20,20,20)',
       secondary: `${theme.colors.gray[200]}`,
       accent1: `${theme.colors.gray[900]}`,
       accent2: `${theme.colors.gray[600]}`,
