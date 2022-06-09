@@ -7,6 +7,31 @@
   src: url('./fonts/asciid.ttf');
 }
 
+/* The most hated/overused font - but it's a knockoff because real Comic Sans costs money/legal crap */
+@font-face {
+  font-family: ComicSans;
+  src: url('./fonts/Ldfcomicsansbold.ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: ComicSans;
+  src: url('./fonts/Ldfcomicsanshairline.ttf');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: ComicSans;
+  src: url('./fonts/Ldfcomicsanslight.ttf');
+  font-weight: lighter;
+}
+
+@font-face {
+  font-family: ComicSans;
+  src: url('./fonts/Ldfcomicsans.ttf');
+}
+
+/* Handle focus rings and boxes for accessibility */
 .js-focus-visible :focus:not([data-focus-visible-added]) {
   outline: none;
   box-shadow: none;
