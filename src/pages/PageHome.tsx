@@ -10,8 +10,6 @@ import BigButton from '../big_button.svg'
 import useThemed from '../hooks/use-themed';
 
 export default function PageHome() {
-  const bigButtonShadowColor = useThemed({ default: 'black', dark: 'white' })
-  console.log(bigButtonShadowColor)
   return (
     <>
       <Container paddingY='24' textAlign='center'>
@@ -36,7 +34,7 @@ export default function PageHome() {
               Coder I Developer I Tech Guy
             </Text>
             <Text marginTop='5' fontSize='12px' fontWeight='normal' fontFamily='body'>
-              (It's pronounced 'why-lee') <Text as='span' marginLeft='2' fontSize='16px'>😛</Text>
+              (It's pronounced 'why-lee' 😛)
             </Text>
           </Heading>
 
@@ -50,7 +48,7 @@ export default function PageHome() {
         </Stack>
       </Container>
 
-      <Container paddingY='12' textAlign='center'>
+      <Container paddingY='12' textAlign='center' maxWidth='auto'>
         <Stack spacing='8' direction='column' alignItems='center'>
           <Heading>
             QUICK!<br />Blow up my website!
@@ -67,7 +65,7 @@ export default function PageHome() {
             cursor='pointer'
             transition='all 0.3s'
             _hover={{
-              boxShadow: `0 0 20px 5px ${bigButtonShadowColor}`
+              boxShadow: `0 0 20px 5px ${useThemed({ default: 'white', light: 'black' })}`
             }}
           />
         </Stack>

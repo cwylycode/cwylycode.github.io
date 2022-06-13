@@ -28,7 +28,7 @@ const hacker: typeof theme = {
   },
   colors: {
     themed: {
-      scheme: `${theme.colors.green[500]}`,
+      scheme: `green`,
       primary: `${theme.colors.black}`,
       secondary: `lime`,
       accent1: `${theme.colors.black}`,
