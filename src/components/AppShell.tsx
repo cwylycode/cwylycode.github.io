@@ -2,9 +2,7 @@ import { ReactNode, useRef } from 'react'
 import {
   Box,
   useDisclosure,
-  Collapse,
   useOutsideClick,
-  Fade,
 } from '@chakra-ui/react'
 
 import Navbar from './Navbar'
@@ -22,7 +20,6 @@ interface AppShellProps {
 }
 
 export default function AppShell({ theme, changeTheme, changePage, children }: AppShellProps) {
-
   const { isOpen, onToggle } = useDisclosure()
   const mobileCollapseRef = useRef<HTMLDivElement>(null)
 
@@ -33,49 +30,53 @@ export default function AppShell({ theme, changeTheme, changePage, children }: A
 
   return (
     <Box id='app' minH="100vh">
-      <Fade in={isOpen}>
-        <Box
-          display={{ base: 'unset', md: 'none' }}
-          position='fixed'
-          width='100vw'
-          height='100vh'
-          backgroundColor='blackAlpha.800'
-          zIndex='1'
-        />
-      </Fade>
-
+      <Box
+        id='nav-backdrop'
+        display={{ base: 'block', md: 'none' }}
+        position='fixed'
+        width='100vw'
+        height={isOpen ? '100vh' : '0vh'}
+        transition={`height 0s ${isOpen ? '0s' : '0.5s'}`}
+        backgroundColor='blackAlpha.800'
+        zIndex='9998'
+      />
       <Box
         id='nav-mobile'
+        display={{ base: 'block', md: 'none' }}
         ref={mobileCollapseRef}
-        position='sticky'
+        position='fixed'
+        width='100%'
         top='0'
-        zIndex='1'
+        zIndex='9999'
       >
         <Navbar
-          backgroundColor='themed.accent1'
-          isOpen={isOpen}
-          onOpen={onToggle}
-          display={{ base: 'flex', md: 'none' }}
+          navOpen={isOpen}
+          navToggle={onToggle}
           height={NAVBAR_HEIGHT}
         />
-        <Collapse in={isOpen}>
+        <Box
+          height={isOpen ? '400px' : '0px'}
+          overflow='hidden'
+          transition='height 0.5s'
+        >
           <NavMenu
+            id='menu-mobile'
             changePage={changePage}
-            position='fixed'
-            top={NAVBAR_HEIGHT}
-            display={{ base: 'block', md: 'none' }}
+            navOpen={isOpen}
+            navToggle={onToggle}
             width='full'
             paddingTop='2'
             paddingBottom='5'
           >
             <ThemeButtons theme={theme} changeTheme={changeTheme} />
           </NavMenu>
-        </Collapse>
+        </Box>
       </Box>
 
       <NavMenu
-        changePage={changePage}
+        id='menu-desktop'
         position='fixed'
+        changePage={changePage}
         display={{ base: 'none', md: 'block' }}
         width={{ base: 'full', md: PAGE_MARGIN }}
         height="full"
@@ -88,6 +89,7 @@ export default function AppShell({ theme, changeTheme, changePage, children }: A
         position='relative'
         minHeight='100vh'
         ml={{ base: 0, md: PAGE_MARGIN }}
+        mt={{ base: NAVBAR_HEIGHT, md: 0 }}
       >
         {children}
       </Box>

@@ -7,7 +7,6 @@ import {
   Flex,
   IconButton,
   Spacer,
-  usePrefersReducedMotion,
 } from "@chakra-ui/react"
 
 import {
@@ -22,19 +21,19 @@ import {
 import Logo from "./Logo"
 import NavLink from "./NavLink"
 import useThemed from "../hooks/use-themed"
+import useIsMobile from "../hooks/use-is-mobile"
 
 interface NavMenuProps extends BoxProps {
   changePage(p: string): any
+  navOpen?: boolean
+  navToggle?(): any
   children: ReactNode
 }
 
-export default function NavMenu({ changePage, children, ...props }: NavMenuProps) {
-
-  const noAnim = usePrefersReducedMotion()
-
+export default function NavMenu({ changePage, navOpen, navToggle, children, ...props }: NavMenuProps) {
+  const isMobile = useIsMobile()
   return (
     <Box
-      id="nav-menu"
       backgroundColor='themed.accent1'
       /** @ts-ignore */
       borderRightStyle={useThemed({ default: 'unset', hacker: 'dashed' })}
@@ -62,25 +61,49 @@ export default function NavMenu({ changePage, children, ...props }: NavMenuProps
         />
 
         <Flex flexDirection='column'>
-          <NavLink name="ABOUT" icon={BsInfoCircle} changePage={changePage} />
+          <NavLink
+            name="ABOUT"
+            icon={BsInfoCircle}
+            changePage={changePage}
+            navOpen={navOpen}
+            navToggle={navToggle}
+          />
           <Divider
             width={{ base: '75%', md: 'full' }}
             mx='auto'
             my={{ base: '1', md: '0' }}
           />
-          <NavLink name="SKILLZ" icon={BsLightning} changePage={changePage} />
+          <NavLink
+            name="SKILLZ"
+            icon={BsLightning}
+            changePage={changePage}
+            navOpen={navOpen}
+            navToggle={navToggle}
+          />
           <Divider
             width={{ base: '75%', md: 'full' }}
             mx='auto'
             my={{ base: '1', md: '0' }}
           />
-          <NavLink name="SHOWCASE" icon={BsTrophy} changePage={changePage} />
+          <NavLink
+            name="SHOWCASE"
+            icon={BsTrophy}
+            changePage={changePage}
+            navOpen={navOpen}
+            navToggle={navToggle}
+          />
           <Divider
             width={{ base: '75%', md: 'full' }}
             mx='auto'
             my={{ base: '1', md: '0' }}
           />
-          <NavLink name="CONTACT" icon={BsChatText} changePage={changePage} />
+          <NavLink
+            name="CONTACT"
+            icon={BsChatText}
+            changePage={changePage}
+            navOpen={navOpen}
+            navToggle={navToggle}
+          />
         </Flex>
 
         <Spacer
@@ -94,11 +117,13 @@ export default function NavMenu({ changePage, children, ...props }: NavMenuProps
             icon={<BsGithub />}
             as='a'
             href="https://github.com/cwylycode"
+
             variant='ghost'
             fontSize='24px'
             color='themed.secondary'
-            _hover={{
-              transform: noAnim ? 'unset' : 'scale(1.3,1.3)'
+            transition='transform 0.5s'
+            _hover={isMobile ? {} : {
+              transform: 'scale(1.3,1.3) rotate(360deg)'
             }}
           />
           <IconButton
@@ -109,8 +134,9 @@ export default function NavMenu({ changePage, children, ...props }: NavMenuProps
             variant='ghost'
             fontSize='24px'
             color='themed.secondary'
-            _hover={{
-              transform: noAnim ? 'unset' : 'scale(1.3,1.3)'
+            transition='transform 0.5s'
+            _hover={isMobile ? {} : {
+              transform: 'scale(1.3,1.3) rotate(360deg)'
             }}
           />
         </Flex>

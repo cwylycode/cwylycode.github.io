@@ -4,24 +4,30 @@ import {
   Link,
   Icon,
   Text,
-  usePrefersReducedMotion,
 } from "@chakra-ui/react"
 import { IconType } from "react-icons"
+import useIsMobile from "../hooks/use-is-mobile"
 import useThemed from "../hooks/use-themed"
 
 interface NavLinkProps extends FlexProps {
   name: string
   icon: IconType
   changePage(t: string): any
+  navOpen?: boolean
+  navToggle?(): any
 }
 
-export default function NavLink({ name, icon, changePage, ...props }: NavLinkProps) {
-
-  const noAnim = usePrefersReducedMotion()
-
+export default function NavLink({ name, icon, changePage, navOpen, navToggle, ...props }: NavLinkProps) {
+  const isMobile = useIsMobile()
   return (
     <Link
-      onClick={() => { changePage(name.toLowerCase()) }}
+      onClick={() => {
+        if (navToggle) {
+          if (!navOpen) return
+          navToggle()
+        }
+        changePage(name.toLowerCase())
+      }}
       textDecoration='none'
       position='relative'
       _before={{
@@ -30,13 +36,10 @@ export default function NavLink({ name, icon, changePage, ...props }: NavLinkPro
         inset: '0 0 0 0',
         transform: 'scaleX(0)',
         transition: 'transform 0.3s ease-out',
-        zIndex: -1,
-        bgColor: useThemed({
-          default: 'themed.scheme',
-          hacker: 'maroon',
-        })
+        zIndex: 0,
+        bgColor: 'themed.scheme'
       }}
-      _hover={{
+      _hover={isMobile ? {} : {
         color: 'white',
         _before: {
           transform: 'scaleX(1)'
@@ -45,6 +48,8 @@ export default function NavLink({ name, icon, changePage, ...props }: NavLinkPro
       }}
     >
       <Flex
+        position='relative'
+        zIndex='1'
         justifyContent="center"
         align="center"
         px="4"
@@ -57,8 +62,8 @@ export default function NavLink({ name, icon, changePage, ...props }: NavLinkPro
           as={icon}
           mr="4"
           fontSize="16"
-          transition={noAnim ? undefined : 'transform 1s ease-out'}
-          _groupHover={{
+          transition='transform 1s ease-out'
+          _groupHover={isMobile ? {} : {
             transform: 'rotateY(3.5turn)'
           }}
         />
@@ -72,9 +77,9 @@ export default function NavLink({ name, icon, changePage, ...props }: NavLinkPro
           as={icon}
           ml="4"
           fontSize="16"
-          transform='rotateY(180deg)'
-          transition={noAnim ? undefined : 'transform 1s ease-out'}
-          _groupHover={{
+          transform={'rotateY(180deg)'}
+          transition='transform 1s ease-out'
+          _groupHover={isMobile ? {} : {
             transform: 'rotateY(-3turn)'
           }}
         />
