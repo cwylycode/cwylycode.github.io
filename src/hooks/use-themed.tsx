@@ -1,4 +1,5 @@
-import { CURRENT_THEME, themesNames } from "../App";
+import { useContext, useEffect, useState } from "react";
+import { Themeing, themesNames } from "../App";
 
 interface themeProps extends themesNames {
   default: string | number
@@ -15,9 +16,12 @@ interface themeProps extends themesNames {
  * 
  * @example
  * borderColor = useThemed({default: 'blue', light: 'pink' })
+ * 
+ * @returns string | number | undefined value based on the current theme
  */
 
 export default function useThemed(themeValues: Partial<themeProps>): string | number | undefined {
-  const val = themeValues[CURRENT_THEME as keyof themeProps]
+  const currentTheme = useContext(Themeing)
+  const val = themeValues[currentTheme as keyof themeProps]
   return val ? val : themeValues['default']
 }
