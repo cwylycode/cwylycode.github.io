@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
-import { Box, ChakraProvider, Fade } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 
 import AppShell from './components/AppShell'
 
@@ -25,7 +25,7 @@ const SYSTEM_THEME = (
   window.matchMedia('(prefers-color-scheme: dark)').matches
 ) ? 'dark' : 'light'
 
-export const Themeing = createContext<string>(SYSTEM_THEME)
+export const Themed = createContext<string>(SYSTEM_THEME)
 
 export interface themesNames {
   light: string,
@@ -60,8 +60,7 @@ const pages = {
 export default function App() {
   const [currentPage, setPage] = useState<string>('home')
   const [currentTheme, setTheme] = useState<string>(SYSTEM_THEME)
-  const [pageFade, setPageFade] = useState<boolean>(false)
-  const pageFadeSpeed: number = 2
+  const [canChangePage, setCanChangePage] = useState<boolean>(true)
 
   useEffect(() => {
     localStorage.removeItem("chakra-ui-color-mode")
@@ -72,13 +71,13 @@ export default function App() {
   }
 
   function changePage(p: string) {
+    if (!canChangePage) return
     console.log('clicked ' + p)
-    // setPageFade(true)
+    // setCanChangePage(false)
     // setTimeout(() => {
-    //   setPageFade(false)
     //   setPage(p)
-    // }, 1000 * pageFadeSpeed + 0.5);
-    // import('./pages/PageAbout')
+    //   setCanChangePage(true)
+    // }, 1000 * 1);
   }
 
   return (
@@ -86,32 +85,19 @@ export default function App() {
       theme={themes[currentTheme as keyof themesNames]}
       resetCSS
     >
-      <Themeing.Provider value={currentTheme}>
+      <Themed.Provider value={currentTheme}>
         <AppShell
           theme={currentTheme}
           changeTheme={changeTheme}
           changePage={changePage}
         >
-          <Fade
-            in={pageFade}
-            transition={{ enter: { duration: pageFadeSpeed }, exit: { duration: pageFadeSpeed } }}>
-            <Box
-              id='page-fade'
-              display='none'
-              position='absolute'
-              width='100%'
-              height='100%'
-              backgroundColor='themed.primary'
-              zIndex='1'
-            />
-          </Fade>
           {
             DEBUG.defaultPage ?
               DEBUG.defaultPage :
               pages[currentPage as keyof pagesNames]
           }
         </AppShell>
-      </Themeing.Provider>
+      </Themed.Provider>
     </ChakraProvider>
   )
 }

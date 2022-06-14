@@ -1,43 +1,83 @@
 import {
   IconButton,
   Flex,
-  FlexProps,
   Spacer,
+  Box,
+  BoxProps,
+  useOutsideClick,
 } from "@chakra-ui/react"
+import { ReactNode, useRef } from "react"
 import { FaHamburger } from 'react-icons/fa'
 import { IoMdClose } from 'react-icons/io'
-import useIsMobile from "../hooks/use-is-mobile"
-import Logo from "./Logo"
 
-interface NavbarProps extends FlexProps {
+interface NavbarProps extends BoxProps {
+  logo: ReactNode
   navOpen: boolean
   navToggle: () => void
+  children: ReactNode
 }
-export default function Navbar({ navOpen, navToggle, ...props }: NavbarProps) {
+export default function Navbar({ logo, navOpen, navToggle, children, ...props }: NavbarProps) {
+  const mobileCollapseRef = useRef<HTMLDivElement>(null)
+
+  useOutsideClick({
+    ref: mobileCollapseRef,
+    handler: () => { navOpen ? navToggle() : null }
+  })
+
   return (
-    <Flex
-      id="navbar"
-      backgroundColor='themed.accent1'
-      px="4"
-      alignItems="center"
-      justifyContent="flex-start"
+    <Box
+      id='nav-mobile'
+      display={{ base: 'block', md: 'none' }}
+      position='fixed'
+      width='100%'
+      top='0'
+      zIndex='9999'
       {...props}
     >
-      <IconButton
-        icon={navOpen ? <IoMdClose /> : <FaHamburger />}
-        color='themed.secondary'
-        variant="ghost"
-        position='absolute'
-        fontSize='32px'
-        onClick={navToggle}
-        aria-label="open menu"
-        _hover={useIsMobile() ? {} : {
-          background: 'gray.500'
-        }}
+      <Box
+        id='navbar-backdrop'
+        display={{ base: 'block', md: 'none' }}
+        position='fixed'
+        width='100vw'
+        height={navOpen ? '100vh' : '0vh'}
+        transition={`height 0s ${navOpen ? '0s' : '0.5s'}`}
+        backgroundColor='blackAlpha.800'
+        zIndex='-1'
       />
-      <Spacer />
-      <Logo />
-      <Spacer />
-    </Flex>
+      <Box
+        id="navbar"
+        ref={mobileCollapseRef}
+        height='100%'
+      >
+        <Flex
+          backgroundColor='themed.accent1'
+          px="4"
+          alignItems="center"
+          justifyContent="flex-start"
+          height='100%'
+        >
+          <IconButton
+            icon={navOpen ? <IoMdClose /> : <FaHamburger />}
+            color='themed.secondary'
+            variant="ghost"
+            position='absolute'
+            fontSize='48px'
+            onClick={navToggle}
+            aria-label="open menu"
+            _hover={{}}
+          />
+          <Spacer />
+          {logo}
+          <Spacer />
+        </Flex>
+        <Box
+          height={navOpen ? '360px' : '0px'}
+          overflow='hidden'
+          transition='height 0.5s'
+        >
+          {children}
+        </Box>
+      </Box>
+    </Box >
   )
 }

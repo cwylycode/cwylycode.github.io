@@ -21,17 +21,13 @@ import {
 import Logo from "./Logo"
 import NavLink from "./NavLink"
 import useThemed from "../hooks/use-themed"
-import useIsMobile from "../hooks/use-is-mobile"
 
 interface NavMenuProps extends BoxProps {
-  changePage(p: string): any
-  navOpen?: boolean
-  navToggle?(): any
+  onLinkClick: (pageName: string) => void
   children: ReactNode
 }
 
-export default function NavMenu({ changePage, navOpen, navToggle, children, ...props }: NavMenuProps) {
-  const isMobile = useIsMobile()
+export default function NavMenu({ onLinkClick, children, ...props }: NavMenuProps) {
   return (
     <Box
       backgroundColor='themed.accent1'
@@ -46,27 +42,21 @@ export default function NavMenu({ changePage, navOpen, navToggle, children, ...p
         justifyContent='flex-start'
         height='full'
       >
-        <Flex
-          display={{ base: 'none', md: 'flex' }}
-          h="20"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Logo />
-        </Flex>
 
-        <Spacer
-          maxHeight='5'
-          minHeight={{ base: '5', md: '0' }}
+        <Spacer maxHeight='5' />
+        <Logo
+          aria-label='HOME'
+          onClick={() => { onLinkClick('home') }}
+          display={{ base: 'none', md: 'unset' }}
+          height='5rem'
         />
+        <Spacer maxHeight='5' />
 
         <Flex flexDirection='column'>
           <NavLink
             name="ABOUT"
             icon={BsInfoCircle}
-            changePage={changePage}
-            navOpen={navOpen}
-            navToggle={navToggle}
+            onClick={() => { onLinkClick('about') }}
           />
           <Divider
             width={{ base: '75%', md: 'full' }}
@@ -76,9 +66,7 @@ export default function NavMenu({ changePage, navOpen, navToggle, children, ...p
           <NavLink
             name="SKILLZ"
             icon={BsLightning}
-            changePage={changePage}
-            navOpen={navOpen}
-            navToggle={navToggle}
+            onClick={() => { onLinkClick('skillz') }}
           />
           <Divider
             width={{ base: '75%', md: 'full' }}
@@ -88,9 +76,7 @@ export default function NavMenu({ changePage, navOpen, navToggle, children, ...p
           <NavLink
             name="SHOWCASE"
             icon={BsTrophy}
-            changePage={changePage}
-            navOpen={navOpen}
-            navToggle={navToggle}
+            onClick={() => { onLinkClick('showcase') }}
           />
           <Divider
             width={{ base: '75%', md: 'full' }}
@@ -100,9 +86,7 @@ export default function NavMenu({ changePage, navOpen, navToggle, children, ...p
           <NavLink
             name="CONTACT"
             icon={BsChatText}
-            changePage={changePage}
-            navOpen={navOpen}
-            navToggle={navToggle}
+            onClick={() => { onLinkClick('contact') }}
           />
         </Flex>
 
@@ -117,13 +101,14 @@ export default function NavMenu({ changePage, navOpen, navToggle, children, ...p
             icon={<BsGithub />}
             as='a'
             href="https://github.com/cwylycode"
-
             variant='ghost'
             fontSize='24px'
             color='themed.secondary'
             transition='transform 0.5s'
-            _hover={isMobile ? {} : {
-              transform: 'scale(1.3,1.3) rotate(360deg)'
+            _hover={{
+              base: {}, md: {
+                transform: 'scale(1.3,1.3) rotate(360deg)'
+              }
             }}
           />
           <IconButton
@@ -135,19 +120,20 @@ export default function NavMenu({ changePage, navOpen, navToggle, children, ...p
             fontSize='24px'
             color='themed.secondary'
             transition='transform 0.5s'
-            _hover={isMobile ? {} : {
-              transform: 'scale(1.3,1.3) rotate(360deg)'
+            _hover={{
+              base: {}, md: {
+                transform: 'scale(1.3,1.3) rotate(360deg)'
+              }
             }}
           />
         </Flex>
 
-        <Spacer />
+        <Spacer minHeight={{ base: '5', md: 'unset' }} />
 
         <Divider
           display={{ base: 'none', md: 'unset' }}
           mx='auto'
         />
-
         {children}
       </Flex>
     </Box>

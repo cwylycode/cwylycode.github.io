@@ -8,75 +8,56 @@ import {
 import Navbar from './Navbar'
 import NavMenu from './NavMenu'
 import ThemeButtons from './ThemeButtons'
+import Logo from './Logo'
 
 const PAGE_MARGIN: number = 52
 const NAVBAR_HEIGHT: number = 20
 
 interface AppShellProps {
   theme: string
-  changeTheme(t: string): any
-  changePage(p: string): any
+  changeTheme: (t: string) => void
+  changePage: (p: string) => void
   children: ReactNode
 }
 
 export default function AppShell({ theme, changeTheme, changePage, children }: AppShellProps) {
   const { isOpen, onToggle } = useDisclosure()
-  const mobileCollapseRef = useRef<HTMLDivElement>(null)
 
-  useOutsideClick({
-    ref: mobileCollapseRef,
-    handler: () => { isOpen ? onToggle() : null }
-  })
+  function onLinkClick(pageName: string) {
+    if (isOpen) onToggle()
+    changePage(pageName)
+  }
 
   return (
     <Box id='app' minH="100vh">
-      <Box
-        id='nav-backdrop'
-        display={{ base: 'block', md: 'none' }}
-        position='fixed'
-        width='100vw'
-        height={isOpen ? '100vh' : '0vh'}
-        transition={`height 0s ${isOpen ? '0s' : '0.5s'}`}
-        backgroundColor='blackAlpha.800'
-        zIndex='9998'
-      />
-      <Box
-        id='nav-mobile'
-        display={{ base: 'block', md: 'none' }}
-        ref={mobileCollapseRef}
-        position='fixed'
-        width='100%'
-        top='0'
-        zIndex='9999'
+
+      <Navbar
+        logo={
+          <Logo
+            aria-label="HOME"
+            onClick={() => { onLinkClick('home') }}
+            width='5'
+          />
+        }
+        navOpen={isOpen}
+        navToggle={onToggle}
+        height={{ base: NAVBAR_HEIGHT, md: '0' }}
       >
-        <Navbar
-          navOpen={isOpen}
-          navToggle={onToggle}
-          height={NAVBAR_HEIGHT}
-        />
-        <Box
-          height={isOpen ? '400px' : '0px'}
-          overflow='hidden'
-          transition='height 0.5s'
+        <NavMenu
+          id='menu-mobile'
+          onLinkClick={onLinkClick}
+          width='full'
+          paddingTop='2'
+          paddingBottom='5'
         >
-          <NavMenu
-            id='menu-mobile'
-            changePage={changePage}
-            navOpen={isOpen}
-            navToggle={onToggle}
-            width='full'
-            paddingTop='2'
-            paddingBottom='5'
-          >
-            <ThemeButtons theme={theme} changeTheme={changeTheme} />
-          </NavMenu>
-        </Box>
-      </Box>
+          <ThemeButtons theme={theme} changeTheme={changeTheme} />
+        </NavMenu>
+      </Navbar>
 
       <NavMenu
         id='menu-desktop'
         position='fixed'
-        changePage={changePage}
+        onLinkClick={onLinkClick}
         display={{ base: 'none', md: 'block' }}
         width={{ base: 'full', md: PAGE_MARGIN }}
         height="full"

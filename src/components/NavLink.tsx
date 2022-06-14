@@ -1,34 +1,21 @@
 import {
   Flex,
-  FlexProps,
-  Link,
   Icon,
   Text,
+  BoxProps,
+  Box,
 } from "@chakra-ui/react"
 import { IconType } from "react-icons"
-import useIsMobile from "../hooks/use-is-mobile"
 import useThemed from "../hooks/use-themed"
 
-interface NavLinkProps extends FlexProps {
+interface NavLinkProps extends BoxProps {
   name: string
   icon: IconType
-  changePage(t: string): any
-  navOpen?: boolean
-  navToggle?(): any
 }
 
-export default function NavLink({ name, icon, changePage, navOpen, navToggle, ...props }: NavLinkProps) {
-  const isMobile = useIsMobile()
+export default function NavLink({ name, icon, ...props }: NavLinkProps) {
   return (
-    <Link
-      onClick={() => {
-        if (navToggle) {
-          if (!navOpen) return
-          navToggle()
-        }
-        changePage(name.toLowerCase())
-      }}
-      textDecoration='none'
+    <Box
       position='relative'
       _before={{
         content: '""',
@@ -39,13 +26,15 @@ export default function NavLink({ name, icon, changePage, navOpen, navToggle, ..
         zIndex: 0,
         bgColor: 'themed.scheme'
       }}
-      _hover={isMobile ? {} : {
-        color: 'white',
-        _before: {
-          transform: 'scaleX(1)'
+      _hover={{
+        base: {}, md: {
+          color: 'white',
+          _before: {
+            transform: 'scaleX(1)'
+          }
         }
-
       }}
+      {...props}
     >
       <Flex
         position='relative'
@@ -56,15 +45,16 @@ export default function NavLink({ name, icon, changePage, navOpen, navToggle, ..
         py="2"
         role="group"
         cursor="pointer"
-        {...props}
       >
         <Icon
           as={icon}
           mr="4"
           fontSize="16"
           transition='transform 1s ease-out'
-          _groupHover={isMobile ? {} : {
-            transform: 'rotateY(3.5turn)'
+          _groupHover={{
+            base: {}, md: {
+              transform: 'rotateY(3.5turn)'
+            }
           }}
         />
         <Text
@@ -79,11 +69,13 @@ export default function NavLink({ name, icon, changePage, navOpen, navToggle, ..
           fontSize="16"
           transform={'rotateY(180deg)'}
           transition='transform 1s ease-out'
-          _groupHover={isMobile ? {} : {
-            transform: 'rotateY(-3turn)'
+          _groupHover={{
+            base: {}, md: {
+              transform: 'rotateY(-3turn)'
+            }
           }}
         />
       </Flex>
-    </Link>
+    </Box>
   )
 }
