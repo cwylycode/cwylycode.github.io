@@ -6,7 +6,7 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-import BigButton from '../big_button.svg'
+import BigButton from '../svg/big_button.svg'
 import useThemed from '../hooks/use-themed';
 
 export default function PageHome() {
