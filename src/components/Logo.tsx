@@ -5,6 +5,7 @@ export default function Logo({ ...props }: IconButtonProps) {
   return (
     <IconButton
       icon={<LogoGraphic />}
+      margin='auto'
       variant='ghost'
       fill='themed.secondary'
       _hover={{}}

@@ -30,6 +30,7 @@ interface NavMenuProps extends BoxProps {
 export default function NavMenu({ onLinkClick, children, ...props }: NavMenuProps) {
   return (
     <Box
+      zIndex='2'
       backgroundColor='themed.accent1'
       /** @ts-ignore */
       borderRightStyle={useThemed({ default: 'unset', hacker: 'dashed' })}

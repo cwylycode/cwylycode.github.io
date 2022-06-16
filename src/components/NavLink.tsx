@@ -20,7 +20,7 @@ export default function NavLink({ name, icon, ...props }: NavLinkProps) {
       _before={{
         content: '""',
         position: 'absolute',
-        inset: '0 0 0 0',
+        top: '0; right: 0; bottom: 0; left: 0',
         transform: 'scaleX(0)',
         transition: 'transform 0.3s ease-out',
         zIndex: 0,

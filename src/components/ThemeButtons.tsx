@@ -6,7 +6,6 @@ import {
   useRadio,
   useRadioGroup
 } from "@chakra-ui/react"
-import { Dispatch, SetStateAction } from "react"
 
 import {
   BsMoonFill,
