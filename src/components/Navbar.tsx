@@ -18,6 +18,7 @@ interface NavbarProps extends BoxProps {
 }
 export default function Navbar({ logo, navOpen, navToggle, children, ...props }: NavbarProps) {
   const mobileCollapseRef = useRef<HTMLDivElement>(null)
+  const navAnimSpeed = 0.5
 
   useOutsideClick({
     ref: mobileCollapseRef,
@@ -40,7 +41,7 @@ export default function Navbar({ logo, navOpen, navToggle, children, ...props }:
         position='fixed'
         width='100vw'
         height={navOpen ? '100vh' : '0vh'}
-        transition={`height 0s ${navOpen ? '0s' : '0.5s'}`}
+        transition={`height 0s ${navOpen ? '0s' : `${navAnimSpeed}s`}`}
         backgroundColor='blackAlpha.800'
         zIndex='-1'
       />
@@ -73,7 +74,7 @@ export default function Navbar({ logo, navOpen, navToggle, children, ...props }:
         <Box
           height={navOpen ? '360px' : '0px'}
           overflow='hidden'
-          transition='height 0.5s'
+          transition={`height ${navAnimSpeed}s`}
         >
           {children}
         </Box>

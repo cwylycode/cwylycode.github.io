@@ -1,8 +1,7 @@
-import { ReactNode, useRef } from 'react'
+import { ReactNode } from 'react'
 import {
   Box,
   useDisclosure,
-  useOutsideClick,
 } from '@chakra-ui/react'
 
 import Navbar from './Navbar'
@@ -16,7 +15,7 @@ const NAVBAR_HEIGHT: number = 20
 interface AppShellProps {
   theme: string
   changeTheme: (t: string) => void
-  changePage: (p: string) => void
+  changePage: (p: string, delay: number) => void
   children: ReactNode
 }
 
@@ -24,8 +23,12 @@ export default function AppShell({ theme, changeTheme, changePage, children }: A
   const { isOpen, onToggle } = useDisclosure()
 
   function onLinkClick(pageName: string) {
-    if (isOpen) onToggle()
-    changePage(pageName)
+    if (isOpen) {
+      onToggle()
+      changePage(pageName, 1)
+      return
+    }
+    changePage(pageName, 0)
   }
 
   return (

@@ -14,11 +14,7 @@ import { themeDark } from './themes/dark'
 import { themeHacker } from './themes/hacker'
 import { themeRandom } from './themes/random'
 
-const DEBUG = {
-  loadingIntro: true,
-  loadingPages: true,
-  defaultPage: null
-}
+import OverlayPageChange from './components/OverlayPageChange'
 
 const SYSTEM_THEME = (
   window.matchMedia &&
@@ -61,6 +57,8 @@ export default function App() {
   const [currentPage, setPage] = useState<string>('home')
   const [currentTheme, setTheme] = useState<string>(SYSTEM_THEME)
   const [canChangePage, setCanChangePage] = useState<boolean>(true)
+  const [animPageActive, setAnimPageActive] = useState<boolean>(false)
+  const pageAnimSpeed = 0.5
 
   useEffect(() => {
     localStorage.removeItem("chakra-ui-color-mode")
@@ -70,14 +68,17 @@ export default function App() {
     setTheme(t)
   }
 
-  function changePage(p: string) {
-    if (!canChangePage) return
-    console.log('clicked ' + p)
-    // setCanChangePage(false)
-    // setTimeout(() => {
-    //   setPage(p)
-    //   setCanChangePage(true)
-    // }, 1000 * 1);
+  function changePage(page: string, delay: number) {
+    if (!canChangePage || currentPage === page) return
+    setCanChangePage(false)
+    setTimeout(() => {
+      setAnimPageActive(true)
+      setTimeout(() => {
+        setPage(page)
+        setCanChangePage(true)
+        setAnimPageActive(false)
+      }, 1000 * (pageAnimSpeed + 0.5));
+    }, delay * 1000);
   }
 
   return (
@@ -91,13 +92,12 @@ export default function App() {
           changeTheme={changeTheme}
           changePage={changePage}
         >
-          {
-            DEBUG.defaultPage ?
-              DEBUG.defaultPage :
-              pages[currentPage as keyof pagesNames]
-          }
+          <>
+            <OverlayPageChange active={animPageActive} animSpeed={pageAnimSpeed} />
+            {pages[currentPage as keyof pagesNames]}
+          </>
         </AppShell>
       </Themed.Provider>
-    </ChakraProvider>
+    </ChakraProvider >
   )
 }
