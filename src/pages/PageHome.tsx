@@ -1,13 +1,17 @@
 import {
   Box,
   Container,
+  Flex,
   Heading,
   Image,
   Stack,
   Text,
 } from '@chakra-ui/react';
-import BigButton from '../svg/big_button.svg'
 import useThemed from '../hooks/use-themed';
+
+import BigButton from '../svg/big_button.svg'
+import { ReactComponent as Arrow } from '../svg/Arrow.svg'
+import SvgBox from '../components/SvgBox';
 
 export default function PageHome() {
   return (
@@ -42,9 +46,22 @@ export default function PageHome() {
             Thanks for stopping by! You can find out more about me and my work by visiting the many links peppered all over this site.
           </Text>
 
-          <Heading paddingTop='10'>
-            But First ...
-          </Heading>
+          <Flex
+            paddingTop='10'
+            justifyContent='center'
+          >
+            <Heading>But First ...</Heading>
+            <Box position='relative' width='32'>
+              <SvgBox
+                svgComp={<Arrow />}
+                svgPathCSS={{ stroke: 'themed.secondary' }}
+                width='32'
+                position='absolute'
+                top='-35px'
+                right='10px'
+              />
+            </Box>
+          </Flex>
         </Stack>
       </Container>
 
