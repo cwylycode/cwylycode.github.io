@@ -1,7 +1,6 @@
 import {
   Box,
   Container,
-  Flex,
   Heading,
   Image,
   Stack,
@@ -10,22 +9,22 @@ import {
 import useThemed from '../hooks/use-themed';
 
 import BigButton from '../svg/big_button.svg'
-import { ReactComponent as Arrow } from '../svg/Arrow.svg'
+import { ReactComponent as Lookie } from '../svg/doodle_lookie.svg'
 import SvgBox from '../components/SvgBox';
 
 export default function PageHome() {
   return (
     <>
-      <Container paddingY='24' textAlign='center'>
-        <Stack spacing='8' direction='column'>
-          <Text fontSize={{ base: 'sm', md: 'large', lg: 'xl' }}>
+      <Container paddingTop={{ base: '10', md: '24' }}>
+        <Stack spacing='12' direction='column' textAlign='center'>
+          <Text fontSize={{ md: 'large', lg: 'xl' }} textAlign={{ md: 'left' }}>
             The name's Wyly ...
           </Text>
 
-          <Heading textAlign='center' fontSize={{ base: '3xl', md: '5xl', lg: '7xl' }}>
-            <Text color='themed.accent3'>
+          <Box textAlign='center'>
+            <Heading color='themed.accent3' fontSize={{ base: '5xl', md: '7xl', lg: '8xl' }}>
               Colin Wyly
-            </Text>
+            </Heading>
             <Box
               minHeight='1'
               marginTop='2'
@@ -34,44 +33,35 @@ export default function PageHome() {
               maxWidth='75%'
               bgGradient='linear(90deg, themed.scheme 0%, themed.secondary 50%, themed.scheme 100%)'
             />
-            <Text fontSize={{ base: 'lg', md: 'xl', lg: '2xl' }}>
+            <Text fontSize={{ base: 'md', md: 'lg', lg: '2xl' }}>
               Coder I Developer I Tech Guy
             </Text>
-            <Text marginTop='5' fontSize='12px' fontWeight='normal' fontFamily='body'>
+            <Text marginTop='12' fontSize={{ base: '8px', md: '10px', lg: '12px' }} fontWeight='normal' fontFamily='body'>
               (It's pronounced 'why-lee' 😛)
             </Text>
-          </Heading>
+          </Box>
 
-          <Text>
+          <Text textAlign={{ md: 'left' }}>
             Thanks for stopping by! You can find out more about me and my work by visiting the many links peppered all over this site.
           </Text>
 
-          <Flex
-            paddingTop='10'
-            justifyContent='center'
-          >
-            <Heading>But First ...</Heading>
-            <Box position='relative' width='32'>
-              <SvgBox
-                svgComp={<Arrow />}
-                svgPathCSS={{ stroke: 'themed.secondary' }}
-                width='32'
-                position='absolute'
-                top='-35px'
-                right='10px'
-              />
-            </Box>
-          </Flex>
+          <SvgBox
+            svgComp={<Lookie />}
+            svgPathCSS={{ stroke: 'themed.secondary', strokeWidth: '5' }}
+            width={{ base: '48', md: '64' }}
+            marginLeft='auto !important'
+            marginRight={{ base: 'auto !important', md: 'inherit !important' }}
+          />
         </Stack>
       </Container>
 
-      <Container paddingY='12' textAlign='center' maxWidth='auto'>
-        <Stack spacing='8' direction='column' alignItems='center'>
+      <Container paddingY='12'>
+        <Stack spacing='8' direction='column' alignItems='center' textAlign='center'>
           <Heading>
             QUICK!<br />Blow up my website!
           </Heading>
           <Text>
-            Push the big red button below to explode everything!
+            Press that big red button below to explode everything!
           </Text>
           <Image
             id='big-button'
