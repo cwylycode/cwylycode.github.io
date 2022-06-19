@@ -1,13 +1,7 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, lazy, Suspense, useEffect, useState } from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 
 import AppShell from './components/AppShell'
-
-import PageHome from './pages/PageHome'
-import PageAbout from './pages/PageAbout'
-import PageSkillz from './pages/PageSkillz'
-import PageShowcase from './pages/PageShowcase'
-import PageContact from './pages/PageContact'
 
 import { themeLight } from './themes/light'
 import { themeDark } from './themes/dark'
@@ -36,6 +30,12 @@ const themes = {
   hacker: themeHacker,
   random: themeRandom
 }
+
+const PageHome = lazy(() => import('./pages/PageHome'))
+const PageAbout = lazy(() => import('./pages/PageAbout'))
+const PageSkillz = lazy(() => import('./pages/PageSkillz'))
+const PageShowcase = lazy(() => import('./pages/PageShowcase'))
+const PageContact = lazy(() => import('./pages/PageContact'))
 
 interface pagesNames {
   home: string
@@ -77,7 +77,7 @@ export default function App() {
         setPage(page)
         setCanChangePage(true)
         setAnimPageActive(false)
-      }, 1000 * (pageAnimSpeed + 0.5));
+      }, 1000 * (pageAnimSpeed + 0.5))
     }, delay * 1000);
   }
 
@@ -92,10 +92,10 @@ export default function App() {
           changeTheme={changeTheme}
           changePage={changePage}
         >
-          <>
+          <Suspense fallback={<p>loading...</p>}>
             <OverlayPageChange active={animPageActive} animSpeed={pageAnimSpeed} />
             {pages[currentPage as keyof pagesNames]}
-          </>
+          </Suspense>
         </AppShell>
       </Themed.Provider>
     </ChakraProvider >

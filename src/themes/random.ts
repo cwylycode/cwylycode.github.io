@@ -1,6 +1,38 @@
 import { themeBase } from "./base"
 import { extendTheme, theme, withDefaultColorScheme } from "@chakra-ui/react"
 
+const colors = [
+  theme.colors.blue,
+  theme.colors.cyan,
+  theme.colors.gray,
+  theme.colors.green,
+  theme.colors.orange,
+  theme.colors.pink,
+  theme.colors.purple,
+  theme.colors.red,
+  theme.colors.teal,
+  theme.colors.yellow
+]
+
+const ranges = [
+  50,
+  100,
+  200,
+  300,
+  400,
+  500,
+  600,
+  700,
+  800,
+  900
+]
+
+function randColor() {
+  const c = Math.floor(Math.random() * colors.length)
+  const r = Math.floor(Math.random() * ranges.length)
+  return colors[c][ranges[r]]
+}
+
 const random: typeof theme = {
   fonts: {
     body: `ComicSans, ${theme.fonts.body}`,
@@ -23,16 +55,16 @@ const random: typeof theme = {
   },
   colors: {
     themed: {
-      scheme: `${theme.colors.green[500]}`,
-      primary: `${theme.colors.blackAlpha[900]}`,
-      secondary: `${theme.colors.gray[200]}`,
-      accent1: `${theme.colors.gray[900]}`,
-      accent2: `${theme.colors.gray[600]}`,
-      accent3: `${theme.colors.white}`,
-      accent4: `${theme.colors.white}`,
-      accent5: `${theme.colors.white}`,
-      accent6: `${theme.colors.white}`,
-      accent7: `${theme.colors.white}`,
+      scheme: randColor(),
+      primary: randColor(),
+      secondary: randColor(),
+      accent1: randColor(),
+      accent2: randColor(),
+      accent3: randColor(),
+      accent4: randColor(),
+      accent5: randColor(),
+      accent6: randColor(),
+      accent7: randColor(),
     }
   },
 }
@@ -40,7 +72,7 @@ const random: typeof theme = {
 export const themeRandom = extendTheme(
   random,
   withDefaultColorScheme({
-    colorScheme: 'green'
+    colorScheme: randColor()
   }),
   themeBase
 )

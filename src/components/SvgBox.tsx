@@ -11,7 +11,6 @@ interface SvgBoxProps extends BoxProps {
 export default function SvgBox({ svgComp, svgPathCSS, ...props }: SvgBoxProps) {
   return (
     <Box
-      fill='themed.secondary'
       {...props}
       sx={{
         '& > svg': {
