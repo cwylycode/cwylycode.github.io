@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Themed, themesNames } from "../App";
 
 interface themeProps extends themesNames {
-  default: string | number
+  default: string
 }
 
 /**
@@ -17,10 +17,10 @@ interface themeProps extends themesNames {
  * @example
  * borderColor = useThemed({default: 'blue', light: 'pink' })
  * 
- * @returns string | number | undefined value based on the current theme
+ * @returns string | undefined value based on the current theme
  */
 
-export default function useThemed(themeValues: Partial<themeProps>): string | number | undefined {
+export default function useThemed(themeValues: Partial<themeProps>): string | undefined {
   const currentTheme = useContext(Themed)
   const val = themeValues[currentTheme as keyof themeProps]
   return val ? val : themeValues['default']
