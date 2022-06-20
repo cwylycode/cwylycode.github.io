@@ -8,11 +8,15 @@ import {
 } from '@chakra-ui/react';
 import useThemed from '../hooks/use-themed';
 
+import { useScrollIntoView } from '@mantine/hooks';
+
 import BigButton from '../svg/big_button.svg'
 import { ReactComponent as Lookie } from '../svg/doodle_lookie.svg'
 import SvgBox from '../components/SvgBox';
 
 export default function PageHome() {
+  const { scrollIntoView: scrollToExplode, targetRef: explodeSection } = useScrollIntoView<HTMLDivElement>()
+
   return (
     <>
       <Container paddingTop={{ base: '10', md: '24' }}>
@@ -51,11 +55,13 @@ export default function PageHome() {
             width={{ base: '48', md: '64' }}
             marginLeft='auto !important'
             marginRight={{ base: 'auto !important', md: 'inherit !important' }}
+            cursor='pointer'
+            onClick={() => { scrollToExplode() }}
           />
         </Stack>
       </Container>
 
-      <Container paddingY='12'>
+      <Container id='explode-time-yay' ref={explodeSection} paddingY='12'>
         <Stack spacing='8' direction='column' alignItems='center' textAlign='center'>
           <Heading>
             QUICK!<br />Blow up my website!
