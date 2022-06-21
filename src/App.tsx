@@ -62,7 +62,7 @@ export default function App() {
   const [animPageActive, setAnimPageActive] = useState<boolean>(false)
   const [animThemeActive, setAnimThemeActive] = useState<boolean>(false)
   const pageAnimSpeed = 1
-  const themeAnimSpeed = 2
+  const themeAnimSpeed = 1
 
   useEffect(() => {
     localStorage.removeItem("chakra-ui-color-mode")
@@ -74,11 +74,9 @@ export default function App() {
     setAnimThemeActive(true)
     setTimeout(() => {
       setTheme(theme)
-      setTimeout(() => {
-        setAnimThemeActive(false)
-        setCanChangeTheme(true)
-      }, 1000 * (themeAnimSpeed + 0.5));
-    }, 1000 * (themeAnimSpeed / 2 + 0.5));
+      setAnimThemeActive(false)
+      setCanChangeTheme(true)
+    }, 1000 * (themeAnimSpeed + 0.5));
   }
 
   function changePage(page: string, delay: number) {
@@ -100,7 +98,10 @@ export default function App() {
       resetCSS
     >
       <Themed.Provider value={currentTheme}>
-        <OverlayThemeChange active={animThemeActive} animSpeed={themeAnimSpeed} />
+        <OverlayThemeChange
+          active={animThemeActive}
+          animSpeed={themeAnimSpeed}
+        />
         <AppShell
           theme={currentTheme}
           changeTheme={changeTheme}

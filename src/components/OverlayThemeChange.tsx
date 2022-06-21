@@ -1,9 +1,5 @@
-import { Box, chakra } from "@chakra-ui/react";
-import { isValidMotionProp, motion } from "framer-motion";
-
-const AnimBox = chakra(motion.div, {
-  shouldForwardProp: (prop) => isValidMotionProp(prop) || prop === 'children'
-})
+import { Box } from "@chakra-ui/react";
+import MotionBox from "./motion/MotionBox";
 
 interface OtcProps {
   active: boolean,
@@ -12,20 +8,16 @@ interface OtcProps {
 
 export default function OverlayThemeChange({ active, animSpeed }: OtcProps) {
   const anim = {
-    active: {
-      y: '150vh',
-      transition: { duration: `${animSpeed}`, ease: 'linear' }
-    },
-    inactive: {
-      y: '-150vh',
-      transition: { duration: 0 }
-    }
+    active: { y: ['-150vh', '0vh'] },
+    inactive: { y: ['0vh', '150vh'] }
   }
   return (
     <>
-      <AnimBox
+      <MotionBox
         variants={anim}
         animate={active ? 'active' : 'inactive'}
+        initial={false}
+        transition={{ duration: `${animSpeed}`, ease: 'linear' }}
         position='fixed'
         top='-25vh'
         width='100vw'
@@ -51,7 +43,7 @@ export default function OverlayThemeChange({ active, animSpeed }: OtcProps) {
             mask: "linear-gradient(#000 0 0) 100% calc(50% - 100px) no-repeat,url('/src/svg/wave_theme.svg') bottom/70% 100px repeat-x"
           }}
         />
-      </AnimBox>
+      </MotionBox>
     </>
   )
 }
