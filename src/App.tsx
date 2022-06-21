@@ -9,6 +9,7 @@ import { themeHacker } from './themes/hacker'
 import { themeRandom } from './themes/random'
 
 import OverlayPageChange from './components/OverlayPageChange'
+import OverlayThemeChange from './components/OverlayThemeChange'
 
 const SYSTEM_THEME = (
   window.matchMedia &&
@@ -57,15 +58,27 @@ export default function App() {
   const [currentPage, setPage] = useState<string>('home')
   const [currentTheme, setTheme] = useState<string>(SYSTEM_THEME)
   const [canChangePage, setCanChangePage] = useState<boolean>(true)
+  const [canChangeTheme, setCanChangeTheme] = useState<boolean>(true)
   const [animPageActive, setAnimPageActive] = useState<boolean>(false)
-  const pageAnimSpeed = 0.5
+  const [animThemeActive, setAnimThemeActive] = useState<boolean>(false)
+  const pageAnimSpeed = 1
+  const themeAnimSpeed = 2
 
   useEffect(() => {
     localStorage.removeItem("chakra-ui-color-mode")
   }, [])
 
-  function changeTheme(t: string) {
-    setTheme(t)
+  function changeTheme(theme: string) {
+    if (!canChangeTheme || currentTheme === theme) return
+    setCanChangeTheme(false)
+    setAnimThemeActive(true)
+    setTimeout(() => {
+      setTheme(theme)
+      setTimeout(() => {
+        setAnimThemeActive(false)
+        setCanChangeTheme(true)
+      }, 1000 * (themeAnimSpeed + 0.5));
+    }, 1000 * (themeAnimSpeed / 2 + 0.5));
   }
 
   function changePage(page: string, delay: number) {
@@ -87,6 +100,7 @@ export default function App() {
       resetCSS
     >
       <Themed.Provider value={currentTheme}>
+        <OverlayThemeChange active={animThemeActive} animSpeed={themeAnimSpeed} />
         <AppShell
           theme={currentTheme}
           changeTheme={changeTheme}
