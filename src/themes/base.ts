@@ -1,4 +1,32 @@
-import { extendTheme, theme, } from "@chakra-ui/react"
+import { ComponentStyleConfig, extendTheme, theme, } from "@chakra-ui/react"
+
+const SvgContainer: ComponentStyleConfig = {
+  baseStyle: {
+    '& svg': {
+      width: '100%',
+      height: '100%',
+      maxWidth: '100%',
+      maxHeight: '100%',
+    }
+  },
+  variants: {
+    normal: {
+      color: 'red'
+    },
+    doodle: {
+      '& path': {
+        stroke: 'themed.secondary',
+        strokeWidth: '5'
+      },
+      '& [fill]:not([fill="none"])': {
+        fill: 'themed.secondary'
+      }
+    },
+  },
+  defaultProps: {
+    variant: 'normal'
+  }
+}
 
 const base: typeof theme = {
   fonts: {
@@ -7,6 +35,7 @@ const base: typeof theme = {
     mono: 'mono, monospace'
   },
   components: {
+    SvgContainer,
     Button: {
       baseStyle: {
         fontWeight: 'normal',

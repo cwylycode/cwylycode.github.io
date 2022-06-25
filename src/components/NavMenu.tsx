@@ -21,6 +21,7 @@ import {
 import Logo from "./Logo"
 import NavLink from "./NavLink"
 import useThemed from "../hooks/use-themed"
+import SvgDoodleUmbrellaGuy from "./svg/SvgDoodleUmbrellaGuy"
 
 interface NavMenuProps extends BoxProps {
   onLinkClick: (pageName: string) => void
@@ -130,6 +131,12 @@ export default function NavMenu({ onLinkClick, children, ...props }: NavMenuProp
         </Flex>
 
         <Spacer minHeight={{ base: '5', md: 'unset' }} />
+
+        <SvgDoodleUmbrellaGuy
+          display={{ base: 'none', md: 'unset' }}
+          width='32'
+          marginX='auto'
+        />
 
         <Divider
           display={{ base: 'none', md: 'unset' }}
