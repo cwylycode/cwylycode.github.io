@@ -10,6 +10,9 @@ import { themeRandom } from './themes/random'
 
 import OverlayPageChange from './components/OverlayPageChange'
 import OverlayThemeChange from './components/OverlayThemeChange'
+import OverlayIntro from './components/OverlayIntro'
+import { useScrollLock } from '@mantine/hooks'
+import { AnimatePresence } from 'framer-motion'
 
 const SYSTEM_THEME = (
   window.matchMedia &&
@@ -55,6 +58,8 @@ const pages = {
 }
 
 export default function App() {
+  const [scrollLocked, setScrollLocked] = useScrollLock()
+  const [introActive, setIntroActive] = useState<boolean>(true)
   const [currentPage, setPage] = useState<string>('home')
   const [currentTheme, setTheme] = useState<string>(SYSTEM_THEME)
   const [canChangePage, setCanChangePage] = useState<boolean>(true)
@@ -67,6 +72,14 @@ export default function App() {
   useEffect(() => {
     localStorage.removeItem("chakra-ui-color-mode")
   }, [])
+
+  useEffect(() => {
+    if (canChangePage && canChangeTheme && !introActive) {
+      setScrollLocked(false)
+    } else {
+      setScrollLocked(true)
+    }
+  }, [canChangePage, canChangeTheme, introActive])
 
   function changeTheme(theme: string) {
     if (!canChangeTheme || currentTheme === theme) return
@@ -98,6 +111,9 @@ export default function App() {
       resetCSS
     >
       <Themed.Provider value={currentTheme}>
+        <AnimatePresence>
+          {introActive && <OverlayIntro setIntroActive={setIntroActive} />}
+        </AnimatePresence>
         <OverlayThemeChange
           active={animThemeActive}
           animSpeed={themeAnimSpeed}
@@ -107,10 +123,8 @@ export default function App() {
           changeTheme={changeTheme}
           changePage={changePage}
         >
-          <Suspense fallback={<p>loading...</p>}>
-            <OverlayPageChange active={animPageActive} animSpeed={pageAnimSpeed} />
-            {pages[currentPage as keyof pagesNames]}
-          </Suspense>
+          <OverlayPageChange active={animPageActive} animSpeed={pageAnimSpeed} />
+          {pages[currentPage as keyof pagesNames]}
         </AppShell>
       </Themed.Provider>
     </ChakraProvider >
