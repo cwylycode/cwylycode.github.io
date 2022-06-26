@@ -7,7 +7,7 @@ import {
 import Navbar from './Navbar'
 import NavMenu from './NavMenu'
 import ThemeButtons from './ThemeButtons'
-import Logo from './Logo'
+import HomeLogo from './HomeLogo'
 
 const PAGE_MARGIN: number = 52
 const NAVBAR_HEIGHT: number = 20
@@ -36,10 +36,10 @@ export default function AppShell({ theme, changeTheme, changePage, children }: A
 
       <Navbar
         logo={
-          <Logo
+          <HomeLogo
             aria-label="HOME"
             onClick={() => { onLinkClick('home') }}
-            width='5'
+            height='12'
           />
         }
         navOpen={isOpen}

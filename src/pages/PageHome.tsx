@@ -11,8 +11,7 @@ import useThemed from '../hooks/use-themed';
 import { useScrollIntoView } from '@mantine/hooks';
 
 import BigButton from '../svg/big_button.svg'
-import { ReactComponent as Lookie } from '../svg/doodle_lookie.svg'
-import SvgBox from '../components/SvgBox';
+import SvgDoodleLookie from '../components/svg/SvgDoodleLookie';
 
 export default function PageHome() {
   const { scrollIntoView: scrollToExplode, targetRef: explodeSection } = useScrollIntoView<HTMLDivElement>()
@@ -49,9 +48,7 @@ export default function PageHome() {
             Thanks for stopping by! You can find out more about me and my work by visiting the many links peppered all over this site.
           </Text>
 
-          <SvgBox
-            svgComp={<Lookie />}
-            svgPathCSS={{ stroke: 'themed.secondary', strokeWidth: '5' }}
+          <SvgDoodleLookie
             width={{ base: '48', md: '64' }}
             marginLeft='auto !important'
             marginRight={{ base: 'auto !important', md: 'inherit !important' }}

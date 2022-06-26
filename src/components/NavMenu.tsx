@@ -18,9 +18,10 @@ import {
   BsLinkedin,
 } from 'react-icons/bs'
 
-import Logo from "./Logo"
+import HomeLogo from "./HomeLogo"
 import NavLink from "./NavLink"
 import useThemed from "../hooks/use-themed"
+import SvgDoodleUmbrellaGuy from "./svg/SvgDoodleUmbrellaGuy"
 
 interface NavMenuProps extends BoxProps {
   onLinkClick: (pageName: string) => void
@@ -45,11 +46,11 @@ export default function NavMenu({ onLinkClick, children, ...props }: NavMenuProp
       >
 
         <Spacer maxHeight='5' />
-        <Logo
+        <HomeLogo
           aria-label='HOME'
           onClick={() => { onLinkClick('home') }}
           display={{ base: 'none', md: 'unset' }}
-          height='5rem'
+          height='20'
         />
         <Spacer maxHeight='5' />
 
@@ -130,6 +131,12 @@ export default function NavMenu({ onLinkClick, children, ...props }: NavMenuProp
         </Flex>
 
         <Spacer minHeight={{ base: '5', md: 'unset' }} />
+
+        <SvgDoodleUmbrellaGuy
+          display={{ base: 'none', md: 'unset' }}
+          width='32'
+          marginX='auto'
+        />
 
         <Divider
           display={{ base: 'none', md: 'unset' }}
