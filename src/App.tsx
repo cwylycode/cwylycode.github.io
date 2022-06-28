@@ -1,4 +1,4 @@
-import { createContext, lazy, Suspense, useEffect, useState } from 'react'
+import { createContext, lazy, useEffect, useState } from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 
 import AppShell from './components/AppShell'
@@ -13,6 +13,11 @@ import OverlayThemeChange from './components/OverlayThemeChange'
 import OverlayIntro from './components/OverlayIntro'
 import { useScrollLock } from '@mantine/hooks'
 import { AnimatePresence } from 'framer-motion'
+import PageHome from './pages/PageHome'
+import PageAbout from './pages/PageAbout'
+import PageSkillz from './pages/PageSkillz'
+import PageShowcase from './pages/PageShowcase'
+import PageContact from './pages/PageContact'
 
 const SYSTEM_THEME = (
   window.matchMedia &&
@@ -35,11 +40,11 @@ const themes = {
   random: themeRandom
 }
 
-const PageHome = lazy(() => import('./pages/PageHome'))
-const PageAbout = lazy(() => import('./pages/PageAbout'))
-const PageSkillz = lazy(() => import('./pages/PageSkillz'))
-const PageShowcase = lazy(() => import('./pages/PageShowcase'))
-const PageContact = lazy(() => import('./pages/PageContact'))
+// const PageHome = lazy(() => import('./pages/PageHome'))
+// const PageAbout = lazy(() => import('./pages/PageAbout'))
+// const PageSkillz = lazy(() => import('./pages/PageSkillz'))
+// const PageShowcase = lazy(() => import('./pages/PageShowcase'))
+// const PageContact = lazy(() => import('./pages/PageContact'))
 
 interface pagesNames {
   home: string
