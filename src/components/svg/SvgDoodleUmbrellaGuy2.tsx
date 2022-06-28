@@ -1,6 +1,6 @@
 import { SvgContainer, SvgContainerProps } from "../SvgContainer";
 
-export default function SvgDoodleUmbrellaGuy({ ...props }: SvgContainerProps) {
+export default function SvgDoodleUmbrellaGuy2({ ...props }: SvgContainerProps) {
   return (
     <SvgContainer variant='doodle' {...props}>
       <svg
@@ -26,16 +26,26 @@ export default function SvgDoodleUmbrellaGuy({ ...props }: SvgContainerProps) {
               transform="matrix(.93122 0 0 .93122 52.519 32.285) rotate(-14.446 -171.705 382.215)"
             ></path>
           </g>
-          <g strokeWidth="3">
-            <path
-              d="M286.062 474.682c-1.11-18.022 15.54-33.356 33.25-33.175M113.746 404.885c24.245 7.961 37.29 32.523 24.893 47.646"
-              transform="matrix(.93122 0 0 .93122 52.519 32.285) translate(-.047 -57.708)"
-            ></path>
-            <path
-              d="M135.334 421.49c13.815-10.661 54.388-25.567 83.222-19.224s68.118 29.874 77.202 50.047M274.56 290.194c-.763 13.201-7.775 53.58-11.065 67.984M212.603 284.596c-3.59 17.3-13.907 49.504-14.195 61.91"
-              transform="matrix(.93122 0 0 .93122 52.519 32.285) translate(-.047 -57.708)"
-            ></path>
-          </g>
+          <path
+            strokeWidth="3"
+            d="M268.276 440.71c2.968-17.81 22.638-29.01 39.854-24.854M128.719 383.043c25.512.634 45.083 20.392 37.572 38.447"
+            transform="matrix(.93122 0 0 .93122 52.519 32.285) translate(-.047 -57.708)"
+          ></path>
+          <path
+            strokeWidth="3"
+            d="M159.86 395.153c13.815-10.661 34.6-28.834 63.435-22.49s49.16 27.691 58.244 47.864"
+            transform="matrix(.93122 0 0 .93122 52.519 32.285) translate(-.047 -57.708)"
+          ></path>
+          <path
+            strokeWidth="3.272"
+            d="M258.502 321.622l39.14 5.79M291.482 314.79l-33.199 7.135 33.2 21.745"
+            transform="matrix(.93122 0 0 .93122 52.519 32.285) translate(-.047 -57.708)"
+          ></path>
+          <path
+            strokeWidth="3.557"
+            d="M218.556 318.345l-35.529-6.175M186.033 293.968l32.523 24.377-37.225 11.22"
+            transform="matrix(.93122 0 0 .93122 52.519 32.285) translate(-.047 -57.708)"
+          ></path>
           <g strokeWidth="2.5">
             <path
               d="M245.257 138.543v80.354c0 7.605 4.044 13.423 10.146 13.423s12.567-7.41 12.567-13.423"

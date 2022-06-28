@@ -21,7 +21,7 @@ import {
 import HomeLogo from "./HomeLogo"
 import NavLink from "./NavLink"
 import useThemed from "../hooks/use-themed"
-import SvgDoodleUmbrellaGuy from "./svg/SvgDoodleUmbrellaGuy"
+import SvgDoodleUmbrellaGuy1 from "./svg/SvgDoodleUmbrellaGuy1"
 
 interface NavMenuProps extends BoxProps {
   onLinkClick: (pageName: string) => void
@@ -134,7 +134,7 @@ export default function NavMenu({ onLinkClick, children, ...props }: NavMenuProp
 
         <Spacer minHeight={{ base: '5', md: 'unset' }} />
 
-        <SvgDoodleUmbrellaGuy
+        <SvgDoodleUmbrellaGuy1
           display={{ base: 'none', md: 'unset' }}
           width='32'
           marginX='auto'

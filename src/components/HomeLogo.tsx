@@ -11,7 +11,8 @@ export default function HomeLogo({ ...props }: BoxProps) {
           '& path': {
             strokeWidth: '0px'
           }
-        }} />
+        }}
+      />
     </Box>
   )
 }
