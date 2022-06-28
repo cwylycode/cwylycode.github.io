@@ -37,9 +37,8 @@ export default function AppShell({ theme, changeTheme, changePage, children }: A
       <Navbar
         logo={
           <HomeLogo
-            aria-label="HOME"
             onClick={() => { onLinkClick('home') }}
-            height='12'
+            height='75%'
           />
         }
         navOpen={isOpen}

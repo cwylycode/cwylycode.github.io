@@ -47,10 +47,12 @@ export default function NavMenu({ onLinkClick, children, ...props }: NavMenuProp
 
         <Spacer maxHeight='5' />
         <HomeLogo
-          aria-label='HOME'
           onClick={() => { onLinkClick('home') }}
           display={{ base: 'none', md: 'unset' }}
           height='20'
+          cursor='pointer'
+          width='fit-content'
+          margin='auto'
         />
         <Spacer maxHeight='5' />
 

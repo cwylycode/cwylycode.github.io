@@ -12,7 +12,7 @@ export interface SvgContainerProps extends BoxProps {
 export function SvgContainer({ variant, children, ...props }: SvgContainerProps) {
   const styles = useStyleConfig('SvgContainer', { variant })
   return (
-    <Box __css={{ ...styles }}  {...props}>
+    <Box __css={{ ...styles }} {...props}>
       {children}
     </Box>
   )

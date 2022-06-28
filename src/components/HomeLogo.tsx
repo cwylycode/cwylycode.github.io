@@ -6,7 +6,6 @@ export default function HomeLogo({ ...props }: BoxProps) {
     <Box aria-label='HOME' {...props}>
       <SvgLogo
         height='100%'
-        margin='auto'
         fill='themed.secondary'
         sx={{
           '& path': {
