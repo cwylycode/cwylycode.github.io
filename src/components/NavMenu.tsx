@@ -21,7 +21,7 @@ import {
 import HomeLogo from "./HomeLogo"
 import NavLink from "./NavLink"
 import useThemed from "../hooks/use-themed"
-import SvgDoodleUmbrellaGuy1 from "./svg/SvgDoodleUmbrellaGuy1"
+import { SvgDoodleUmbrellaGuy1 } from "./svg/SvgDoodleUmbrellaGuy"
 
 interface NavMenuProps extends BoxProps {
   onLinkClick: (pageName: string) => void
