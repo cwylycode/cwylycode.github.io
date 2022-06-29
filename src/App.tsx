@@ -1,5 +1,7 @@
 import { createContext, lazy, useEffect, useState } from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
+import { useScrollLock } from '@mantine/hooks'
+import { AnimatePresence } from 'framer-motion'
 
 import AppShell from './components/AppShell'
 
@@ -11,8 +13,7 @@ import { themeRandom } from './themes/random'
 import OverlayPageChange from './components/OverlayPageChange'
 import OverlayThemeChange from './components/OverlayThemeChange'
 import OverlayIntro from './components/OverlayIntro'
-import { useScrollLock } from '@mantine/hooks'
-import { AnimatePresence } from 'framer-motion'
+
 import PageHome from './pages/PageHome'
 import PageAbout from './pages/PageAbout'
 import PageSkillz from './pages/PageSkillz'
@@ -64,8 +65,8 @@ const pages = {
 
 export default function App() {
   const [scrollLocked, setScrollLocked] = useScrollLock()
-  const [introActive, setIntroActive] = useState<boolean>(true)
-  const [currentPage, setPage] = useState<string>('home')
+  const [introActive, setIntroActive] = useState<boolean>(true) // Change to enable/disable intro
+  const [currentPage, setPage] = useState<string>('')
   const [currentTheme, setTheme] = useState<string>(SYSTEM_THEME)
   const [canChangePage, setCanChangePage] = useState<boolean>(true)
   const [canChangeTheme, setCanChangeTheme] = useState<boolean>(true)
@@ -77,6 +78,10 @@ export default function App() {
   useEffect(() => {
     localStorage.removeItem("chakra-ui-color-mode")
   }, [])
+
+  useEffect(() => {
+    if (!introActive) changePage('home', 0)
+  }, [introActive])
 
   useEffect(() => {
     if (canChangePage && canChangeTheme && !introActive) {
@@ -129,7 +134,7 @@ export default function App() {
           changePage={changePage}
         >
           <OverlayPageChange active={animPageActive} animSpeed={pageAnimSpeed} />
-          {pages[currentPage as keyof pagesNames]}
+          {currentPage ? pages[currentPage as keyof pagesNames] : null}
         </AppShell>
       </Themed.Provider>
     </ChakraProvider >
