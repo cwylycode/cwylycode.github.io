@@ -10,7 +10,7 @@ const SvgContainer: ComponentStyleConfig = {
     }
   },
   variants: {
-    normal: {},
+    none: {},
     doodle: {
       '& path': {
         stroke: 'themed.secondary',
@@ -20,9 +20,18 @@ const SvgContainer: ComponentStyleConfig = {
         fill: 'themed.secondary'
       }
     },
+    logos: {
+      '& path': {
+        stroke: 'themed.secondary',
+        strokeWidth: '10'
+      },
+      '& [fill]:not([fill="none"])': {
+        fill: 'themed.secondary'
+      }
+    }
   },
   defaultProps: {
-    variant: 'normal'
+    variant: 'none'
   }
 }
 
