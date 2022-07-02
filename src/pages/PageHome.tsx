@@ -12,12 +12,14 @@ import { useScrollIntoView } from '@mantine/hooks';
 
 import BigButton from '../svg/big_button.svg'
 import SvgDoodleLookie from '../components/svg/SvgDoodleLookie';
+import ParticlesHomePage from '../components/ParticlesHomePage';
 
 export default function PageHome() {
   const { scrollIntoView: scrollToExplode, targetRef: explodeSection } = useScrollIntoView<HTMLDivElement>()
 
   return (
     <>
+      <ParticlesHomePage />
       <Container paddingTop={{ base: '10', md: '24' }}>
         <Stack spacing='12' direction='column' textAlign='center'>
           <Text fontSize={{ md: 'large', lg: 'xl' }} textAlign={{ md: 'left' }}>
