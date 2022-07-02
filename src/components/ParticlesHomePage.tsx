@@ -1,13 +1,7 @@
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
+import useRandomRgb from "../hooks/use-random-rgb";
 import useThemed from "../hooks/use-themed";
-
-function randomRGB() {
-  const r = Math.floor(Math.random() * 256)
-  const g = Math.floor(Math.random() * 256)
-  const b = Math.floor(Math.random() * 256)
-  return `rgb(${r}, ${g}, ${b})`
-}
 
 export default function ParticlesHomePage() {
   console.log('rendered')
@@ -15,119 +9,117 @@ export default function ParticlesHomePage() {
     light: '#68d391',
     dark: '#63b3ed',
     hacker: '#007f00',
-    random: randomRGB()
+    random: useRandomRgb()
   })
   const lineColor = useThemed({
     light: '#050505',
     dark: '#777777',
     hacker: '#006600',
-    random: randomRGB()
+    random: useRandomRgb()
   })
   return (
     <Particles
       id="particles-home"
       init={loadSlim}
-      options={
-        {
-          particles: {
-            number: {
-              value: 64,
-              density: {
-                enable: true,
-                value_area: 1200
-              }
-            },
-            color: {
-              value: particleColor
-            },
-            shape: {
-              type: "star",
-              polygon: {
-                nb_sides: 5
-              },
-            },
-            opacity: {
-              value: 0.75,
-              random: true,
-              anim: {
-                enable: false,
-                speed: 1,
-                opacity_min: 0.1,
-                sync: false
-              }
-            },
-            size: {
-              value: 3,
-              random: true,
-              anim: {
-                enable: true,
-                speed: 12,
-                size_min: 1,
-                sync: false
-              }
-            },
-            line_linked: {
+      options={{
+        particles: {
+          number: {
+            value: 64,
+            density: {
               enable: true,
-              distance: 100,
-              color: lineColor,
-              opacity: 0.5,
-              width: 1
+              value_area: 1200
+            }
+          },
+          color: {
+            value: particleColor
+          },
+          shape: {
+            type: "star",
+            polygon: {
+              nb_sides: 5
             },
-            move: {
-              enable: true,
+          },
+          opacity: {
+            value: 0.75,
+            random: true,
+            anim: {
+              enable: false,
               speed: 1,
-              direction: "none",
-              random: true,
-              straight: false,
-              out_mode: "bounce",
-              bounce: false,
-              attract: {
-                enable: true,
-                rotateX: 600,
-                rotateY: 1200
-              }
+              opacity_min: 0.1,
+              sync: false
             }
           },
-          interactivity: {
-            detect_on: "window",
-            events: {
-              onhover: {
-                enable: true,
-                mode: "bubble"
-              },
-              onclick: {
-                enable: true,
-                mode: 'repulse'
-              },
-              resize: true
+          size: {
+            value: 3,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 12,
+              size_min: 1,
+              sync: false
+            }
+          },
+          line_linked: {
+            enable: true,
+            distance: 100,
+            color: lineColor,
+            opacity: 0.5,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "bounce",
+            bounce: false,
+            attract: {
+              enable: true,
+              rotateX: 600,
+              rotateY: 1200
+            }
+          }
+        },
+        interactivity: {
+          detect_on: "window",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "bubble"
             },
-            modes: {
-              grab: {
-                distance: 200,
-                line_linked: {
-                  opacity: 1
-                }
-              },
-              bubble: {
-                distance: 200,
-                size: 10,
-                duration: 3,
-              },
-              repulse: {
-                distance: 500,
-                duration: 0.5,
-              },
-              push: {
-                particles_nb: 4,
-              },
-              remove: {
-                particles_nb: 2
-              }
-            }
+            onclick: {
+              enable: true,
+              mode: 'repulse'
+            },
+            resize: true
           },
-          retina_detect: true
-        }
-      }
+          modes: {
+            grab: {
+              distance: 200,
+              line_linked: {
+                opacity: 1
+              }
+            },
+            bubble: {
+              distance: 200,
+              size: 10,
+              duration: 3,
+            },
+            repulse: {
+              distance: 500,
+              duration: 0.5,
+            },
+            push: {
+              particles_nb: 4,
+            },
+            remove: {
+              particles_nb: 2
+            }
+          }
+        },
+        retina_detect: true
+      }}
     />
   )
 }
