@@ -4,7 +4,6 @@ import useRandomRgb from "../hooks/use-random-rgb";
 import useThemed from "../hooks/use-themed";
 
 export default function ParticlesHomePage() {
-  console.log('rendered')
   const particleColor = useThemed({
     light: '#68d391',
     dark: '#63b3ed',

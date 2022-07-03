@@ -75,6 +75,7 @@ export default function ThemeButtons({ theme, changeTheme, ...props }: ThemeProp
       justifyContent='center'
       alignItems='center'
       my='2'
+      zIndex='1' // Needed for particles to not interfere with clicking buttons
     >
       {options.map((item) => {
         const radio = getRadioProps({ value: item.name })

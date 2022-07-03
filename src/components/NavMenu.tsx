@@ -25,10 +25,11 @@ import { SvgDoodleUmbrellaGuy1 } from "./svg/SvgDoodleUmbrellaGuy"
 
 interface NavMenuProps extends BoxProps {
   onLinkClick: (pageName: string) => void
+  particles?: ReactNode
   children: ReactNode
 }
 
-export default function NavMenu({ onLinkClick, children, ...props }: NavMenuProps) {
+export default function NavMenu({ onLinkClick, particles, children, ...props }: NavMenuProps) {
   return (
     <Box
       zIndex='2'
@@ -37,8 +38,11 @@ export default function NavMenu({ onLinkClick, children, ...props }: NavMenuProp
       borderRightStyle={useThemed({ default: 'unset', hacker: 'dashed' })}
       borderRightWidth={{ base: '0', md: 'thin' }}
       borderColor='themed.secondary'
+      onMouseEnter={particles ? () => { console.log('now inside') } : undefined}
+      onMouseLeave={particles ? () => { console.log('now outside') } : undefined}
       {...props}
     >
+      {particles}
       <Flex
         flexDirection='column'
         justifyContent='flex-start'

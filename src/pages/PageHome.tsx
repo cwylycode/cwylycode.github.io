@@ -5,6 +5,7 @@ import {
   Image,
   Stack,
   Text,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import useThemed from '../hooks/use-themed';
 
@@ -16,10 +17,11 @@ import ParticlesHomePage from '../components/ParticlesHomePage';
 
 export default function PageHome() {
   const { scrollIntoView: scrollToExplode, targetRef: explodeSection } = useScrollIntoView<HTMLDivElement>()
+  const showParticles = useBreakpointValue({ base: false, md: true })
 
   return (
     <>
-      <ParticlesHomePage />
+      {showParticles ? <ParticlesHomePage /> : null}
       <Container paddingTop={{ base: '10', md: '24' }}>
         <Stack spacing='12' direction='column' textAlign='center'>
           <Text fontSize={{ md: 'large', lg: 'xl' }} textAlign={{ md: 'left' }}>

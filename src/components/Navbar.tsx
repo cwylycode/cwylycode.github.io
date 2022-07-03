@@ -65,6 +65,7 @@ export default function Navbar({ logo, navOpen, navToggle, children, ...props }:
             fontSize='48px'
             onClick={navToggle}
             aria-label="open menu"
+            zIndex='1' // Makes it clickable because of spinning home logo interference
             _hover={{}}
           />
           <Spacer />
