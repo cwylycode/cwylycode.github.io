@@ -77,6 +77,7 @@ export default function App() {
 
   useEffect(() => {
     localStorage.removeItem("chakra-ui-color-mode")
+    document.getElementById('loading-text')?.remove()
   }, [])
 
   useEffect(() => {
