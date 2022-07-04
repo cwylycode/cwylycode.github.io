@@ -8,7 +8,7 @@ export default function NoAnimMessage() {
       textAlign='center'
       fontFamily='mono, monospace'
     >
-      Your OS/browser is using reduced motion - animations are disabled! You're missing out!
+      Your OS/browser is set to use reduced motion - animations are disabled! You're missing out!
     </Box>
   )
 }

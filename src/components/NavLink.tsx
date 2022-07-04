@@ -28,7 +28,7 @@ export default function NavLink({ name, icon, ...props }: NavLinkProps) {
         zIndex: 0,
         bgColor: 'themed.scheme'
       }}
-      _hover={noAnim ? undefined : {
+      _hover={noAnim ? {} : {
         base: {}, md: {
           color: 'white',
           _before: {
@@ -53,7 +53,7 @@ export default function NavLink({ name, icon, ...props }: NavLinkProps) {
           mr="4"
           fontSize="16"
           transition='transform 1s ease-out'
-          _groupHover={noAnim ? undefined : {
+          _groupHover={noAnim ? {} : {
             base: {}, md: {
               transform: 'rotateY(3.5turn)'
             }
@@ -71,7 +71,7 @@ export default function NavLink({ name, icon, ...props }: NavLinkProps) {
           fontSize="16"
           transform={'rotateY(180deg)'}
           transition='transform 1s ease-out'
-          _groupHover={noAnim ? undefined : {
+          _groupHover={noAnim ? {} : {
             base: {}, md: {
               transform: 'rotateY(-3turn)'
             }
