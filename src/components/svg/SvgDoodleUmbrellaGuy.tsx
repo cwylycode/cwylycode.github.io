@@ -1,6 +1,8 @@
+import { usePrefersReducedMotion } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { SvgContainer, SvgContainerProps } from "../SvgContainer";
 
-export function SvgDoodleUmbrellaGuy1({ ...props }: SvgContainerProps) {
+function SvgDoodleUmbrellaGuy1({ ...props }: SvgContainerProps) {
   return (
     <SvgContainer variant='doodle' {...props}>
       <svg
@@ -52,7 +54,7 @@ export function SvgDoodleUmbrellaGuy1({ ...props }: SvgContainerProps) {
   )
 }
 
-export function SvgDoodleUmbrellaGuy2({ ...props }: SvgContainerProps) {
+function SvgDoodleUmbrellaGuy2({ ...props }: SvgContainerProps) {
   return (
     <SvgContainer variant='doodle' {...props}>
       <svg
@@ -111,5 +113,31 @@ export function SvgDoodleUmbrellaGuy2({ ...props }: SvgContainerProps) {
         </g>
       </svg>
     </SvgContainer>
+  )
+}
+
+interface SvgDoodleUmbrellaGuyProps extends SvgContainerProps {
+  isRaining: boolean
+}
+export default function SvgDoodleUmbrellaGuy({ isRaining, ...props }: SvgDoodleUmbrellaGuyProps) {
+  const noAnim = usePrefersReducedMotion()
+  const [rainState, setRainState] = useState(false)
+  useEffect(() => {
+    let timer = 0
+    if (isRaining) {
+      setRainState(true)
+      clearTimeout(timer)
+    } else {
+      timer = setTimeout(() => {
+        setRainState(false)
+      }, 2000);
+    }
+    return () => clearTimeout(timer)
+  }, [isRaining])
+
+  return (
+    !noAnim && rainState ?
+      <SvgDoodleUmbrellaGuy2 {...props} /> :
+      <SvgDoodleUmbrellaGuy1 {...props} />
   )
 }

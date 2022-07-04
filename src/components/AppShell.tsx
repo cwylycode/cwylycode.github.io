@@ -8,7 +8,6 @@ import Navbar from './Navbar'
 import NavMenu from './NavMenu'
 import ThemeButtons from './ThemeButtons'
 import HomeLogo from './HomeLogo'
-import ParticlesNav from './ParticlesNav'
 
 const PAGE_MARGIN: number = 52
 const NAVBAR_HEIGHT: number = 20
@@ -59,7 +58,7 @@ export default function AppShell({ theme, changeTheme, changePage, children }: A
 
       <NavMenu
         id='menu-desktop'
-        particles={<ParticlesNav />}
+        particles
         position='fixed'
         onLinkClick={onLinkClick}
         display={{ base: 'none', md: 'block' }}
