@@ -5,6 +5,7 @@ import {
   Box,
   BoxProps,
   useOutsideClick,
+  usePrefersReducedMotion,
 } from "@chakra-ui/react"
 import { ReactNode, useRef } from "react"
 import { FaHamburger } from 'react-icons/fa'
@@ -18,7 +19,7 @@ interface NavbarProps extends BoxProps {
 }
 export default function Navbar({ logo, navOpen, navToggle, children, ...props }: NavbarProps) {
   const mobileCollapseRef = useRef<HTMLDivElement>(null)
-  const navAnimSpeed = 0.5
+  const navAnimSpeed = usePrefersReducedMotion() ? 0.0 : 0.5
 
   useOutsideClick({
     ref: mobileCollapseRef,

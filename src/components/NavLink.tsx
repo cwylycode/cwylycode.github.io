@@ -4,6 +4,7 @@ import {
   Text,
   BoxProps,
   Box,
+  usePrefersReducedMotion,
 } from "@chakra-ui/react"
 import { IconType } from "react-icons"
 import useThemed from "../hooks/use-themed"
@@ -14,6 +15,7 @@ interface NavLinkProps extends BoxProps {
 }
 
 export default function NavLink({ name, icon, ...props }: NavLinkProps) {
+  const noAnim = usePrefersReducedMotion()
   return (
     <Box
       position='relative'
@@ -26,7 +28,7 @@ export default function NavLink({ name, icon, ...props }: NavLinkProps) {
         zIndex: 0,
         bgColor: 'themed.scheme'
       }}
-      _hover={{
+      _hover={noAnim ? undefined : {
         base: {}, md: {
           color: 'white',
           _before: {
@@ -51,7 +53,7 @@ export default function NavLink({ name, icon, ...props }: NavLinkProps) {
           mr="4"
           fontSize="16"
           transition='transform 1s ease-out'
-          _groupHover={{
+          _groupHover={noAnim ? undefined : {
             base: {}, md: {
               transform: 'rotateY(3.5turn)'
             }
@@ -69,7 +71,7 @@ export default function NavLink({ name, icon, ...props }: NavLinkProps) {
           fontSize="16"
           transform={'rotateY(180deg)'}
           transition='transform 1s ease-out'
-          _groupHover={{
+          _groupHover={noAnim ? undefined : {
             base: {}, md: {
               transform: 'rotateY(-3turn)'
             }

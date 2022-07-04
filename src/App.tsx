@@ -1,5 +1,5 @@
 import { createContext, lazy, useEffect, useState } from 'react'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, usePrefersReducedMotion } from '@chakra-ui/react'
 import { useScrollLock } from '@mantine/hooks'
 import { AnimatePresence } from 'framer-motion'
 
@@ -19,6 +19,7 @@ import PageAbout from './pages/PageAbout'
 import PageSkillz from './pages/PageSkillz'
 import PageShowcase from './pages/PageShowcase'
 import PageContact from './pages/PageContact'
+import NoAnimMessage from './components/NoAnimMessage'
 
 const SYSTEM_THEME = (
   window.matchMedia &&
@@ -64,6 +65,7 @@ const pages = {
 }
 
 export default function App() {
+  const noAnim = usePrefersReducedMotion()
   const [scrollLocked, setScrollLocked] = useScrollLock()
   const [introActive, setIntroActive] = useState<boolean>(true) // Change to enable/disable intro
   const [currentPage, setPage] = useState<string>('')
@@ -125,16 +127,19 @@ export default function App() {
         <AnimatePresence>
           {introActive && <OverlayIntro setIntroActive={setIntroActive} />}
         </AnimatePresence>
-        <OverlayThemeChange
-          active={animThemeActive}
-          animSpeed={themeAnimSpeed}
-        />
+        {!noAnim &&
+          <OverlayThemeChange
+            active={animThemeActive}
+            animSpeed={themeAnimSpeed}
+          />
+        }
         <AppShell
           theme={currentTheme}
           changeTheme={changeTheme}
           changePage={changePage}
         >
-          <OverlayPageChange active={animPageActive} animSpeed={pageAnimSpeed} />
+          {noAnim && <NoAnimMessage />}
+          {!noAnim && <OverlayPageChange active={animPageActive} animSpeed={pageAnimSpeed} />}
           {currentPage ? pages[currentPage as keyof pagesNames] : null}
         </AppShell>
       </Themed.Provider>

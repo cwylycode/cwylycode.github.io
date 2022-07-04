@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box, usePrefersReducedMotion } from '@chakra-ui/react'
 import { motion, useAnimation, useCycle } from 'framer-motion'
 import { useEffect } from 'react'
 import * as SvgLogos from './svg/SvgLogos'
@@ -26,15 +26,17 @@ const CHANGE_DELAY = 3
 export default function HomeLogo({ ...props }) {
   const [currentLogo, cycleLogos] = useCycle(...logos)
   const animation = useAnimation()
+  const noAnim = usePrefersReducedMotion()
 
   useEffect(() => {
     const timer = setTimeout(() => {
       startAnim()
     }, START_DELAY * 1000);
     return () => clearTimeout(timer)
-  }, [])
+  }, [noAnim])
 
   function startAnim() {
+    if (noAnim) return
     animation.start({
       rotate: [
         '0deg',
@@ -54,7 +56,7 @@ export default function HomeLogo({ ...props }) {
   return (
     <Box
       as={motion.div}
-      animate={animation}
+      animate={noAnim ? undefined : animation}
       onAnimationStart={() => {
         setTimeout(() => {
           cycleLogos()

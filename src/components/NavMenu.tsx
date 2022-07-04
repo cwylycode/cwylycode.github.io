@@ -7,6 +7,7 @@ import {
   Flex,
   IconButton,
   Spacer,
+  usePrefersReducedMotion,
 } from "@chakra-ui/react"
 
 import {
@@ -30,6 +31,7 @@ interface NavMenuProps extends BoxProps {
 }
 
 export default function NavMenu({ onLinkClick, particles, children, ...props }: NavMenuProps) {
+  const noAnim = usePrefersReducedMotion()
   return (
     <Box
       zIndex='2'
@@ -57,6 +59,7 @@ export default function NavMenu({ onLinkClick, particles, children, ...props }: 
           cursor='pointer'
           width='fit-content'
           margin='auto'
+          zIndex='1'
         />
         <Spacer maxHeight='5' />
 
@@ -113,7 +116,7 @@ export default function NavMenu({ onLinkClick, particles, children, ...props }: 
             fontSize='24px'
             color='themed.secondary'
             transition='transform 0.5s'
-            _hover={{
+            _hover={noAnim ? undefined : {
               base: {}, md: {
                 transform: 'scale(1.3,1.3) rotate(360deg)'
               }
@@ -128,7 +131,7 @@ export default function NavMenu({ onLinkClick, particles, children, ...props }: 
             fontSize='24px'
             color='themed.secondary'
             transition='transform 0.5s'
-            _hover={{
+            _hover={noAnim ? undefined : {
               base: {}, md: {
                 transform: 'scale(1.3,1.3) rotate(360deg)'
               }
