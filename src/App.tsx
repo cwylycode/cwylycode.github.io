@@ -1,4 +1,4 @@
-import { createContext, lazy, useEffect, useState } from 'react'
+import { createContext, lazy, Suspense, useEffect, useState } from 'react'
 import { ChakraProvider, usePrefersReducedMotion } from '@chakra-ui/react'
 import { useScrollLock } from '@mantine/hooks'
 import { AnimatePresence } from 'framer-motion'
@@ -14,11 +14,6 @@ import OverlayPageChange from './components/OverlayPageChange'
 import OverlayThemeChange from './components/OverlayThemeChange'
 import OverlayIntro from './components/OverlayIntro'
 
-import PageHome from './pages/PageHome'
-import PageAbout from './pages/PageAbout'
-import PageSkillz from './pages/PageSkillz'
-import PageShowcase from './pages/PageShowcase'
-import PageContact from './pages/PageContact'
 import NoAnimMessage from './components/NoAnimMessage'
 
 const SYSTEM_THEME = (
@@ -42,27 +37,11 @@ const themes = {
   random: themeRandom
 }
 
-// const PageHome = lazy(() => import('./pages/PageHome'))
-// const PageAbout = lazy(() => import('./pages/PageAbout'))
-// const PageSkillz = lazy(() => import('./pages/PageSkillz'))
-// const PageShowcase = lazy(() => import('./pages/PageShowcase'))
-// const PageContact = lazy(() => import('./pages/PageContact'))
-
-interface pagesNames {
-  home: string
-  about: string
-  skillz: string
-  showcase: string
-  contact: string
-}
-
-const pages = {
-  home: <PageHome />,
-  about: <PageAbout />,
-  skillz: <PageSkillz />,
-  showcase: <PageShowcase />,
-  contact: <PageContact />
-}
+const PageHome = lazy(() => import('./pages/PageHome'))
+const PageAbout = lazy(() => import('./pages/PageAbout'))
+const PageSkillz = lazy(() => import('./pages/PageSkillz'))
+const PageShowcase = lazy(() => import('./pages/PageShowcase'))
+const PageContact = lazy(() => import('./pages/PageContact'))
 
 export default function App() {
   const noAnim = usePrefersReducedMotion()
@@ -79,7 +58,8 @@ export default function App() {
 
   useEffect(() => {
     localStorage.removeItem("chakra-ui-color-mode")
-    let msg = document.getElementById('loading-text')
+    // Must be written this way or mobile version doesn't load rest of app
+    const msg = document.getElementById('loading-text')
     if (msg) msg.remove()
   }, [])
 
@@ -141,7 +121,17 @@ export default function App() {
         >
           {noAnim && <NoAnimMessage />}
           {!noAnim && <OverlayPageChange active={animPageActive} animSpeed={pageAnimSpeed} />}
-          {currentPage ? pages[currentPage as keyof pagesNames] : null}
+          <Suspense fallback={<p>Ugh...work.</p>}>
+            {(() => {
+              switch (currentPage) {
+                case 'home': return <PageHome />
+                case 'about': return <PageAbout />
+                case 'skillz': return <PageSkillz />
+                case 'showcase': return <PageShowcase />
+                case 'contact': return <PageContact />
+              }
+            })()}
+          </Suspense>
         </AppShell>
       </Themed.Provider>
     </ChakraProvider >
