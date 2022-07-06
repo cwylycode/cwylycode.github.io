@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react"
 import { motion, Variants } from "framer-motion"
+import WavePage from '../svg/wave_page.svg'
 
 interface OpcProps {
   active: boolean,
@@ -30,7 +31,7 @@ export default function OverlayPageChange({ active, animSpeed }: OpcProps) {
         zIndex='1'
         backgroundColor='themed.primary'
         __css={{
-          mask: "linear-gradient(#000 0 0) left/calc(100% - 200px) 100% no-repeat,url('/src/svg/wave_page.svg') no-repeat 100%"
+          mask: `linear-gradient(#000 0 0) left/calc(100% - 200px) 100% no-repeat,url(${WavePage}) no-repeat 100%`
         }}
       />
       <Box
@@ -45,7 +46,7 @@ export default function OverlayPageChange({ active, animSpeed }: OpcProps) {
         zIndex='1'
         backgroundColor='themed.primary'
         __css={{
-          mask: "linear-gradient(#000 0 0) left/calc(100% - 200px) 100% no-repeat,url('/src/svg/wave_page.svg') no-repeat 100%"
+          mask: `linear-gradient(#000 0 0) left/calc(100% - 200px) 100% no-repeat,url(${WavePage}) no-repeat 100%`
         }}
       />
     </>

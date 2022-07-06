@@ -1,7 +1,8 @@
 import { themeBase } from "./base"
 import { extendTheme, theme, withDefaultColorScheme } from "@chakra-ui/react"
 
-const light: typeof theme = {
+const light//: typeof theme
+  = {
   styles: {
     global: {
       body: {

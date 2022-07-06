@@ -30,10 +30,12 @@ const ranges = [
 function randColor() {
   const c = Math.floor(Math.random() * colors.length)
   const r = Math.floor(Math.random() * ranges.length)
+  // @ts-ignore
   return colors[c][ranges[r]]
 }
 
-const random: typeof theme = {
+const random//: typeof theme
+  = {
   fonts: {
     body: `ComicSans, ${theme.fonts.body}`,
     heading: `ComicSans, ${theme.fonts.heading}`,

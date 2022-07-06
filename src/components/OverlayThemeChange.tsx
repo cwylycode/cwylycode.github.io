@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { motion, Variants } from "framer-motion";
+import WaveTheme from '../svg/wave_theme.svg'
 
 interface OtcProps {
   active: boolean,
@@ -38,7 +39,7 @@ export default function OverlayThemeChange({ active, animSpeed }: OtcProps) {
           height='50%'
           transform={`rotate(180deg)`}
           __css={{
-            mask: "linear-gradient(#000 0 0) 100% calc(50% - 100px) no-repeat,url('/src/svg/wave_theme.svg') bottom/70% 100px repeat-x"
+            mask: `linear-gradient(#000 0 0) 100% calc(50% - 100px) no-repeat,url(${WaveTheme}) bottom/70% 100px repeat-x`
           }}
         />
         <Box
@@ -47,7 +48,7 @@ export default function OverlayThemeChange({ active, animSpeed }: OtcProps) {
           width='100%'
           height='50%'
           __css={{
-            mask: "linear-gradient(#000 0 0) 100% calc(50% - 100px) no-repeat,url('/src/svg/wave_theme.svg') bottom/70% 100px repeat-x"
+            mask: `linear-gradient(#000 0 0) 100% calc(50% - 100px) no-repeat,url(${WaveTheme}) bottom/70% 100px repeat-x`
           }}
         />
       </Box>
