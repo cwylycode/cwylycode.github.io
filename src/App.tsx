@@ -64,16 +64,19 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    if (!introActive) changePage('home', 0)
-  }, [introActive])
-
-  useEffect(() => {
     if (canChangePage && canChangeTheme && !introActive) {
       setScrollLocked(false)
     } else {
       setScrollLocked(true)
     }
   }, [canChangePage, canChangeTheme, introActive])
+
+  useEffect(() => {
+    if (!introActive) {
+      const urlParsed = window.location.href.match(/\/#(\w+)/)
+      changePage(urlParsed ? urlParsed[1] : 'home', 0)
+    }
+  }, [introActive])
 
   function changeTheme(theme: string) {
     if (!canChangeTheme || currentTheme === theme) return
@@ -88,6 +91,7 @@ export default function App() {
 
   function changePage(page: string, delay: number) {
     if (!canChangePage || currentPage === page) return
+    window.location.replace('#' + (page === 'home' ? '' : page))
     setCanChangePage(false)
     setTimeout(() => {
       setAnimPageActive(true)
@@ -124,11 +128,12 @@ export default function App() {
           <Suspense fallback={<p>Ugh...work.</p>}>
             {(() => {
               switch (currentPage) {
-                case 'home': return <PageHome />
+                case 'home': return <PageHome onExplodeClick={() => { console.log('kaboom') }} />
                 case 'about': return <PageAbout />
                 case 'skillz': return <PageSkillz />
                 case 'showcase': return <PageShowcase />
                 case 'contact': return <PageContact />
+                default: null
               }
             })()}
           </Suspense>
