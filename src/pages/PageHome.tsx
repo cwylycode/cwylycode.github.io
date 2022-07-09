@@ -15,7 +15,10 @@ import BigButton from '../svg/big_button.svg'
 import SvgDoodleLookie from '../components/svg/SvgDoodleLookie';
 import ParticlesHomePage from '../components/ParticlesHomePage';
 
-export default function PageHome() {
+interface PageHomeProps {
+  onExplodeClick: () => void
+}
+export default function PageHome({ onExplodeClick }: PageHomeProps) {
   const { scrollIntoView: scrollToExplode, targetRef: explodeSection } = useScrollIntoView<HTMLDivElement>()
   const showParticles = useBreakpointValue({ base: false, md: true })
 
@@ -72,7 +75,7 @@ export default function PageHome() {
           </Text>
           <Image
             id='big-button'
-            onClick={() => { console.log('kaboom') }}
+            onClick={onExplodeClick}
             src={BigButton}
             borderRadius='full'
             boxSize='48'

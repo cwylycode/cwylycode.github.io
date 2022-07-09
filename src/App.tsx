@@ -15,6 +15,7 @@ import OverlayThemeChange from './components/OverlayThemeChange'
 import OverlayIntro from './components/OverlayIntro'
 
 import NoAnimMessage from './components/NoAnimMessage'
+import PageSpinner from './components/PageSpinner'
 
 const SYSTEM_THEME = (
   window.matchMedia &&
@@ -45,6 +46,7 @@ const PageContact = lazy(() => import('./pages/PageContact'))
 
 export default function App() {
   const noAnim = usePrefersReducedMotion()
+  const [renderApp, setRenderApp] = useState<boolean>(true)
   const [scrollLocked, setScrollLocked] = useScrollLock()
   const [introActive, setIntroActive] = useState<boolean>(true) // Change to enable/disable intro
   const [currentPage, setPage] = useState<string>('')
@@ -103,41 +105,42 @@ export default function App() {
     }, delay * 1000);
   }
 
+  function handleExplode() {
+    setRenderApp(!renderApp)
+  }
+
   return (
     <ChakraProvider
       theme={themes[currentTheme as keyof themesNames]}
       resetCSS
     >
       <Themed.Provider value={currentTheme}>
-        <AnimatePresence>
-          {introActive && <OverlayIntro setIntroActive={setIntroActive} />}
-        </AnimatePresence>
-        {!noAnim &&
-          <OverlayThemeChange
-            active={animThemeActive}
-            animSpeed={themeAnimSpeed}
-          />
-        }
-        <AppShell
-          theme={currentTheme}
-          changeTheme={changeTheme}
-          changePage={changePage}
-        >
-          {noAnim && <NoAnimMessage />}
-          {!noAnim && <OverlayPageChange active={animPageActive} animSpeed={pageAnimSpeed} />}
-          <Suspense fallback={<p>Ugh...work.</p>}>
-            {(() => {
-              switch (currentPage) {
-                case 'home': return <PageHome onExplodeClick={() => { console.log('kaboom') }} />
-                case 'about': return <PageAbout />
-                case 'skillz': return <PageSkillz />
-                case 'showcase': return <PageShowcase />
-                case 'contact': return <PageContact />
-                default: null
-              }
-            })()}
-          </Suspense>
-        </AppShell>
+        {renderApp && <>
+          <AnimatePresence>
+            {introActive && <OverlayIntro setIntroActive={setIntroActive} />}
+          </AnimatePresence>
+          {!noAnim && <OverlayThemeChange active={animThemeActive} animSpeed={themeAnimSpeed} />}
+          <AppShell
+            theme={currentTheme}
+            changeTheme={changeTheme}
+            changePage={changePage}
+          >
+            {noAnim && <NoAnimMessage />}
+            {!noAnim && <OverlayPageChange active={animPageActive} animSpeed={pageAnimSpeed} />}
+            <Suspense fallback={<PageSpinner />}>
+              {(() => {
+                switch (currentPage) {
+                  case 'home': return <PageHome onExplodeClick={handleExplode} />
+                  case 'about': return <PageAbout />
+                  case 'skillz': return <PageSkillz />
+                  case 'showcase': return <PageShowcase />
+                  case 'contact': return <PageContact />
+                  default: null
+                }
+              })()}
+            </Suspense>
+          </AppShell>
+        </>}
       </Themed.Provider>
     </ChakraProvider >
   )
