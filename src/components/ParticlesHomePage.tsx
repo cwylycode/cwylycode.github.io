@@ -17,6 +17,7 @@ export default function ParticlesHomePage() {
     hacker: '#006600',
     random: useRandomRgb()
   })
+
   if (usePrefersReducedMotion()) {
     return <></>
   } else {
@@ -25,6 +26,10 @@ export default function ParticlesHomePage() {
         id="particles-home"
         init={loadSlim}
         options={{
+          fullScreen: {
+            enable: true,
+            zIndex: -1
+          },
           particles: {
             number: {
               value: 64,
@@ -89,11 +94,12 @@ export default function ParticlesHomePage() {
             events: {
               onhover: {
                 enable: true,
-                mode: "bubble"
-              },
-              onclick: {
-                enable: true,
-                mode: 'repulse'
+                mode: ["bubble", 'grab'],
+                parallax: {
+                  enable: true,
+                  force: 60,
+                  smooth: 10
+                }
               },
               resize: true
             },
@@ -109,19 +115,9 @@ export default function ParticlesHomePage() {
                 size: 10,
                 duration: 3,
               },
-              repulse: {
-                distance: 500,
-                duration: 0.5,
-              },
-              push: {
-                particles_nb: 4,
-              },
-              remove: {
-                particles_nb: 2
-              }
             }
           },
-          retina_detect: true
+          retina_detect: true,
         }}
       />
     )

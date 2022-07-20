@@ -20,11 +20,10 @@ interface PageHomeProps {
 }
 export default function PageHome({ onExplodeClick }: PageHomeProps) {
   const { scrollIntoView: scrollToExplode, targetRef: explodeSection } = useScrollIntoView<HTMLDivElement>()
-  const showParticles = useBreakpointValue({ base: false, md: true })
 
   return (
     <>
-      {showParticles ? <ParticlesHomePage /> : null}
+      <ParticlesHomePage />
       <Container paddingTop={{ base: '10', md: '24' }}>
         <Stack spacing='12' direction='column' textAlign='center'>
           <Text fontSize={{ md: 'large', lg: 'xl' }} textAlign={{ md: 'left' }}>
