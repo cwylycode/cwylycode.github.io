@@ -1,7 +1,7 @@
 import { Flex, Spinner } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-const delay = 2
+const delay = 1
 
 export default function PageSpinner() {
   const [showSpinner, setShowSpinner] = useState<boolean>(false)
