@@ -19,6 +19,7 @@ import PageSpinner from './components/PageSpinner'
 import ExplosionCountdown from './components/ExplosionCountdown'
 import OverlayClickBlock from './components/OverlayClickBlock'
 import ParticlesExplosion from './components/ParticlesExplosion'
+import ExplosionAftermath from './components/ExplosionAftermath'
 
 const SYSTEM_THEME = (
   window.matchMedia &&
@@ -51,7 +52,7 @@ export default function App() {
   const noAnim = usePrefersReducedMotion()
   const [renderApp, setRenderApp] = useState<boolean>(true)
   const [scrollLocked, setScrollLocked] = useScrollLock()
-  const [introActive, setIntroActive] = useState<boolean>(false) // Change to enable/disable intro
+  const [introActive, setIntroActive] = useState<boolean>(true) // Change to enable/disable intro
   const [currentPage, setPage] = useState<string>('')
   const [currentTheme, setTheme] = useState<string>(SYSTEM_THEME)
   const [canChangePage, setCanChangePage] = useState<boolean>(true)
@@ -60,6 +61,7 @@ export default function App() {
   const [animThemeActive, setAnimThemeActive] = useState<boolean>(false)
   const [explosionActive, setExplosionActive] = useState<boolean>(false)
   const [showCountdown, setShowCountdown] = useState<boolean>(false)
+  const [showAftermath, setShowAftermath] = useState<boolean>(false)
   const pageAnimSpeed = 1
   const themeAnimSpeed = 1
 
@@ -159,11 +161,13 @@ export default function App() {
               console.log('Kablooie!')
               setRenderApp(false)
               setTimeout(() => {
+                setShowAftermath(true)
                 setExplosionActive(false)
               }, 5000);
             }, 1000);
           }} />
         }
+        {showAftermath && <ExplosionAftermath />}
         {explosionActive && <OverlayClickBlock />}
         <ParticlesExplosion show={(explosionActive && !renderApp)} />
       </Themed.Provider>
