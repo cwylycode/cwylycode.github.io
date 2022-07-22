@@ -5,7 +5,6 @@ import {
   Image,
   Stack,
   Text,
-  useBreakpointValue,
 } from '@chakra-ui/react';
 import useThemed from '../hooks/use-themed';
 
@@ -14,6 +13,7 @@ import { useScrollIntoView } from '@mantine/hooks';
 import BigButton from '../svg/big_button.svg'
 import SvgDoodleLookie from '../components/svg/SvgDoodleLookie';
 import ParticlesHomePage from '../components/ParticlesHomePage';
+import { motion } from 'framer-motion';
 
 interface PageHomeProps {
   onExplodeClick: () => void
@@ -23,15 +23,58 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
 
   return (
     <>
-      <ParticlesHomePage />
-      <Container paddingTop={{ base: '10', md: '24' }}>
-        <Stack spacing='12' direction='column' textAlign='center'>
-          <Text fontSize={{ md: 'large', lg: 'xl' }} textAlign={{ md: 'left' }}>
+      <Box
+        as={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { delay: 7 } }}
+      >
+        <ParticlesHomePage />
+      </Box>
+      <Container
+        paddingTop={{ base: '10', md: '24' }}
+      >
+        <Stack
+          spacing='12'
+          direction='column'
+          textAlign='center'
+          as={motion.div}
+          variants={{ hide: {}, show: { transition: { staggerChildren: 2 } } }}
+          initial='hide'
+          animate='show'
+        >
+          <Text
+            fontSize={{ md: 'large', lg: 'xl' }}
+            textAlign={{ md: 'left' }}
+            as={motion.p}
+            variants={{
+              hide: { opacity: 0 },
+              show: { opacity: 1 }
+            }}
+          >
             The name's Wyly ...
           </Text>
 
-          <Box textAlign='center'>
-            <Heading color='themed.accent3' fontSize={{ base: '5xl', md: '7xl', lg: '8xl' }}>
+          <Box
+            textAlign='center'
+            as={motion.div}
+            variants={{ hide: {}, show: { transition: { staggerChildren: 0.3 } } }}
+          >
+            <Heading
+              color='themed.accent3'
+              fontSize={{ base: '5xl', md: '7xl', lg: '8xl' }}
+              as={motion.h2}
+              variants={{
+                hide: { opacity: 0, y: -30 },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: 'spring',
+                    bounce: 0.8
+                  }
+                }
+              }}
+            >
               Colin Wyly
             </Heading>
             <Box
@@ -41,30 +84,80 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
               marginX='auto'
               maxWidth='75%'
               bgGradient='linear(90deg, themed.scheme 0%, themed.secondary 50%, themed.scheme 100%)'
+              as={motion.div}
+              variants={{
+                hide: { maxWidth: '0%' },
+                show: { maxWidth: '75%' }
+              }}
             />
-            <Text fontSize={{ base: 'md', md: 'lg', lg: '2xl' }}>
+            <Text
+              fontSize={{ base: 'md', md: 'lg', lg: '2xl' }}
+              as={motion.p}
+              variants={{
+                hide: { opacity: 0, y: 30 },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: 'spring',
+                    bounce: 0.8
+                  }
+                }
+              }}
+            >
               Coder I Developer I Tech Guy
             </Text>
-            <Text marginTop='12' fontSize={{ base: '8px', md: '10px', lg: '12px' }} fontWeight='normal' fontFamily='body'>
+            <Text
+              marginTop='12'
+              fontSize={{ base: '8px', md: '10px', lg: '12px' }}
+              fontWeight='normal' fontFamily='body'
+              as={motion.p}
+              variants={{
+                hide: { opacity: 0 },
+                show: { opacity: 1 }
+              }}
+            >
               (It's pronounced 'why-lee' 😛)
             </Text>
           </Box>
 
-          <Text textAlign={{ md: 'left' }}>
+          <Text
+            textAlign={{ md: 'left' }}
+            as={motion.p}
+            variants={{
+              hide: { opacity: 0, x: -30 },
+              show: { opacity: 1, x: 0 }
+            }}
+          >
             Thanks for stopping by! You can find out more about me and my work by visiting the many links peppered all over this site.
           </Text>
 
-          <SvgDoodleLookie
-            width={{ base: '48', md: '64' }}
-            marginLeft='auto !important'
-            marginRight={{ base: 'auto !important', md: 'inherit !important' }}
-            cursor='pointer'
-            onClick={() => { scrollToExplode() }}
-          />
+          <Box
+            as={motion.div}
+            variants={{
+              hide: { opacity: 0, x: 30 },
+              show: { opacity: 1, x: 0 }
+            }}
+          >
+            <SvgDoodleLookie
+              width={{ base: '48', md: '64' }}
+              marginLeft='auto !important'
+              marginRight={{ base: 'auto !important', md: 'inherit !important' }}
+              cursor='pointer'
+              onClick={() => { scrollToExplode() }}
+            />
+          </Box>
         </Stack>
       </Container>
 
-      <Container id='explode-time-yay' ref={explodeSection} paddingY='12'>
+      <Container
+        id='explode-time-yay'
+        ref={explodeSection}
+        paddingY='12'
+        as={motion.div}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0, transition: { delay: 6 } }}
+      >
         <Stack spacing='8' direction='column' alignItems='center' textAlign='center'>
           <Heading>
             QUICK!<br />Blow up my website!
