@@ -5,6 +5,8 @@ import {
   Image,
   Stack,
   Text,
+  useBreakpointValue,
+  usePrefersReducedMotion,
 } from '@chakra-ui/react';
 import useThemed from '../hooks/use-themed';
 
@@ -19,17 +21,20 @@ interface PageHomeProps {
   onExplodeClick: () => void
 }
 export default function PageHome({ onExplodeClick }: PageHomeProps) {
+  const noAnim = usePrefersReducedMotion()
+  const showParticles = useBreakpointValue({ base: false, md: true })
   const { scrollIntoView: scrollToExplode, targetRef: explodeSection } = useScrollIntoView<HTMLDivElement>()
 
   return (
     <>
-      <Box
-        as={motion.div}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { delay: 7 } }}
-      >
-        <ParticlesHomePage />
-      </Box>
+      {showParticles &&
+        <Box
+          as={motion.div}
+          initial={noAnim ? undefined : { opacity: 0 }}
+          animate={{ opacity: 1, transition: { delay: 7 } }}
+        >
+          <ParticlesHomePage />
+        </Box>}
       <Container
         paddingTop={{ base: '10', md: '24' }}
       >
@@ -39,7 +44,7 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
           textAlign='center'
           as={motion.div}
           variants={{ hide: {}, show: { transition: { staggerChildren: 2 } } }}
-          initial='hide'
+          initial={noAnim ? undefined : 'hide'}
           animate='show'
         >
           <Text
@@ -155,7 +160,7 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
         ref={explodeSection}
         paddingY='12'
         as={motion.div}
-        initial={{ opacity: 0, y: 30 }}
+        initial={noAnim ? undefined : { opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0, transition: { delay: 6 } }}
       >
         <Stack spacing='8' direction='column' alignItems='center' textAlign='center'>
