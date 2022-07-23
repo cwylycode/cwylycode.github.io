@@ -7,12 +7,38 @@ import { Box, BoxProps, useStyleConfig } from "@chakra-ui/react";
 // Change preserveAspectRatio to none (needs viewBox) in svg markup if needed for matching exact dimensions of box div.
 
 export interface SvgContainerProps extends BoxProps {
-  variant?: string | (string & {})
+  variant?: 'none' | 'themed'
+  svgStroke?: string
+  svgStrokeWidth?: string
+  svgFill?: string
 }
-export function SvgContainer({ variant, children, ...props }: SvgContainerProps) {
-  const styles = useStyleConfig('SvgContainer', { variant })
+export function SvgContainer({
+  variant,
+  svgStroke,
+  svgStrokeWidth,
+  svgFill,
+  children,
+  ...props
+}: SvgContainerProps) {
+  const css = (variant === 'themed') ? {
+    '& path': {
+      stroke: `${svgStroke ? svgStroke : 'themed.secondary'}`,
+      strokeWidth: `${svgStrokeWidth ? svgStrokeWidth : '5'}`
+    },
+    '& [fill]:not([fill="none"])': {
+      fill: `${svgFill ? svgFill : 'themed.secondary'}`
+    }
+  } : undefined
   return (
-    <Box __css={{ ...styles }} {...props}>
+    <Box __css={{
+      '& svg': {
+        width: '100%',
+        height: '100%',
+      },
+      ...css
+    }}
+      {...props}
+    >
       {children}
     </Box>
   )

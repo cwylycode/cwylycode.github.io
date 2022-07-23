@@ -2,7 +2,7 @@ import { SvgContainer, SvgContainerProps } from "../SvgContainer";
 
 export function SvgLogoCute({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer {...props}>
+    <SvgContainer variant='themed' svgStrokeWidth="10" {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"
@@ -41,7 +41,7 @@ export function SvgLogoCute({ ...props }: SvgContainerProps) {
 
 export function SvgLogoCyclops({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer {...props}>
+    <SvgContainer variant='themed' svgStrokeWidth="10" {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"
@@ -87,7 +87,7 @@ export function SvgLogoCyclops({ ...props }: SvgContainerProps) {
 
 export function SvgLogoEvil({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer {...props}>
+    <SvgContainer variant='themed' svgStrokeWidth="10" {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"
@@ -132,7 +132,7 @@ export function SvgLogoEvil({ ...props }: SvgContainerProps) {
 
 export function SvgLogoHorror({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer {...props}>
+    <SvgContainer variant='themed' svgStrokeWidth="10" {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"
@@ -195,7 +195,7 @@ export function SvgLogoHorror({ ...props }: SvgContainerProps) {
 
 export function SvgLogoHtml({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer {...props}>
+    <SvgContainer variant='themed' svgStrokeWidth="10" {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"
@@ -233,7 +233,7 @@ export function SvgLogoHtml({ ...props }: SvgContainerProps) {
 
 export function SvgLogoSmile({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer {...props}>
+    <SvgContainer variant='themed' svgStrokeWidth="10" {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"
@@ -269,7 +269,7 @@ export function SvgLogoSmile({ ...props }: SvgContainerProps) {
 
 export function SvgLogoTeeth({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer {...props}>
+    <SvgContainer variant='themed' svgStrokeWidth="10" {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"
@@ -305,7 +305,7 @@ export function SvgLogoTeeth({ ...props }: SvgContainerProps) {
 
 export function SvgLogoTongue({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer {...props}>
+    <SvgContainer variant='themed' svgStrokeWidth="10" {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"
@@ -341,7 +341,7 @@ export function SvgLogoTongue({ ...props }: SvgContainerProps) {
 
 export function SvgLogoWacky({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer {...props}>
+    <SvgContainer variant='themed' svgStrokeWidth="10" {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"
@@ -392,7 +392,7 @@ export function SvgLogoWacky({ ...props }: SvgContainerProps) {
 
 export function SvgLogoWhistle({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer {...props}>
+    <SvgContainer variant='themed' svgStrokeWidth="10" {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"

@@ -33,15 +33,10 @@ export default function SvgIntro({ onAnimEnd, ...props }: SvgIntroProps) {
 
   return (
     <SvgContainer
-      sx={{
-        '& path': {
-          stroke: 'themed.scheme',
-          strokeWidth: '10'
-        },
-        '& [fill]:not([fill="none"])': {
-          fill: 'themed.scheme'
-        }
-      }}
+      variant="themed"
+      svgStroke="themed.scheme"
+      svgStrokeWidth="10"
+      svgFill="themed.scheme"
       {...props}
     >
       <motion.svg

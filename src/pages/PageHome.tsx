@@ -16,6 +16,7 @@ import BigButton from '../svg/big_button.svg'
 import SvgDoodleLookie from '../components/svg/SvgDoodleLookie';
 import ParticlesHomePage from '../components/ParticlesHomePage';
 import { motion } from 'framer-motion';
+import SvgDoodleGreeter from '../components/svg/SvgDoodleGreeter';
 
 interface PageHomeProps {
   onExplodeClick: () => void
@@ -35,9 +36,7 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
         >
           <ParticlesHomePage />
         </Box>}
-      <Container
-        paddingTop={{ base: '10', md: '24' }}
-      >
+      <Container paddingTop={{ base: '10', md: '24' }} >
         <Stack
           spacing='12'
           direction='column'
@@ -115,7 +114,8 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
             <Text
               marginTop='12'
               fontSize={{ base: '8px', md: '10px', lg: '12px' }}
-              fontWeight='normal' fontFamily='body'
+              fontWeight='normal'
+              fontFamily='body'
               as={motion.p}
               variants={{
                 hide: { opacity: 0 },
@@ -124,6 +124,13 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
             >
               (It's pronounced 'why-lee' 😛)
             </Text>
+            {/* SVGs */}
+            <Box
+              width='64'
+              height='64'
+            >
+              <SvgDoodleGreeter />
+            </Box>
           </Box>
 
           <Text

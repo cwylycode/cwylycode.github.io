@@ -4,7 +4,7 @@ import { SvgContainer, SvgContainerProps } from "../SvgContainer";
 
 function SvgDoodleUmbrellaGuy1({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer variant='doodle' {...props}>
+    <SvgContainer variant='themed' {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"
@@ -56,7 +56,7 @@ function SvgDoodleUmbrellaGuy1({ ...props }: SvgContainerProps) {
 
 function SvgDoodleUmbrellaGuy2({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer variant='doodle' {...props}>
+    <SvgContainer variant='themed' {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"

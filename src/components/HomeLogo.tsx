@@ -4,7 +4,6 @@ import { useEffect } from 'react'
 import * as SvgLogos from './svg/SvgLogos'
 
 const LogoProps = {
-  variant: 'logos',
   height: '100%'
 }
 const logos = [
