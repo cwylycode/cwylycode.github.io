@@ -1,4 +1,5 @@
-import { Box, BoxProps, useStyleConfig } from "@chakra-ui/react";
+import { Box, BoxProps } from "@chakra-ui/react";
+import useThemed from "../hooks/use-themed";
 
 // Boiler-plate container for consistent svg rendering in a chakra box. Uses custom variants and styles.
 
@@ -10,12 +11,14 @@ export interface SvgContainerProps extends BoxProps {
   variant?: 'none' | 'themed'
   svgStroke?: string
   svgStrokeWidth?: string
+  svgStrokeDashArray?: string
   svgFill?: string
 }
 export function SvgContainer({
   variant,
   svgStroke,
   svgStrokeWidth,
+  svgStrokeDashArray,
   svgFill,
   children,
   ...props
@@ -23,7 +26,8 @@ export function SvgContainer({
   const css = (variant === 'themed') ? {
     '& path': {
       stroke: `${svgStroke ? svgStroke : 'themed.secondary'}`,
-      strokeWidth: `${svgStrokeWidth ? svgStrokeWidth : '5'}`
+      strokeWidth: `${svgStrokeWidth ? svgStrokeWidth : '5'}`,
+      strokeDasharray: `${useThemed({ default: undefined, hacker: svgStrokeDashArray ? svgStrokeDashArray : '2' })}`
     },
     '& [fill]:not([fill="none"])': {
       fill: `${svgFill ? svgFill : 'themed.secondary'}`

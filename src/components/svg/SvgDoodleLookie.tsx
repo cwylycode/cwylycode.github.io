@@ -2,7 +2,7 @@ import { SvgContainer, SvgContainerProps } from "../SvgContainer";
 
 export default function SvgDoodleLookie({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer variant='themed' {...props}>
+    <SvgContainer variant='themed' svgStrokeDashArray="10" {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"
