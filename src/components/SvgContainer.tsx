@@ -27,7 +27,7 @@ export function SvgContainer({
     '& path': {
       stroke: `${svgStroke ? svgStroke : 'themed.secondary'}`,
       strokeWidth: `${svgStrokeWidth ? svgStrokeWidth : '5'}`,
-      strokeDasharray: `${useThemed({ default: undefined, hacker: svgStrokeDashArray ? svgStrokeDashArray : '2' })}`
+      strokeDasharray: `${useThemed({ default: undefined, hacker: svgStrokeDashArray ? svgStrokeDashArray : '3' })}`
     },
     '& [fill]:not([fill="none"])': {
       fill: `${svgFill ? svgFill : 'themed.secondary'}`

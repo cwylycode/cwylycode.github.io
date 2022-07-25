@@ -1,3 +1,5 @@
+import { usePrefersReducedMotion } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { SvgContainer, SvgContainerProps } from "../SvgContainer";
 
 export default function SvgDoodleGreeter({ ...props }: SvgContainerProps) {
@@ -42,13 +44,20 @@ export default function SvgDoodleGreeter({ ...props }: SvgContainerProps) {
             strokeWidth="3"
             d="M42.268 178.718c-3.393 0-10.805-3.225-13.429-2.014-16.03 7.398-15.34 31.044-18.129 44.986"
           ></path>
-          <path
+          <motion.path
             id="doodle_greeter-u-arm_l"
             fill="none"
             stroke="#3f5787"
             strokeWidth="3"
             d="M162.442 185.013c30.356-6.295 29.946-19.493 29.946-37.898"
-          ></path>
+            animate={usePrefersReducedMotion() ? {} : {
+              d: [
+                "M162.442 185.013c30.356-6.295 29.946-19.493 29.946-37.898",
+                'M162.442 185.013c27.427-3.148 31.37 0 51.386-6.295'
+              ]
+            }}
+            transition={{ repeat: Infinity, repeatType: "mirror" }}
+          ></motion.path>
           <g id="doodle_greeter-u-face" transform="translate(-35.888 49.071)">
             <path
               id="doodle_greeter-u-eye_r"
