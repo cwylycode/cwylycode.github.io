@@ -17,6 +17,8 @@ import SvgDoodleLookie from '../components/svg/SvgDoodleLookie';
 import ParticlesHomePage from '../components/ParticlesHomePage';
 import { motion } from 'framer-motion';
 import SvgDoodleGreeter from '../components/svg/SvgDoodleGreeter';
+import SvgDoodleScreamer from '../components/svg/SvgDoodleScreamer';
+import SvgDoodleDoit from '../components/svg/SvgDoodleDoit';
 
 interface PageHomeProps {
   onExplodeClick: () => void
@@ -59,6 +61,7 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
           </Text>
 
           <Box
+            position='relative'
             textAlign='center'
             as={motion.div}
             variants={{ hide: {}, show: { transition: { staggerChildren: 0.3 } } }}
@@ -124,12 +127,35 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
             >
               (It's pronounced 'why-lee' 😛)
             </Text>
-            {/* SVGs */}
             <Box
-              width='64'
-              height='64'
+              display={{ base: 'none', xl: 'unset' }}
+              width='48'
+              height='48'
+              position='absolute'
+              top='100px'
+              left='-200px'
+              as={motion.div}
+              variants={{
+                hide: { scaleY: 0 },
+                show: { scaleY: 1, transition: { type: 'spring', bounce: 0.8 } }
+              }}
             >
               <SvgDoodleGreeter />
+            </Box>
+            <Box
+              display={{ base: 'none', xl: 'unset' }}
+              width='48'
+              height='48'
+              position='absolute'
+              top='-100px'
+              right='-200px'
+              as={motion.div}
+              variants={{
+                hide: { scaleY: 0 },
+                show: { scaleY: 1, transition: { type: 'spring', bounce: 0.8 } }
+              }}
+            >
+              <SvgDoodleScreamer />
             </Box>
           </Box>
 
@@ -165,6 +191,7 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
       <Container
         id='explode-time-yay'
         ref={explodeSection}
+        position='relative'
         paddingY='12'
         as={motion.div}
         initial={noAnim ? undefined : { opacity: 0, y: 30 }}
@@ -190,6 +217,16 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
             }}
           />
         </Stack>
+        <Box
+          display={{ base: 'none', xl: 'unset' }}
+          width='48'
+          height='48'
+          position='absolute'
+          bottom='0px'
+          left='-40px'
+        >
+          <SvgDoodleDoit />
+        </Box>
       </Container>
     </>
   )
