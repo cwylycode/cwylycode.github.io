@@ -70,6 +70,10 @@ export default function App() {
     // Must be written this way or mobile version doesn't load rest of app
     const msg = document.getElementById('loading-text')
     if (msg) msg.remove()
+    // Page url handler
+    const pageUrlHandler = () => { changePage(window.location.hash.slice(1), 0) }
+    window.addEventListener('hashchange', pageUrlHandler)
+    return () => { window.removeEventListener('hashchange', pageUrlHandler) }
   }, [])
 
   useEffect(() => {
@@ -79,13 +83,6 @@ export default function App() {
       setScrollLocked(true)
     }
   }, [canChangePage, canChangeTheme, introActive])
-
-  useEffect(() => {
-    if (!introActive) {
-      const urlParsed = window.location.href.match(/\/#(\w+)/)
-      changePage(urlParsed ? urlParsed[1] : 'home', 0)
-    }
-  }, [introActive])
 
   function handleExplode() {
     if (noAnim) {
@@ -110,7 +107,7 @@ export default function App() {
 
   function changePage(page: string, delay: number) {
     if (!canChangePage || currentPage === page) return
-    window.location.replace('#' + (page === 'home' ? '' : page))
+    window.location.replace('#' + page)
     setCanChangePage(false)
     setTimeout(() => {
       setAnimPageActive(true)
@@ -141,14 +138,13 @@ export default function App() {
             {noAnim && <NoAnimMessage />}
             {!noAnim && <OverlayPageChange active={animPageActive} animSpeed={pageAnimSpeed} />}
             <Suspense fallback={<PageSpinner />}>
-              {(() => {
+              {!introActive && (() => {
                 switch (currentPage) {
-                  case 'home': return <PageHome onExplodeClick={handleExplode} />
                   case 'about': return <PageAbout />
                   case 'skillz': return <PageSkillz />
                   case 'showcase': return <PageShowcase />
                   case 'contact': return <PageContact />
-                  default: null
+                  default: return <PageHome onExplodeClick={handleExplode} />
                 }
               })()}
             </Suspense>
