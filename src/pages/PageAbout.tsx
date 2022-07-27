@@ -1,9 +1,9 @@
-import PageTitle from "../components/PageHeader";
+import PageHeader from "../components/PageHeader";
 
 export default function PageAbout() {
   return (
     <>
-      <PageTitle title="ABOUT" />
+      <PageHeader title="ABOUT" />
     </>
   )
 }

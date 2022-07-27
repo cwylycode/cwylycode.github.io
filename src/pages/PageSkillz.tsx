@@ -1,9 +1,9 @@
-import PageTitle from "../components/PageHeader";
+import PageHeader from "../components/PageHeader";
 
 export default function PageSkillz() {
   return (
     <>
-      <PageTitle title="SKILLZ" />
+      <PageHeader title="SKILLZ" />
     </>
   )
 }

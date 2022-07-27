@@ -1,9 +1,9 @@
-import PageTitle from "../components/PageHeader";
+import PageHeader from "../components/PageHeader";
 
 export default function PageShowcase() {
   return (
     <>
-      <PageTitle title="SHOWCASE" />
+      <PageHeader title="SHOWCASE" />
     </>
   )
 }
