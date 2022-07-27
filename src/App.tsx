@@ -53,7 +53,7 @@ export default function App() {
   const [renderApp, setRenderApp] = useState<boolean>(true)
   const [scrollLocked, setScrollLocked] = useScrollLock()
   const [introActive, setIntroActive] = useState<boolean>(true) // Change to enable/disable intro
-  const [currentPage, setPage] = useState<string>('')
+  const [currentPage, setPage] = useState<string>(window.location.hash.slice(1))
   const [currentTheme, setTheme] = useState<string>(SYSTEM_THEME)
   const [canChangePage, setCanChangePage] = useState<boolean>(true)
   const [canChangeTheme, setCanChangeTheme] = useState<boolean>(true)
