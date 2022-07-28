@@ -64,6 +64,7 @@ export default function AppShell({ theme, changeTheme, changePage, children }: A
         display={{ base: 'none', md: 'block' }}
         width={{ base: 'full', md: PAGE_MARGIN }}
         height="full"
+        overflowY='auto'
       >
         <ThemeButtons theme={theme} changeTheme={changeTheme} />
       </NavMenu>
