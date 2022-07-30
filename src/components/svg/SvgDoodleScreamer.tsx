@@ -2,14 +2,14 @@ import { SvgContainer, SvgContainerProps } from "../SvgContainer";
 
 export default function SvgDoodleScreamer({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer variant='themed' svgStrokeWidth="3" {...props}>
+    <SvgContainer variant='themed' {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"
         textRendering="geometricPrecision"
         viewBox="0 0 300 300"
       >
-        <path
+        <path vectorEffect='non-scaling-stroke'
           fill="none"
           stroke="#3f5787"
           strokeWidth="0.6"
@@ -17,54 +17,54 @@ export default function SvgDoodleScreamer({ ...props }: SvgContainerProps) {
           transform="translate(80.669 80.618) scale(.83828)"
         ></path>
         <g fill="none" stroke="#3f5787" strokeWidth="0.6">
-          <path
+          <path vectorEffect='non-scaling-stroke'
             d="M66.659 144.378c-10.72 2.68-22.237 5.955-32.483 10.054M33.898 154.495c-1.706-1.086-3.158-1.993-5.019-2.738M33.594 154.495c-1.57 1.346-3.402 2.284-5.17 3.345M33.594 154.343c-.26 1.824-.399 3.665-.76 5.474"
             transform="translate(80.669 80.618) scale(.83828)"
           ></path>
         </g>
         <g fill="none" stroke="#3f5787" strokeWidth="0.6">
-          <path
+          <path vectorEffect='non-scaling-stroke'
             d="M220.837 140.331c9.29 5.807 18.687 13.384 28.872 17.458M249.031 157.939c1.974-.539 3.832-1.013 5.833-1.346M249.255 157.939c2.194.658 4.436 1.614 5.833 3.477M248.919 158.05c.37 2.222.278 4.315 1.458 6.283"
             transform="translate(80.669 80.618) scale(.83828)"
           ></path>
         </g>
-        <path
+        <path vectorEffect='non-scaling-stroke'
           fill="none"
           stroke="#3f5787"
           strokeWidth="0.6"
           d="M167.122 186.66c-6.613 0-22.578-4.39-39.924-4.723-17.669-.339-36.72 3.38-43.335 3.38-24.07 0 13.851-50.186 51.125-50.186 37.928 0 58.404 24.915 44.364 50.187-1.5 2.7-9.982 1.343-12.23 1.343"
           transform="translate(80.669 80.618) scale(.83828) translate(-.655 -15.098) scale(1.06703) matrix(.64022 0 0 1.19851 36.85 -16.291)"
         ></path>
-        <path
+        <path vectorEffect='non-scaling-stroke'
           fill="none"
           stroke="#0c0c0c"
           d="M-23.132 0c0-12.775 10.357-23.132 23.132-23.132S23.132-12.775 23.132 0 12.775 23.132 0 23.132-23.132 12.775-23.132 0z"
           transform="translate(80.669 80.618) scale(.83828) translate(-.655 -15.098) scale(1.06703) translate(-3.643 -1.682) matrix(.66622 0 0 .66622 145.228 110.191)"
         ></path>
-        <path
+        <path vectorEffect='non-scaling-stroke'
           fill="#0e0e0e"
           d="M-5.638 0A5.638 5.638 0 115.638 0 5.638 5.638 0 01-5.638 0z"
           transform="translate(80.669 80.618) scale(.83828) translate(-.655 -15.098) scale(1.06703) translate(-3.643 -1.682) matrix(.18083 0 0 .18083 145.228 110.191)"
         ></path>
-        <path
+        <path vectorEffect='non-scaling-stroke'
           fill="none"
           stroke="#0c0c0c"
           d="M-23.132 0c0-12.775 10.357-23.132 23.132-23.132S23.132-12.775 23.132 0 12.775 23.132 0 23.132-23.132 12.775-23.132 0z"
           transform="translate(80.669 80.618) scale(.83828) translate(-.655 -15.098) scale(1.06703) translate(-40.063 -.665) matrix(.6648 0 0 .6648 147.958 109.207)"
         ></path>
-        <path
+        <path vectorEffect='non-scaling-stroke'
           fill="#0e0e0e"
           d="M-5.638 0A5.638 5.638 0 115.638 0 5.638 5.638 0 01-5.638 0z"
           transform="translate(80.669 80.618) scale(.83828) translate(-.655 -15.098) scale(1.06703) translate(-40.063 -.665) matrix(.18044 0 0 .18044 147.958 109.207)"
         ></path>
-        <path
+        <path vectorEffect='non-scaling-stroke'
           fill="none"
           stroke="#3f5787"
           strokeWidth="0.6"
           d="M104.716 214.353c7.02 2.808 13.994 3.767 21.51 2.264M90.585 206.06c7.848-10.988 21.979-22.1 35.818-20.122 17.62 2.517 31.75 3.203 24.765 20.71"
           transform="translate(80.669 80.618) scale(.83828) translate(-.655 -15.098) scale(1.06703)"
         ></path>
-        <path
+        <path vectorEffect='non-scaling-stroke'
           fill="none"
           stroke="#3f5787"
           strokeWidth="0.411"
@@ -72,26 +72,26 @@ export default function SvgDoodleScreamer({ ...props }: SvgContainerProps) {
           transform="translate(80.669 80.618) scale(.83828) translate(-.655 -15.098) scale(1.06703)"
         ></path>
         <g fill="none" stroke="#3f5787">
-          <path
+          <path vectorEffect='non-scaling-stroke'
             d="M66.406 28.872c-9.375-5.357-23.864 1.749-20.144 14.772 2.98 10.43 41.004 23.362 15.443 38.272-5.052 2.947-9.86 2.686-15.443 2.686M98.635 51.701C71.83 62.423 85.2 95.539 111.392 80.573M127.507 78.559c-2.804-9.812-4.927-19.366-8.729-28.872M120.12 58.415c4.884-4.883 10.914-10.743 18.13-10.743M146.979 59.758c3.187.456 6.15 1.105 9.4.672 1.83-.244 3.62-.76 5.371-1.343 16.705-5.569-2.92-13.194-7.386-8.729-7.845 7.845 3.42 24.147 13.43 20.143M195.48 66.128c-23.172 3.132-23.916-19.076-10.23-21.813 12.565-2.513 8.334 21.845 13.152 24.736M206.737 64.458c-1.913-6.695-2.015-12.575-2.015-19.471"
             transform="rotate(-13.671 248.432 -18.992) scale(.57619)"
           ></path>
-          <path
+          <path vectorEffect='non-scaling-stroke'
             d="M203.38 52.372c5.938-5.938 15.745-8.17 18.8 2.015.671 2.238.362 8.366 2.014 6.714 3.978-3.977-2.072-20.996 12.758-12.757 2.318 1.288 4.456 3.527 5.371 6.043.58 1.596-.372 5.22-.671 6.714M251.723 41.63c.916 6.406 2.686 13.01 2.686 19.471M249.709 28.872c-8.398 1.68-2.68 9.368-1.343 2.686M266.495 59.758c-1.893-8.52-2.33-17.021-4.029-25.514M261.795 42.972c12.438-20.73 18.271.692 22.829 12.086M300.067 34.244c-13.26 17.68-24.857-16.692-7.386-15.444 18.808 1.344 18.008 32.223 4.7 39.615"
             transform="rotate(-13.671 248.432 -18.992) scale(.57619)"
           ></path>
-          <path
+          <path vectorEffect='non-scaling-stroke'
             d="M2.619 40.958c0 18.06 2.685 35.676 2.685 53.715M-28.268 73.187c17.137-3.116 34.227-.5 51.03-4.7M-20.882 57.744c14.848 8.909 31.578 17.474 44.987 28.2M18.062 51.701c-7.385 14.77-18.053 24.916-28.2 37.6"
             transform="rotate(-13.671 248.432 -18.992) scale(.57619) translate(7.386 -8.057)"
           ></path>
           <g>
-            <path
+            <path vectorEffect='non-scaling-stroke'
               d="M2.619 40.958c0 18.06 2.685 35.676 2.685 53.715M-28.268 73.187c17.137-3.116 34.227-.5 51.03-4.7M-20.882 57.744c14.848 8.909 31.578 17.474 44.987 28.2M18.062 51.701c-7.385 14.77-18.053 24.916-28.2 37.6"
               transform="rotate(-13.671 248.432 -18.992) scale(.57619) translate(344.45 -40.958)"
             ></path>
           </g>
         </g>
-        <path
+        <path vectorEffect='non-scaling-stroke'
           fill="none"
           stroke="#3f5787"
           strokeWidth="0.6"
