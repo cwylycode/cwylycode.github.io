@@ -1,11 +1,8 @@
-import { Divider, Flex, Heading } from "@chakra-ui/react";
+import { Divider, Flex, Heading, usePrefersReducedMotion } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
-interface PageHeaderProps {
-  title: string
-}
-
-export default function PageHeader({ title }: PageHeaderProps) {
+export default function PageHeader({ title }: { title: string }) {
+  const noAnim = usePrefersReducedMotion()
   return (
     <Flex
       direction='column'
@@ -13,8 +10,8 @@ export default function PageHeader({ title }: PageHeaderProps) {
       paddingTop='5'
       marginBottom='10'
       as={motion.div}
-      initial={{ opacity: 0, y: -100 }}
-      animate={{
+      initial={noAnim ? undefined : { opacity: 0, y: -100 }}
+      animate={noAnim ? undefined : {
         opacity: 1,
         y: 0,
         transition: {
