@@ -133,12 +133,14 @@ export default function PageAbout() {
               borderColor='themed.primary'
               borderWidth='1px'
               borderStyle='solid'
-              borderRadius='200px 30px 225px 15px/30px 225px 20px 255px'
               as={motion.img}
-              initial={noAnim ? undefined : { scale: 0, rotate: 0 }}
+              initial={noAnim ? undefined : {
+                scale: 0, rotate: 0, borderRadius: '200px 30px 225px 15px/30px 225px 20px 255px'
+              }}
               animate={noAnim ? undefined : {
                 scale: 1,
                 rotate: [0, (360 * 7) + 45, (360 * 7)],
+                borderRadius: '10px 100px 22px 150px/50px 50px 200px 25px',
                 transition: {
                   delay: 1,
                   scale: {
@@ -148,6 +150,11 @@ export default function PageAbout() {
                     duration: 3,
                     times: [0, 0.5, 1],
                     ease: 'anticipate'
+                  },
+                  borderRadius: {
+                    duration: 8,
+                    repeat: Infinity,
+                    repeatType: 'mirror'
                   }
                 }
               }}
