@@ -133,7 +133,6 @@ export default function PageAbout() {
               borderColor='themed.primary'
               borderWidth='1px'
               borderStyle='solid'
-              borderRadius='200px 30px 225px 15px/30px 225px 20px 255px'
               as={motion.img}
               initial={noAnim ? undefined : {
                 scale: 0, rotate: 0, borderRadius: '200px 30px 225px 15px/30px 225px 20px 255px'
