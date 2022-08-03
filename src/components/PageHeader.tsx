@@ -1,4 +1,4 @@
-import { Divider, Flex, Heading, usePrefersReducedMotion } from "@chakra-ui/react";
+import { Box, Divider, Flex, Heading, usePrefersReducedMotion } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 export default function PageHeader({ title }: { title: string }) {
@@ -9,27 +9,36 @@ export default function PageHeader({ title }: { title: string }) {
       alignItems='center'
       paddingTop='5'
       marginBottom='10'
-      as={motion.div}
-      initial={noAnim ? undefined : { opacity: 0, y: -100 }}
-      animate={noAnim ? undefined : {
-        opacity: 1,
-        y: 0,
-        transition: {
-          opacity: {
-            duration: 2
-          },
-          y: {
-            type: 'spring',
-            stiffness: 50,
-            damping: 2,
-            mass: 0.5,
-            velocity: 100
-          }
-        }
-      }}
     >
-      <Heading>{title}</Heading>
+      <Box
+        as={motion.div}
+        variants={{
+          initial: {},
+          active: { transition: { staggerChildren: 2 / title.length } }
+        }}
+        initial={noAnim ? undefined : 'initial'}
+        animate={noAnim ? undefined : 'active'}
+      >
+        {
+          title.split('').map((c, i) => (
+            <Heading
+              key={i}
+              display='inline-block'
+              as={motion.span}
+              variants={{
+                initial: { y: -200 },
+                active: { y: 0, transition: { type: 'spring', bounce: 0.5 } }
+              }}
+            >
+              {c}
+            </Heading>
+          ))
+        }
+      </Box>
       <Divider
+        as={motion.hr}
+        initial={noAnim ? undefined : { maxWidth: '0%' }}
+        animate={noAnim ? undefined : { maxWidth: '80%', transition: { duration: 2 } }}
         marginTop='5'
         borderWidth='1px'
         borderRadius='full'

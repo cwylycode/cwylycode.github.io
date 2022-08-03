@@ -1,3 +1,5 @@
+// PROBABLY DEPRECATED
+
 import { Text, TextProps } from "@chakra-ui/react";
 import { MotionProps } from "framer-motion";
 
