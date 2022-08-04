@@ -49,7 +49,7 @@ export function SvgContainer({
       }}
       {...props}
     >
-      {children}
+      {svgAsInnerHtml ? null : children}
     </Box>
   )
 }
