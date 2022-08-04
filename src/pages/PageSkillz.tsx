@@ -2,10 +2,11 @@ import { Box, Container, Divider, Flex, List, ListIcon, ListItem, Spacer, Text, 
 import { motion } from "framer-motion";
 import { FaCheckCircle } from "react-icons/fa";
 import PageHeader from "../components/PageHeader";
+import SvgDoodleTreeGuy from "../components/svg/SvgDoodleTreeGuy";
 import SvgSkillTree from "../components/svg/SvgSkillTree";
 
 export default function PageSkillz() {
-  const noAnim = usePrefersReducedMotion()
+  const noAnim = false//usePrefersReducedMotion()
   return (
     <>
       <PageHeader title="SKILLZ" />
@@ -22,6 +23,19 @@ export default function PageSkillz() {
             height='100%'
           >
             <SvgSkillTree />
+            <Box
+              display={{ base: 'none', xl: 'unset' }}
+              position='absolute'
+              width='32'
+              height='32'
+              right='8'
+              bottom='0px'
+              as={motion.div}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1, transition: { delay: 4 } }}
+            >
+              <SvgDoodleTreeGuy />
+            </Box>
           </Box>
           <Spacer minWidth='10' minHeight={{ base: 'unset', lg: '10' }} />
           <Divider
