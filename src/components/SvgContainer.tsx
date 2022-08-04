@@ -3,7 +3,9 @@ import useThemed from "../hooks/use-themed";
 
 // Boiler-plate container for consistent svg rendering in a chakra box. Uses custom variants and styles.
 
-// Children should be the contents of a jsx'd svg file
+// Children should be the contents of a jsx'd svg file.
+
+// Svg as inner html is used for any raw svg xml that contains CDATA and cannot be converted to jsx.
 
 // Change preserveAspectRatio to none (needs viewBox) in svg markup if needed for matching exact dimensions of box div.
 
@@ -13,6 +15,7 @@ export interface SvgContainerProps extends BoxProps {
   svgStrokeWidth?: string
   svgStrokeDashArray?: string
   svgFill?: string
+  svgAsInnerHtml?: string
 }
 export function SvgContainer({
   variant,
@@ -20,6 +23,7 @@ export function SvgContainer({
   svgStrokeWidth,
   svgStrokeDashArray,
   svgFill,
+  svgAsInnerHtml,
   children,
   ...props
 }: SvgContainerProps) {
@@ -34,13 +38,15 @@ export function SvgContainer({
     }
   } : undefined
   return (
-    <Box __css={{
-      '& svg': {
-        width: '100%',
-        height: '100%',
-      },
-      ...css
-    }}
+    <Box
+      dangerouslySetInnerHTML={svgAsInnerHtml ? { __html: svgAsInnerHtml } : undefined}
+      __css={{
+        '& svg': {
+          width: '100%',
+          height: '100%',
+        },
+        ...css
+      }}
       {...props}
     >
       {children}
