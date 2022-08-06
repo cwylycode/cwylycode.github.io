@@ -8,7 +8,7 @@ import SvgDoodleTreeGuy from "../components/svg/SvgDoodleTreeGuy";
 import SvgSkillTree from "../components/svg/SvgSkillTree";
 
 export default function PageSkillz() {
-  const noAnim = false//usePrefersReducedMotion()
+  const noAnim = usePrefersReducedMotion()
   return (
     <>
       <PageHeader title="SKILLZ" />
@@ -23,6 +23,13 @@ export default function PageSkillz() {
             position='relative'
             width='100%'
             height='100%'
+            as={motion.div}
+            variants={{
+              initial: {},
+              animate: { transition: { delayChildren: 3, staggerChildren: 0.1 } }
+            }}
+            initial='initial'
+            animate='animate'
           >
             <SvgSkillTree />
             {
@@ -116,6 +123,10 @@ export default function PageSkillz() {
                   bgGradient='radial(blackAlpha.900 0%,rgba(0,0,0,0) 50%)'
                   padding='3%'
                   as={motion.div}
+                  variants={{
+                    initial: { scale: 0 },
+                    animate: { scale: 1 }
+                  }}
                 >
                   <Tooltip hasArrow label={skill.name.toUpperCase()} placement='top'>
                     <chakra.span display='inline-block' width='100%' height='100%'>
@@ -139,12 +150,13 @@ export default function PageSkillz() {
               right='8'
               bottom='0px'
               as={motion.div}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1, transition: { delay: 4 } }}
+              initial={noAnim ? undefined : { scale: 0 }}
+              animate={noAnim ? undefined : { scale: 1, transition: { delay: 4 } }}
             >
               <SvgDoodleTreeGuy />
             </Box>
           </Box>
+
           <Spacer minWidth='10' minHeight={{ base: 'unset', lg: '10' }} />
           <Divider
             orientation={useBreakpointValue({ base: 'horizontal', lg: 'vertical' })}
@@ -155,16 +167,20 @@ export default function PageSkillz() {
             borderRadius='full'
             maxWidth='80%'
             height={{ base: 'unset', lg: '80' }}
+            as={motion.hr}
+            initial={noAnim ? undefined : { opacity: 0 }}
+            animate={noAnim ? undefined : { opacity: 1, transition: { delay: 2 } }}
           />
           <Spacer minWidth='10' minHeight={{ base: 'unset', lg: '10' }} />
+
           <Box maxWidth='100%'
             as={motion.div}
             variants={{
               initial: {},
               animate: { transition: { delayChildren: 1, staggerChildren: 1 } }
             }}
-            initial='initial'
-            animate='animate'
+            initial={noAnim ? undefined : 'initial'}
+            animate={noAnim ? undefined : 'animate'}
           >
             <Text
               fontSize='2xl'
@@ -191,10 +207,10 @@ export default function PageSkillz() {
               variants={{ initial: {}, animate: { transition: { staggerChildren: 0.2 } } }}
             >
               {[
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem magni, nemo ex nesciunt consequatur odit iste modi corrupti.',
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem magni, nemo ex nesciunt consequatur odit iste modi corrupti.',
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem magni, nemo ex nesciunt consequatur odit iste modi corrupti.',
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem magni, nemo ex nesciunt consequatur odit iste modi corrupti.'
+                'Decades of experience with electronic technology, both casually and at an IT professional level.',
+                'Multiple years of experience with general programming concepts and languages, such as Python, JavaScript, the "C" family and even php for some odd reason.',
+                'Knowledge of and experience with various frameworks, such as React and Wordpress.',
+                'Working on and contributing to projects through collaboration - also known as "GitHub".'
               ].map((text, i) => (
                 <ListItem
                   key={i}
@@ -229,6 +245,9 @@ export default function PageSkillz() {
           borderWidth='1px'
           borderRadius='full'
           maxWidth='80%'
+          as={motion.hr}
+          initial={noAnim ? undefined : { opacity: 0 }}
+          animate={noAnim ? undefined : { opacity: 1, transition: { delay: 2 } }}
         />
 
         <Text
@@ -242,9 +261,11 @@ export default function PageSkillz() {
             }
           }}
         >
-          For the past couple of years I've been studying and refining my coding skills. Through it all, I ended up writing quite a bit of software in some form or another. I found I rather enjoyed it, especially whenever I injected my own bits of humor and creativity into the mix. After all, I believe if you're going to code something, you might as well have fun with it and amuse yourself - and others, too!
+          Some say the best skill a coder can have is not their proficiency with a language/technology, or even the knowledge they get from experience. No, it's their ability to solve problems and demonstrate critical thinking in order to get the job done.
           <br /><br />
-          Oh, and this very website you are on.
+          For the past couple of years I've been studying and refining my coding skills, challenging myself to see how I can solve all sorts of problems in the realm of comuputer science. Through it all, I ended up writing quite a bit of software in some form or another. I found I rather enjoyed it, especially whenever I injected my own bits of humor and creativity into the mix. After all, I believe if you're going to code something, you might as well have fun with it and amuse yourself - and others, too!
+          {/* <br /><br />
+          For instance, this very website you are on. 😗 */}
         </Text>
       </Container>
     </>
