@@ -1,4 +1,4 @@
-import { Box, Button, Container, Flex, Image, Spacer, Text, usePrefersReducedMotion } from "@chakra-ui/react";
+import { Box, Button, Container, Flex, Image, Link, Spacer, Text, usePrefersReducedMotion } from "@chakra-ui/react";
 import PageHeader from "../components/PageHeader";
 import pic from '../portrait.jpg'
 import { motion } from "framer-motion";
@@ -39,9 +39,11 @@ export default function PageAbout() {
               >
                 Wait...you actually want to know more about me? I must say, I'm flattered!
                 <br /><br />
-                Well, if you MUST know, I'm an American-Canadian self-taught programmer, developer, graphics designer, computer geek, IT guy, and *checks notes* warm body with a pulse.
+                Well, if you MUST know, I'm an American-Canadian self-taught programmer, developer, graphics designer, computer geek, IT guy, and *checks notes* warm body with a pulse. There's not a whole lot to me, but I like video gaming, hiking around outdoors, and fiddling around with tech like my RaspberryPi.
                 <br /><br />
-                Right now, I'm just livin' and chillin' both on and off the computer. That said, I'm available for hire to work on some cool projects or other tech-related things. Feel free to check out my GitHub to see some of my works, or poke around. Enjoy!
+                Right now, I'm just livin' and chillin' both on and off the computer. That said, I'm available for hire to work on some cool projects or other tech-related things. Feel free to check out my <Link href="https://github.com/cwylycode">GitHub</Link> to see some of my works, or maybe visit my <Link href="#">LinkedIn</Link> profile.
+                <br /><br />
+                Enjoy!
               </Text>
             </Box>
             <Button

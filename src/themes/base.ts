@@ -20,6 +20,12 @@ const base//: typeof theme
       baseStyle: {
         borderColor: 'themed.accent2',
       },
+    },
+    Link: {
+      baseStyle: {
+        color: 'teal.500',
+        textDecorationLine: 'underline'
+      }
     }
   },
 }
