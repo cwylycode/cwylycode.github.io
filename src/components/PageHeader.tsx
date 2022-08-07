@@ -1,5 +1,30 @@
 import { Box, Divider, Flex, Heading, usePrefersReducedMotion } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { useState } from "react";
+
+function Letter({ k, c, noAnim }: { k: number, c: string, noAnim: boolean }) {
+  const [startHover, setStartHover] = useState(false)
+  return (
+    <Heading
+      key={k}
+      display='inline-block'
+      as={motion.span}
+      variants={{
+        initial: { y: -200 },
+        active: { y: 0, transition: { type: 'spring', bounce: 0.5 } },
+        hover: { y: 0, scaleX: 2, scaleY: 0.5, transition: { repeat: 1, repeatType: "reverse" } }
+      }}
+      animate={startHover ? 'hover' : undefined}
+      onHoverStart={() => {
+        if (startHover) return
+        setStartHover(true)
+      }}
+      onAnimationComplete={() => { setStartHover(false) }}
+    >
+      {c}
+    </Heading>
+  )
+}
 
 export default function PageHeader({ title }: { title: string }) {
   const noAnim = usePrefersReducedMotion()
@@ -21,17 +46,7 @@ export default function PageHeader({ title }: { title: string }) {
       >
         {
           title.split('').map((c, i) => (
-            <Heading
-              key={i}
-              display='inline-block'
-              as={motion.span}
-              variants={{
-                initial: { y: -200 },
-                active: { y: 0, transition: { type: 'spring', bounce: 0.5 } }
-              }}
-            >
-              {c}
-            </Heading>
+            <Letter k={i} c={c} noAnim={noAnim} />
           ))
         }
       </Box>
