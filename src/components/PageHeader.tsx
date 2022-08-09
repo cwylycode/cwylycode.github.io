@@ -14,7 +14,7 @@ function Letter({ k, c, noAnim }: { k: number, c: string, noAnim: boolean }) {
         active: { y: 0, transition: { type: 'spring', bounce: 0.5 } },
         hover: { y: 0, scaleX: 2, scaleY: 0.5, transition: { repeat: 1, repeatType: "reverse" } }
       }}
-      animate={startHover ? 'hover' : undefined}
+      animate={!noAnim && startHover ? 'hover' : undefined}
       onHoverStart={() => {
         if (startHover) return
         setStartHover(true)

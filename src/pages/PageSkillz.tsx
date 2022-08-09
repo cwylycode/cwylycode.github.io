@@ -28,8 +28,8 @@ export default function PageSkillz() {
               initial: {},
               animate: { transition: { delayChildren: 3, staggerChildren: 0.1 } }
             }}
-            initial='initial'
-            animate='animate'
+            initial={noAnim ? undefined : 'initial'}
+            animate={noAnim ? undefined : 'animate'}
           >
             <SvgSkillTree />
             {
@@ -264,8 +264,6 @@ export default function PageSkillz() {
           Some say the best skill a coder can have is not their proficiency with a language/technology, or even the knowledge they get from experience. No, it's their ability to solve problems and demonstrate critical thinking in order to get the job done.
           <br /><br />
           For the past couple of years I've been studying and refining my coding skills, challenging myself to see how I can solve all sorts of problems in the realm of comuputer science. Through it all, I ended up writing quite a bit of software in some form or another. I found I rather enjoyed it, especially whenever I injected my own bits of humor and creativity into the mix. After all, I believe if you're going to code something, you might as well have fun with it and amuse yourself - and others, too!
-          {/* <br /><br />
-          For instance, this very website you are on. 😗 */}
         </Text>
       </Container>
     </>
