@@ -1,7 +1,6 @@
-import { extendTheme, theme, } from "@chakra-ui/react"
+import { extendTheme, theme, ThemeOverride, } from "@chakra-ui/react"
 
-const base//: typeof theme
-  = {
+const base: ThemeOverride = {
   fonts: {
     body: `Poppins, ${theme.fonts.body}`,
     heading: `Poppins, ${theme.fonts.heading}`,

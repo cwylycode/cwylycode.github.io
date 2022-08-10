@@ -1,5 +1,5 @@
 import { themeBase } from "./base"
-import { extendTheme, theme, withDefaultColorScheme } from "@chakra-ui/react"
+import { extendTheme, theme, ThemeOverride, withDefaultColorScheme } from "@chakra-ui/react"
 
 const colors = [
   theme.colors.blue,
@@ -34,8 +34,7 @@ function randColor() {
   return colors[c][ranges[r]]
 }
 
-const random//: typeof theme
-  = {
+const random: ThemeOverride = {
   fonts: {
     body: `ComicSans, ${theme.fonts.body}`,
     heading: `ComicSans, ${theme.fonts.heading}`,

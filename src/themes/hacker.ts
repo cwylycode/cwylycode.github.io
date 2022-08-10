@@ -1,13 +1,12 @@
 import { themeBase } from "./base"
-import { extendTheme, theme, withDefaultVariant } from "@chakra-ui/react"
+import { extendTheme, theme, ThemeOverride, withDefaultVariant } from "@chakra-ui/react"
 
 const borderStyles = {
   borderStyle: 'dashed !important',
   borderColor: 'themed.secondary'
 }
 
-const hacker//: typeof theme
-  = {
+const hacker: ThemeOverride = {
   fonts: {
     body: `monospace, ${theme.fonts.body}`,
     heading: `asciid, ${theme.fonts.heading}`,
