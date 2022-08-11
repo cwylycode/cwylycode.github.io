@@ -70,7 +70,6 @@ export default function NavMenu({ onLinkClick, particles, children, ...props }: 
             onClick={() => { onLinkClick('home') }}
             display={{ base: 'none', md: 'unset' }}
             height='20'
-            cursor='pointer'
             width='fit-content'
             marginX='auto'
             zIndex='1'

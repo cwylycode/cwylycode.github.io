@@ -63,6 +63,7 @@ export default function HomeLogo({ ...props }) {
       }}
       onAnimationComplete={startAnim}
       aria-label='HOME'
+      cursor='pointer'
       {...props}
     >
       {currentLogo}
