@@ -1,11 +1,20 @@
-import { usePrefersReducedMotion, useDisclosure, useOutsideClick, Box, Flex, Button, IconButton, Text } from "@chakra-ui/react"
+import { usePrefersReducedMotion, useDisclosure, useOutsideClick, Box, Flex, Button, IconButton, Text, Spacer, Image } from "@chakra-ui/react"
 import { useScrollLock } from "@mantine/hooks"
 import { motion, AnimatePresence } from "framer-motion"
 import { useRef, useState } from "react"
 import { IoMdClose } from "react-icons/io"
 import useThemed from "../hooks/use-themed"
 
-function Card() {
+export interface ShowcaseCardProps {
+  title: string
+  text: string
+  img: string
+  imgSize: number
+  imgOffset: { x: number, y: number }
+  link: string
+  linkText: string
+}
+export default function ShowcaseCard({ ...props }: ShowcaseCardProps) {
   const noAnim = usePrefersReducedMotion()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const cardRef = useRef<HTMLDivElement>(null)
@@ -33,7 +42,7 @@ function Card() {
       as={motion.div}
       layout
       position='relative'
-      height={{ base: '64', sm: '72', md: '96' }}
+      height='96'
       maxWidth={{ base: '100%', sm: '50%', md: '40%' }}
       flexBasis={{ base: 'unset', sm: '50%', md: '40%' }}
       padding='5'
@@ -76,6 +85,7 @@ function Card() {
         height='100%'
         justifyContent='center'
         alignItems='center'
+        position='relative'
         zIndex={zIndex}
         sx={isOpen ? {
           position: 'fixed',
@@ -91,7 +101,6 @@ function Card() {
           layout
           position='relative'
           direction='column'
-          justifyContent='space-between'
           border={useThemed({ default: undefined, hacker: '1px dashed' })}
           borderRadius='20'
           borderColor='themed.secondary'
@@ -115,20 +124,28 @@ function Card() {
             layout
             position='relative'
             minHeight='150%'
-            backgroundImage={img}
-            backgroundPosition='center'
-            backgroundRepeat='no-repeat'
-            backgroundSize='cover'
+            overflow='hidden'
             sx={isOpen ? {
               minHeight: '33%'
             } : {}}
           >
+            <Image
+              as={motion.img}
+              layout
+              position='absolute'
+              width={`${props.imgSize || 500}px`}
+              maxWidth='1000px'
+              top={`-${props.imgOffset.y}px`}
+              left={`-${props.imgOffset.x}px`}
+              src={props.img}
+            />
             <Box
-              className="card-image-gradient"
+              as={motion.div}
+              layout
               position='absolute'
               width='100%'
               height='100%'
-              bgGradient='linear(to-t, themed.primary 0%, transparent 25%)'
+              bgGradient='linear(to-t, themed.primary 0%, blackAlpha.600 25%)'
             />
           </Box>
           <Box
@@ -137,20 +154,15 @@ function Card() {
             layout
             overflow='auto'
             margin='5'
+            minHeight='1px' //Prevents sudden disappearance when closing card
           >
-            <Text
-              as={motion.p}
-              layout
-            >
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda molestias nam adipisci voluptas rem voluptatem odio, iusto saepe quidem, explicabo culpa quibusdam. Provident ea laudantium id ipsum quos facere dicta?<br /><br />
-              Quo tempora repudiandae molestiae. Saepe aliquam minima, blanditiis ullam minus eos recusandae voluptatibus dolores ab necessitatibus! Animi nesciunt sunt dignissimos fuga provident, sed, porro, dolore consequuntur labore illum maiores hic.<br /><br />
-              Culpa fugiat perspiciatis rem quasi reiciendis ex nostrum voluptas dicta sequi laborum cumque aliquid, magni assumenda incidunt atque qui nihil itaque distinctio, adipisci, quae magnam odio praesentium possimus! Quo, reiciendis.<br /><br />
-              Corrupti esse eius recusandae reprehenderit voluptate quae nesciunt laborum unde odio, nobis nam nisi consequatur nulla delectus et exercitationem laudantium, officiis atque expedita deserunt laboriosam perspiciatis animi. Eos, repellendus obcaecati?<br /><br />
-              Minima commodi magni, quae rerum sint ex consequatur sit laudantium natus molestias sequi, officiis animi voluptatem cumque, eum provident suscipit incidunt aliquid saepe! Eligendi autem aliquid accusantium temporibus, suscipit iste!<br /><br />
-            </Text>
+            <Text as={motion.p} layout whiteSpace='pre-line'>{props.text}</Text>
           </Box>
+          <Spacer />
           <Flex
-            className="card-links"
+            className="card-link"
+            as={motion.div}
+            layout
             direction='column'
             alignItems='center'
             justifyContent='center'
@@ -160,12 +172,13 @@ function Card() {
           >
             <Button
               as={motion.a}
+              layout
               whileHover={noAnim ? undefined : { scale: 0.9 }}
               whiteSpace='break-spaces'
-              href='#'
+              href={props.link}
               width='100%'
             >
-              Visit the website!
+              {props.linkText}
             </Button>
           </Flex>
           <Text
@@ -183,7 +196,7 @@ function Card() {
               top: '5%'
             } : {}}
           >
-            My Portfolio Website
+            {props.title}
           </Text>
           {isOpen && <IconButton
             className="card-close-button"
