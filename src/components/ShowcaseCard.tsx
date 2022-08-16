@@ -145,7 +145,7 @@ export default function ShowcaseCard({ ...props }: ShowcaseCardProps) {
               position='absolute'
               width='100%'
               height='100%'
-              bgGradient='linear(to-t, themed.primary 0%, blackAlpha.600 25%)'
+              bgGradient='linear(to-t, themed.primary 0%, blackAlpha.500 25%)'
             />
           </Box>
           <Box
@@ -177,6 +177,7 @@ export default function ShowcaseCard({ ...props }: ShowcaseCardProps) {
               whiteSpace='break-spaces'
               href={props.link}
               width='100%'
+              textAlign='center'
             >
               {props.linkText}
             </Button>
@@ -184,14 +185,14 @@ export default function ShowcaseCard({ ...props }: ShowcaseCardProps) {
           <Text
             className="card-title"
             as={motion.p}
-            layout
+            layout='position'
             position='absolute'
             top='25px'
             left='5'
             paddingRight='15%'
             fontSize='3xl'
             color='white'
-            textShadow='0px 0px 8px #000'
+            textShadow='5px 5px 10px #000'
             sx={isOpen ? {
               top: '5%'
             } : {}}
