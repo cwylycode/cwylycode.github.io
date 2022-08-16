@@ -2,16 +2,16 @@ import { themeBase } from "./base"
 import { extendTheme, theme, ThemeOverride, withDefaultColorScheme } from "@chakra-ui/react"
 
 const colors = [
-  theme.colors.blue,
-  theme.colors.cyan,
-  theme.colors.gray,
-  theme.colors.green,
-  theme.colors.orange,
-  theme.colors.pink,
-  theme.colors.purple,
-  theme.colors.red,
-  theme.colors.teal,
-  theme.colors.yellow
+  'blue',
+  'cyan',
+  'gray',
+  'green',
+  'orange',
+  'pink',
+  'purple',
+  'red',
+  'teal',
+  'yellow'
 ]
 
 const ranges = [
@@ -31,7 +31,7 @@ function randColor() {
   const c = Math.floor(Math.random() * colors.length)
   const r = Math.floor(Math.random() * ranges.length)
   // @ts-ignore
-  return colors[c][ranges[r]]
+  return theme.colors[colors[c]][ranges[r]]
 }
 
 const random: ThemeOverride = {
@@ -73,7 +73,7 @@ const random: ThemeOverride = {
 export const themeRandom = extendTheme(
   random,
   withDefaultColorScheme({
-    colorScheme: randColor()
+    colorScheme: colors[Math.floor(Math.random() * colors.length)]
   }),
   themeBase
 )

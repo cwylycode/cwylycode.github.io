@@ -1,6 +1,6 @@
 import { Box, Button, Container, Flex, Image, Link, Spacer, Text, usePrefersReducedMotion } from "@chakra-ui/react";
 import PageHeader from "../components/PageHeader";
-import pic from '../portrait.jpg'
+import pic from '../images/portrait.jpg'
 import { motion } from "framer-motion";
 import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
 import SvgDoodleLaughGuy from "../components/svg/SvgDoodleLaughGuy";

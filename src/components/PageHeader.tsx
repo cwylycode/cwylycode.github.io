@@ -2,11 +2,10 @@ import { Box, Divider, Flex, Heading, usePrefersReducedMotion } from "@chakra-ui
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-function Letter({ k, c, noAnim }: { k: number, c: string, noAnim: boolean }) {
+function Letter({ c, noAnim }: { c: string, noAnim: boolean }) {
   const [startHover, setStartHover] = useState(false)
   return (
     <Heading
-      key={k}
       display='inline-block'
       as={motion.span}
       variants={{
@@ -46,7 +45,7 @@ export default function PageHeader({ title }: { title: string }) {
       >
         {
           title.split('').map((c, i) => (
-            <Letter k={i} c={c} noAnim={noAnim} />
+            <Letter key={i} c={c} noAnim={noAnim} />
           ))
         }
       </Box>
