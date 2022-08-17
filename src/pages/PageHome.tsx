@@ -127,36 +127,42 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
             >
               (It's pronounced 'why-lee' 😛)
             </Text>
-            <Box
-              display={{ base: 'none', xl: 'unset' }}
-              width='48'
-              height='48'
-              position='absolute'
-              top='100px'
-              left='-200px'
-              as={motion.div}
-              variants={{
-                hide: { scaleY: 0 },
-                show: { scaleY: 1, transition: { type: 'spring', bounce: 0.8 } }
-              }}
+            <Stack
+              position='relative'
+              direction='row'
+              justifyContent='space-between'
             >
-              <SvgDoodleGreeter />
-            </Box>
-            <Box
-              display={{ base: 'none', xl: 'unset' }}
-              width='48'
-              height='48'
-              position='absolute'
-              top='-100px'
-              right='-200px'
-              as={motion.div}
-              variants={{
-                hide: { scaleY: 0 },
-                show: { scaleY: 1, transition: { type: 'spring', bounce: 0.8 } }
-              }}
-            >
-              <SvgDoodleScreamer />
-            </Box>
+              <Box
+                display='flex'
+                width='48'
+                height='48'
+                position={{ base: 'unset', xl: 'absolute' }}
+                top='-150px'
+                left='-200px'
+                as={motion.div}
+                variants={{
+                  hide: { scaleY: 0 },
+                  show: { scaleY: 1, transition: { type: 'spring', bounce: 0.8 } }
+                }}
+              >
+                <SvgDoodleGreeter alignSelf='flex-end' />
+              </Box>
+              <Box
+                display='flex'
+                width='48'
+                height='48'
+                position={{ base: 'unset', xl: 'absolute' }}
+                top='-300px'
+                right='-200px'
+                as={motion.div}
+                variants={{
+                  hide: { scaleY: 0 },
+                  show: { scaleY: 1, transition: { type: 'spring', bounce: 0.8 } }
+                }}
+              >
+                <SvgDoodleScreamer alignSelf='flex-end' />
+              </Box>
+            </Stack>
           </Box>
 
           <Text
@@ -212,18 +218,17 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
             boxSize='48'
             cursor='pointer'
             transition='all 0.3s'
-            _hover={{
+            _hover={noAnim ? {} : {
               boxShadow: `0 0 20px 5px ${useThemed({ default: 'white', light: 'black' })}`
             }}
           />
         </Stack>
         <Box
-          display={{ base: 'none', xl: 'unset' }}
+          position='absolute'
           width='48'
           height='48'
-          position='absolute'
-          bottom='0px'
-          left='-40px'
+          bottom={{ base: '-135px', xl: '0px' }}
+          left={{ base: '0px', xl: '-40px' }}
         >
           <SvgDoodleDoit />
         </Box>

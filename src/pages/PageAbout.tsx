@@ -10,7 +10,7 @@ export default function PageAbout() {
   return (
     <>
       <PageHeader title="ABOUT" />
-      <Container maxWidth='5xl' marginBottom='10'>
+      <Container maxWidth='5xl' paddingY='12'>
         <Flex
           flexDirection={{ base: "column-reverse", xl: 'unset' }}
           justifyContent={{ base: 'center', xl: 'space-between' }}
@@ -53,6 +53,7 @@ export default function PageAbout() {
               marginTop='20'
               paddingY={{ base: '5', sm: '10' }}
               onClick={() => { window.location.hash = 'contact' }}
+              _hover={noAnim ? {} : undefined}
               as={motion.button}
               initial={noAnim ? undefined : { opacity: 0, y: 30 }}
               animate={noAnim ? undefined : {
@@ -130,12 +131,11 @@ export default function PageAbout() {
               }}
             />
             <Box
-              display={{ base: 'none', xl: 'unset' }}
-              width='48'
-              height='48'
-              position='absolute'
-              bottom='-200px'
-              left='-200px'
+              width={{ base: '24', xl: '48' }}
+              height={{ base: '24', xl: '48' }}
+              position={{ base: 'relative', xl: 'absolute' }}
+              bottom={{ base: '-18px', xl: '-200px' }}
+              left={{ base: '-22px', xl: '-200px' }}
               as={motion.div}
               variants={{
                 hide: { scaleX: 0 },

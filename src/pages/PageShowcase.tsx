@@ -8,7 +8,7 @@ export default function PageShowcase() {
   return (
     <>
       <PageHeader title="SHOWCASE" />
-      <Container maxWidth='5xl' marginBottom='10'>
+      <Container maxWidth='5xl' paddingY='12'>
         <Flex
           className="card-list"
           direction={{ base: 'column', sm: 'row' }}

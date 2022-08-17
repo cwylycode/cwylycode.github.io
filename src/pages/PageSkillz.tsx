@@ -13,7 +13,7 @@ export default function PageSkillz() {
     <>
       <PageHeader title="SKILLZ" />
 
-      <Container maxWidth='5xl' marginBottom='10'>
+      <Container maxWidth='5xl' paddingY='12'>
         <Flex
           direction={{ base: 'column', lg: 'unset' }}
           justifyContent='space-between'
@@ -143,11 +143,10 @@ export default function PageSkillz() {
               ))
             }
             <Box
-              display={{ base: 'none', xl: 'unset' }}
               position='absolute'
-              width='32'
-              height='32'
-              right='8'
+              width='30%'
+              height='30%'
+              right='0px'
               bottom='0px'
               as={motion.div}
               initial={noAnim ? undefined : { scale: 0 }}
