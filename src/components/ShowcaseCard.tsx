@@ -40,7 +40,10 @@ export default function ShowcaseCard({ ...props }: ShowcaseCardProps) {
     <Box
       className="card-holder"
       as={motion.div}
-      layout
+      variants={{
+        initial: { y: '50', opacity: 0 },
+        animate: { y: 0, opacity: 1 }
+      }}
       position='relative'
       height='96'
       maxWidth={{ base: '100%', sm: '50%', md: '40%' }}
