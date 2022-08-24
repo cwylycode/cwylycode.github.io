@@ -30,13 +30,6 @@ export default function SvgDoodleScreamer({ ...props }: SvgContainerProps) {
         </g>
         <path vectorEffect='non-scaling-stroke'
           fill="none"
-          stroke="#3f5787"
-          strokeWidth="0.6"
-          d="M167.122 186.66c-6.613 0-22.578-4.39-39.924-4.723-17.669-.339-36.72 3.38-43.335 3.38-24.07 0 13.851-50.186 51.125-50.186 37.928 0 58.404 24.915 44.364 50.187-1.5 2.7-9.982 1.343-12.23 1.343"
-          transform="translate(80.669 80.618) scale(.83828) translate(-.655 -15.098) scale(1.06703) matrix(.64022 0 0 1.19851 36.85 -16.291)"
-        ></path>
-        <path vectorEffect='non-scaling-stroke'
-          fill="none"
           stroke="#0c0c0c"
           d="M-23.132 0c0-12.775 10.357-23.132 23.132-23.132S23.132-12.775 23.132 0 12.775 23.132 0 23.132-23.132 12.775-23.132 0z"
           transform="translate(80.669 80.618) scale(.83828) translate(-.655 -15.098) scale(1.06703) translate(-3.643 -1.682) matrix(.66622 0 0 .66622 145.228 110.191)"
@@ -61,14 +54,7 @@ export default function SvgDoodleScreamer({ ...props }: SvgContainerProps) {
           fill="none"
           stroke="#3f5787"
           strokeWidth="0.6"
-          d="M104.716 214.353c7.02 2.808 13.994 3.767 21.51 2.264M90.585 206.06c7.848-10.988 21.979-22.1 35.818-20.122 17.62 2.517 31.75 3.203 24.765 20.71"
-          transform="translate(80.669 80.618) scale(.83828) translate(-.655 -15.098) scale(1.06703)"
-        ></path>
-        <path vectorEffect='non-scaling-stroke'
-          fill="none"
-          stroke="#3f5787"
-          strokeWidth="0.411"
-          d="M126.445 197.377c-2.551 1.276-3.632 2.606-4.904 5.15"
+          d="M124.829 185.528c23.361 0 55.084 22.555 54.615 6.945s-26.233-44.925-50.987-45.706-56.313 32.831-56.665 47.6 29.675-8.84 53.037-8.84zM104.926 154.79c-1.39 5.327 44.223 4.69 44.315-1.003M104.01 189.782c-5.404-12.938 49.816-12.692 43.372.096"
           transform="translate(80.669 80.618) scale(.83828) translate(-.655 -15.098) scale(1.06703)"
         ></path>
         <g fill="none" stroke="#3f5787">

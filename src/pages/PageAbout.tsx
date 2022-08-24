@@ -48,6 +48,7 @@ export default function PageAbout() {
             </Box>
             <Button
               height='auto'
+              textAlign='center'
               maxWidth='max-content'
               whiteSpace='break-spaces'
               marginTop='20'

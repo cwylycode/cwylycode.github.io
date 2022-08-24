@@ -143,7 +143,7 @@ export default function NavMenu({ onLinkClick, particles, children, ...props }: 
               aria-label="linked in"
               icon={<BsLinkedin />}
               as='a'
-              href="#"
+              href="https://www.linkedin.com/in/cwylycode"
               variant='ghost'
               fontSize='24px'
               color='themed.secondary'
