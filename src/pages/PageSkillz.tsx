@@ -252,12 +252,16 @@ export default function PageSkillz() {
         <Text
           as={motion.p}
           initial={noAnim ? undefined : { opacity: 0 }}
-          animate={noAnim ? undefined : {
+          whileInView={noAnim ? undefined : {
             opacity: 1,
             transition: {
               duration: 2,
-              delay: 2
+              delay: 0.5
             }
+          }}
+          viewport={{
+            once: true,
+            amount: 0.3
           }}
         >
           Some say the best skill a coder can have is not their proficiency with a language/technology, or even the knowledge they get from experience. No, it's their ability to solve problems and demonstrate critical thinking in order to get the job done.

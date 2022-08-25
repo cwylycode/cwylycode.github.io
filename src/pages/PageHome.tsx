@@ -34,7 +34,7 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
         <Box
           as={motion.div}
           initial={noAnim ? undefined : { opacity: 0 }}
-          animate={{ opacity: 1, transition: { delay: 7 } }}
+          animate={{ opacity: 1, transition: { delay: 3 } }}
         >
           <ParticlesHomePage />
         </Box>}
@@ -200,30 +200,59 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
         position='relative'
         paddingY='12'
         as={motion.div}
-        initial={noAnim ? undefined : { opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0, transition: { delay: 6 } }}
+        initial={noAnim ? undefined : 'initial'}
+        whileInView={noAnim ? undefined : 'animate'}
+        viewport={{
+          once: true,
+          amount: 0.3
+        }}
+        variants={{
+          initial: {},
+          animate: { transition: { delayChildren: 1, staggerChildren: 0.5 } }
+        }}
       >
         <Stack spacing='8' direction='column' alignItems='center' textAlign='center'>
-          <Heading>
+          <Heading
+            as={motion.h2}
+            variants={{
+              initial: { opacity: 0, y: 50 },
+              animate: { opacity: 1, y: 0 }
+            }}
+          >
             QUICK!<br />Blow up my website!
           </Heading>
-          <Text>
+          <Text
+            as={motion.p}
+            variants={{
+              initial: { opacity: 0, y: 50 },
+              animate: { opacity: 1, y: 0 }
+            }}
+          >
             Press that big red button below to explode everything!
           </Text>
           <Image
             id='big-button'
+            as={motion.img}
+            variants={{
+              initial: { scale: 0 },
+              animate: { scale: 1 }
+            }}
+            whileHover={noAnim ? undefined : {
+              boxShadow: `0 0 20px 5px ${useThemed({ default: 'white', light: 'black' })}`
+            }}
             onClick={onExplodeClick}
             src={BigButton}
             borderRadius='full'
             boxSize='48'
             cursor='pointer'
-            transition='all 0.3s'
-            _hover={noAnim ? {} : {
-              boxShadow: `0 0 20px 5px ${useThemed({ default: 'white', light: 'black' })}`
-            }}
           />
         </Stack>
         <Box
+          as={motion.div}
+          variants={{
+            initial: { opacity: 0, x: -50 },
+            animate: { opacity: 1, x: 0 }
+          }}
           position='absolute'
           width='48'
           height='48'
