@@ -2,12 +2,13 @@ import { Box } from "@chakra-ui/react"
 import { motion, Variants } from "framer-motion"
 import WavePage from '../svg/wave_page.svg'
 
-interface OpcProps {
+interface Props {
   active: boolean,
+  onAnimComplete: () => void,
   animSpeed: number
 }
 
-export default function OverlayPageChange({ active, animSpeed }: OpcProps) {
+export default function OverlayPageChange({ active, onAnimComplete, animSpeed }: Props) {
   const animLeft: Variants = {
     active: { x: '0%', transition: { duration: `${animSpeed}`, ease: 'linear' } },
     inactive: { x: '-100%', transition: { duration: 0 } }
@@ -22,8 +23,9 @@ export default function OverlayPageChange({ active, animSpeed }: OpcProps) {
         as={motion.div}
         id='page-overlay-left'
         variants={animLeft}
-        animate={active ? 'active' : 'inactive'}
         initial={false}
+        animate={active ? 'active' : 'inactive'}
+        onAnimationComplete={onAnimComplete}
         position='fixed'
         left={{ base: '0px', md: '-50px' }}
         width='100%'

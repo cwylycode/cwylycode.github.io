@@ -52,13 +52,13 @@ export default function App() {
   const noAnim = usePrefersReducedMotion()
   const [renderApp, setRenderApp] = useState<boolean>(true)
   const [scrollLocked, setScrollLocked] = useScrollLock()
-  const [introActive, setIntroActive] = useState<boolean>(true) // Change to enable/disable intro
   const [currentPage, setPage] = useState<string>(window.location.hash.slice(1))
   const [currentTheme, setTheme] = useState<string>(SYSTEM_THEME)
-  const [canChangePage, setCanChangePage] = useState<boolean>(true)
-  const [canChangeTheme, setCanChangeTheme] = useState<boolean>(true)
-  const [animPageActive, setAnimPageActive] = useState<boolean>(false)
-  const [animThemeActive, setAnimThemeActive] = useState<boolean>(false)
+  const [introActive, setIntroActive] = useState<boolean>(true)
+  const [introFinished, setIntroFinished] = useState<boolean>(false)
+  const [changesActive, setChangesActive] = useState<boolean>(false)
+  const [animPage, setAnimPage] = useState({ active: false, page: '' })
+  const [animTheme, setAnimTheme] = useState({ active: false, theme: '' })
   const [explosionActive, setExplosionActive] = useState<boolean>(false)
   const [showCountdown, setShowCountdown] = useState<boolean>(false)
   const [showAftermath, setShowAftermath] = useState<boolean>(false)
@@ -71,18 +71,15 @@ export default function App() {
     const msg = document.getElementById('loading-text')
     if (msg) msg.remove()
     // Page url handler
-    const pageUrlHandler = () => { changePage(window.location.hash.slice(1), 0) }
+    const pageUrlHandler = () => { changePage(window.location.hash.slice(1)) }
     window.addEventListener('hashchange', pageUrlHandler)
     return () => { window.removeEventListener('hashchange', pageUrlHandler) }
   }, [])
 
   useEffect(() => {
-    if (canChangePage && canChangeTheme && !introActive) {
-      setScrollLocked(false)
-    } else {
-      setScrollLocked(true)
-    }
-  }, [canChangePage, canChangeTheme, introActive])
+    if (introActive || changesActive || explosionActive) setScrollLocked(true)
+    else setScrollLocked(false)
+  }, [introActive, changesActive, explosionActive])
 
   function handleExplode() {
     if (noAnim) {
@@ -90,33 +87,28 @@ export default function App() {
       return
     }
     setExplosionActive(true)
-    setScrollLocked(true)
     setShowCountdown(true)
   }
 
   function changeTheme(theme: string) {
-    if (!canChangeTheme || currentTheme === theme) return
-    setCanChangeTheme(false)
-    setAnimThemeActive(true)
-    setTimeout(() => {
+    if (changesActive || currentTheme === theme) return
+    if (noAnim) {
       setTheme(theme)
-      setAnimThemeActive(false)
-      setCanChangeTheme(true)
-    }, 1000 * (themeAnimSpeed + 0.5));
+      return
+    }
+    setChangesActive(true)
+    setAnimTheme({ active: true, theme: theme })
   }
 
-  function changePage(page: string, delay: number) {
-    if (!canChangePage || currentPage === page) return
+  function changePage(page: string) {
+    if (changesActive || currentPage === page) return
     window.location.replace('#' + page)
-    setCanChangePage(false)
-    setTimeout(() => {
-      setAnimPageActive(true)
-      setTimeout(() => {
-        setPage(page)
-        setCanChangePage(true)
-        setAnimPageActive(false)
-      }, 1000 * (pageAnimSpeed + 0.5))
-    }, delay * 1000);
+    if (noAnim) {
+      setPage(page)
+      return
+    }
+    setChangesActive(true)
+    setAnimPage({ active: true, page: page })
   }
 
   return (
@@ -126,19 +118,45 @@ export default function App() {
     >
       <Themed.Provider value={currentTheme}>
         {renderApp && <>
-          <AnimatePresence>
+          <AnimatePresence onExitComplete={() => setIntroFinished(true)}>
             {introActive && <OverlayIntro setIntroActive={setIntroActive} />}
           </AnimatePresence>
-          {!noAnim && <OverlayThemeChange active={animThemeActive} animSpeed={themeAnimSpeed} />}
+
+          {!noAnim &&
+            <OverlayThemeChange
+              animSpeed={themeAnimSpeed}
+              active={animTheme.active}
+              onAnimComplete={() => {
+                if (animTheme.active) {
+                  setTheme(animTheme.theme)
+                  setAnimTheme({ active: false, theme: '' })
+                } else setChangesActive(false)
+              }}
+            />
+          }
+
           <AppShell
             theme={currentTheme}
             changeTheme={changeTheme}
             changePage={changePage}
           >
             {noAnim && <NoAnimMessage />}
-            {!noAnim && <OverlayPageChange active={animPageActive} animSpeed={pageAnimSpeed} />}
+
+            {!noAnim &&
+              <OverlayPageChange
+                animSpeed={pageAnimSpeed}
+                active={animPage.active}
+                onAnimComplete={() => {
+                  if (animPage.active) {
+                    setPage(animPage.page)
+                    setAnimPage({ active: false, page: '' })
+                  } else setChangesActive(false)
+                }}
+              />
+            }
+
             <Suspense fallback={<PageSpinner />}>
-              {!introActive && (() => {
+              {introFinished && (() => {
                 switch (currentPage) {
                   case 'about': return <PageAbout />
                   case 'skillz': return <PageSkillz />
@@ -150,6 +168,7 @@ export default function App() {
             </Suspense>
           </AppShell>
         </>}
+
         {showCountdown &&
           <ExplosionCountdown onCountdownFinished={() => {
             setShowCountdown(false)
@@ -163,8 +182,11 @@ export default function App() {
             }, 1000);
           }} />
         }
+
         {showAftermath && <ExplosionAftermath />}
-        {explosionActive && <OverlayClickBlock />}
+
+        {scrollLocked && <OverlayClickBlock />}
+
         <ParticlesExplosion show={(explosionActive && !renderApp)} />
       </Themed.Provider>
     </ChakraProvider >

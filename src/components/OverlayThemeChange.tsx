@@ -2,12 +2,13 @@ import { Box } from "@chakra-ui/react";
 import { motion, Variants } from "framer-motion";
 import WaveTheme from '../svg/wave_theme.svg'
 
-interface OtcProps {
+interface Props {
   active: boolean,
+  onAnimComplete: () => void,
   animSpeed: number
 }
 
-export default function OverlayThemeChange({ active, animSpeed }: OtcProps) {
+export default function OverlayThemeChange({ active, onAnimComplete, animSpeed }: Props) {
   const anim: Variants = {
     active: {
       y: ['-150vh', '0vh'],
@@ -24,8 +25,9 @@ export default function OverlayThemeChange({ active, animSpeed }: OtcProps) {
         id="theme-overlay"
         as={motion.div}
         variants={anim}
-        animate={active ? 'active' : 'inactive'}
         initial={false}
+        animate={active ? 'active' : 'inactive'}
+        onAnimationComplete={onAnimComplete}
         position='fixed'
         top='-25vh'
         width='100vw'

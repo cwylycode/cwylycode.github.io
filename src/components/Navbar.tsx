@@ -1,30 +1,43 @@
-import {
-  IconButton,
-  Flex,
-  Spacer,
-  Box,
-  BoxProps,
-  useOutsideClick,
-  usePrefersReducedMotion,
-} from "@chakra-ui/react"
-import { ReactNode, useRef } from "react"
+import { IconButton, Flex, Spacer, Box, BoxProps, useOutsideClick, usePrefersReducedMotion, useDisclosure, } from "@chakra-ui/react"
+import { AnimatePresence, motion } from "framer-motion"
+import { useRef, useState } from "react"
 import { FaHamburger } from 'react-icons/fa'
 import { IoMdClose } from 'react-icons/io'
+import HomeLogo from "./HomeLogo"
+import NavMenu from "./NavMenu"
+import ThemeButtons from "./ThemeButtons"
 
 interface NavbarProps extends BoxProps {
-  logo: ReactNode
-  navOpen: boolean
-  navToggle: () => void
-  children: ReactNode
+  theme: string,
+  changeTheme: (themeName: string) => void,
+  changePage: (pageName: string) => void
 }
-export default function Navbar({ logo, navOpen, navToggle, children, ...props }: NavbarProps) {
+
+export default function Navbar({ theme, changeTheme, changePage, ...props }: NavbarProps) {
+  const { isOpen, onToggle } = useDisclosure()
+  const noAnim = usePrefersReducedMotion()
   const mobileCollapseRef = useRef<HTMLDivElement>(null)
-  const navAnimSpeed = usePrefersReducedMotion() ? 0.0 : 0.5
+  const [page, setPage] = useState<string>('')
 
   useOutsideClick({
     ref: mobileCollapseRef,
-    handler: () => { navOpen ? navToggle() : null }
+    handler: () => { isOpen ? onToggle() : null }
   })
+
+  function handlePageChange(pageName?: string) {
+    if (pageName) {
+      if (isOpen) { // Let the navbar closing animation change the page instead
+        setPage(pageName)
+        onToggle()
+        return
+      }
+      changePage(pageName)
+    }
+    if (page) {
+      changePage(page)
+      setPage('')
+    }
+  }
 
   return (
     <Box
@@ -36,16 +49,22 @@ export default function Navbar({ logo, navOpen, navToggle, children, ...props }:
       zIndex='9999'
       {...props}
     >
-      <Box
-        id='navbar-backdrop'
-        display={{ base: 'block', md: 'none' }}
-        position='fixed'
-        width='100vw'
-        height={navOpen ? '100vh' : '0vh'}
-        transition={`height 0s ${navOpen ? '0s' : `${navAnimSpeed}s`}`}
-        backgroundColor='blackAlpha.800'
-        zIndex='-1'
-      />
+      <AnimatePresence >
+        {isOpen &&
+          <Box
+            id='navbar-backdrop'
+            as={motion.div}
+            animate={noAnim ? undefined : { opacity: 1 }}
+            exit={noAnim ? undefined : { opacity: 0 }}
+            position='fixed'
+            opacity={0}
+            width='100vw'
+            height='100vh'
+            backgroundColor='blackAlpha.800'
+            zIndex='-1'
+          />
+        }
+      </AnimatePresence>
       <Box
         id="navbar"
         ref={mobileCollapseRef}
@@ -59,27 +78,43 @@ export default function Navbar({ logo, navOpen, navToggle, children, ...props }:
           height='100%'
         >
           <IconButton
-            icon={navOpen ? <IoMdClose /> : <FaHamburger />}
+            icon={isOpen ? <IoMdClose /> : <FaHamburger />}
             color='themed.secondary'
             variant="ghost"
             position='absolute'
             fontSize='48px'
-            onClick={navToggle}
+            onClick={onToggle}
             aria-label="open menu"
             zIndex='1' // Makes it clickable because of spinning home logo interference
             _hover={{}}
           />
+
           <Spacer />
-          {logo}
+          <HomeLogo onClick={() => { handlePageChange('home') }} height='75%' />
           <Spacer />
         </Flex>
-        <Box
-          height={navOpen ? '360px' : '0px'}
-          overflow='hidden'
-          transition={`height ${navAnimSpeed}s`}
-        >
-          {children}
-        </Box>
+
+        <AnimatePresence onExitComplete={handlePageChange}>
+          {isOpen &&
+            <Box
+              as={motion.div}
+              animate={{ height: 360 }}
+              exit={{ height: 0 }}
+              height={0}
+              overflow='hidden'
+            >
+              <NavMenu
+                id='menu-mobile'
+                onLinkClick={handlePageChange}
+                width='full'
+                paddingTop='2'
+                paddingBottom='5'
+              >
+                <ThemeButtons theme={theme} changeTheme={changeTheme} />
+              </NavMenu>
+            </Box>
+          }
+        </AnimatePresence>
       </Box>
     </Box >
   )

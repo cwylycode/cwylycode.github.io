@@ -1,13 +1,9 @@
 import { ReactNode } from 'react'
-import {
-  Box,
-  useDisclosure,
-} from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 
 import Navbar from './Navbar'
 import NavMenu from './NavMenu'
 import ThemeButtons from './ThemeButtons'
-import HomeLogo from './HomeLogo'
 
 const PAGE_MARGIN: number = 52
 const NAVBAR_HEIGHT: number = 20
@@ -15,52 +11,25 @@ const NAVBAR_HEIGHT: number = 20
 interface AppShellProps {
   theme: string
   changeTheme: (t: string) => void
-  changePage: (p: string, delay: number) => void
+  changePage: (p: string) => void
   children: ReactNode
 }
 
 export default function AppShell({ theme, changeTheme, changePage, children }: AppShellProps) {
-  const { isOpen, onToggle } = useDisclosure()
-
-  function onLinkClick(pageName: string) {
-    if (isOpen) {
-      onToggle()
-      changePage(pageName, 1)
-      return
-    }
-    changePage(pageName, 0)
-  }
-
   return (
     <Box id='app' minH="100vh">
-
       <Navbar
-        logo={
-          <HomeLogo
-            onClick={() => { onLinkClick('home') }}
-            height='75%'
-          />
-        }
-        navOpen={isOpen}
-        navToggle={onToggle}
+        theme={theme}
+        changeTheme={changeTheme}
+        changePage={changePage}
         height={{ base: NAVBAR_HEIGHT, md: '0' }}
-      >
-        <NavMenu
-          id='menu-mobile'
-          onLinkClick={onLinkClick}
-          width='full'
-          paddingTop='2'
-          paddingBottom='5'
-        >
-          <ThemeButtons theme={theme} changeTheme={changeTheme} />
-        </NavMenu>
-      </Navbar>
+      />
 
       <NavMenu
         id='menu-desktop'
         particles
         position='fixed'
-        onLinkClick={onLinkClick}
+        onLinkClick={changePage}
         display={{ base: 'none', md: 'block' }}
         width={{ base: 'full', md: PAGE_MARGIN }}
         height="full"
