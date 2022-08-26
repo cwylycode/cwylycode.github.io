@@ -2,7 +2,7 @@ import { SvgContainer, SvgContainerProps } from "../SvgContainer";
 
 export default function SvgDoodleStarGuyText({ ...props }: SvgContainerProps) {
   return (
-    <SvgContainer variant='themed' {...props}>
+    <SvgContainer variant='themed' svgStrokeDashArray="1.5" {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"
