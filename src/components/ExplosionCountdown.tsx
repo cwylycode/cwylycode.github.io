@@ -4,10 +4,7 @@ import SvgExplodeBubble from "./svg/SvgExplodeBubble";
 
 const COUNT_DURATION = 0.5
 
-interface ExplosionCountdownProps {
-  onCountdownFinished: () => void
-}
-export default function ExplosionCountdown({ onCountdownFinished }: ExplosionCountdownProps) {
+export default function ExplosionCountdown({ onCountdownFinished }: { onCountdownFinished: () => void }) {
   return (
     <Box
       as={motion.div}
@@ -29,6 +26,8 @@ export default function ExplosionCountdown({ onCountdownFinished }: ExplosionCou
         <Heading
           key={i}
           as={motion.h2}
+          // @ts-ignore
+          transformTemplate={({ scale }) => `scale(${scale})`} //Needed to fix safari font blurry issue
           variants={{
             inactive: { opacity: 0, scale: 20 },
             active: {
