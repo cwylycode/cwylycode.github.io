@@ -52,7 +52,7 @@ export default function App() {
   const noAnim = usePrefersReducedMotion()
   const [renderApp, setRenderApp] = useState<boolean>(true)
   const [scrollLocked, setScrollLocked] = useScrollLock()
-  const [currentPage, setPage] = useState<string>(window.location.hash.slice(1))
+  const [currentPage, setPage] = useState<string>(window.location.hash.slice(1) || 'home')
   const [currentTheme, setTheme] = useState<string>(SYSTEM_THEME)
   const [introActive, setIntroActive] = useState<boolean>(true)
   const [introFinished, setIntroFinished] = useState<boolean>(false)
@@ -62,14 +62,14 @@ export default function App() {
   const [explosionActive, setExplosionActive] = useState<boolean>(false)
   const [showCountdown, setShowCountdown] = useState<boolean>(false)
   const [showAftermath, setShowAftermath] = useState<boolean>(false)
-  const pageAnimSpeed = 1
+  const pageAnimSpeed = 2
   const themeAnimSpeed = 1
 
   useEffect(() => {
-    localStorage.removeItem("chakra-ui-color-mode")
-    // Must be written this way or mobile version doesn't load rest of app
     const msg = document.getElementById('loading-text')
     if (msg) msg.remove()
+    // Must be written this way for browsers that block cookies/storage, otherwise app crashes
+    try { localStorage.removeItem("chakra-ui-color-mode") } catch { }
     // Page url handler
     const pageUrlHandler = () => { changePage(window.location.hash.slice(1)) }
     window.addEventListener('hashchange', pageUrlHandler)
@@ -148,6 +148,7 @@ export default function App() {
                 active={animPage.active}
                 onAnimComplete={() => {
                   if (animPage.active) {
+                    window.scroll(0, 0)
                     setPage(animPage.page)
                     setAnimPage({ active: false, page: '' })
                   } else setChangesActive(false)

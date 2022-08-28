@@ -179,7 +179,7 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
           <Box
             as={motion.div}
             variants={{
-              hide: { opacity: 0, x: 30 },
+              hide: { opacity: 0, x: -50 },
               show: { opacity: 1, x: 0 }
             }}
           >
