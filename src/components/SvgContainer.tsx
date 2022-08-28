@@ -29,7 +29,7 @@ export function SvgContainer({
 }: SvgContainerProps) {
   const css = (variant === 'themed') ? {
     '& path': {
-      stroke: `${svgStroke ? svgStroke : 'themed.secondary'}`,
+      stroke: `${svgStroke ? svgStroke : 'themed.accent6'}`,
       strokeWidth: `${svgStrokeWidth ? svgStrokeWidth : '2'}`,
       strokeDasharray: `${useThemed({ default: undefined, hacker: svgStrokeDashArray ? svgStrokeDashArray : '2' })}`
     },

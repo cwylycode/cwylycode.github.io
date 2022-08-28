@@ -102,7 +102,7 @@ export default function PageAbout() {
               objectFit='contain'
               maxWidth='300px'
               maxHeight='300px'
-              borderColor='themed.primary'
+              borderColor='themed.accent5'
               borderWidth='1px'
               borderStyle='solid'
               as={motion.img}

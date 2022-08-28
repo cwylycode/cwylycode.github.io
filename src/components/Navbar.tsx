@@ -71,7 +71,7 @@ export default function Navbar({ theme, changeTheme, changePage, ...props }: Nav
         height='100%'
       >
         <Flex
-          backgroundColor='themed.accent1'
+          backgroundColor='themed.accent7'
           px="4"
           alignItems="center"
           justifyContent="flex-start"
@@ -79,7 +79,7 @@ export default function Navbar({ theme, changeTheme, changePage, ...props }: Nav
         >
           <IconButton
             icon={isOpen ? <IoMdClose /> : <FaHamburger />}
-            color='themed.secondary'
+            color='themed.accent6'
             variant="ghost"
             position='absolute'
             fontSize='48px'

@@ -24,10 +24,10 @@ const dark: ThemeOverride = {
       accent1: `${theme.colors.gray[900]}`,
       accent2: `${theme.colors.gray[600]}`,
       accent3: `${theme.colors.blue[300]}`,
-      accent4: `${theme.colors.white}`,
-      accent5: `${theme.colors.white}`,
-      accent6: `${theme.colors.white}`,
-      accent7: `${theme.colors.white}`,
+      accent4: `${theme.colors.blue[500]}`,
+      accent5: 'rgb(20,20,20)',
+      accent6: `${theme.colors.gray[200]}`,
+      accent7: `${theme.colors.gray[900]}`,
     }
   },
 }

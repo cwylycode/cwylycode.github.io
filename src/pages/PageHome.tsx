@@ -90,7 +90,7 @@ export default function PageHome({ onExplodeClick }: PageHomeProps) {
               marginBottom='2'
               marginX='auto'
               maxWidth='75%'
-              bgGradient='linear(90deg, themed.scheme 0%, themed.secondary 50%, themed.scheme 100%)'
+              bgGradient='linear(90deg, themed.scheme 0%, themed.accent6 50%, themed.accent4 100%)'
               as={motion.div}
               variants={{
                 hide: { maxWidth: '0%' },

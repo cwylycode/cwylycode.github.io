@@ -107,7 +107,7 @@ export default function ShowcaseCard({ ...props }: ShowcaseCardProps) {
           border={useThemed({ default: undefined, hacker: '1px dashed' })}
           borderRadius='20'
           borderColor='themed.secondary'
-          backgroundColor='themed.primary'
+          backgroundColor='themed.accent5'
           overflow='hidden'
           width='100%'
           height='100%'

@@ -26,7 +26,7 @@ export default function NavLink({ name, icon, ...props }: NavLinkProps) {
         transform: 'scaleX(0)',
         transition: 'transform 0.3s ease-out',
         zIndex: 0,
-        bgColor: 'themed.scheme'
+        bgColor: 'themed.accent4'
       }}
       _hover={noAnim ? {} : {
         base: {}, md: {

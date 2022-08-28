@@ -42,7 +42,7 @@ export default function NavMenu({ onLinkClick, particles, children, ...props }: 
       /** @ts-ignore */
       borderRightStyle={useThemed({ default: 'unset', hacker: 'dashed' })}
       borderRightWidth={{ base: '0', md: 'thin' }}
-      borderColor='themed.secondary'
+      borderColor='themed.accent6'
       {...props}
     >
       <Flex
@@ -146,7 +146,7 @@ export default function NavMenu({ onLinkClick, particles, children, ...props }: 
               href="https://www.linkedin.com/in/cwylycode"
               variant='ghost'
               fontSize='24px'
-              color='themed.secondary'
+              color='themed.accent6'
               transition='transform 0.5s'
               _hover={noAnim ? {} : {
                 base: {}, md: {

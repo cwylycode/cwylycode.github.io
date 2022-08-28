@@ -28,16 +28,16 @@ const hacker: ThemeOverride = {
   },
   colors: {
     themed: {
-      scheme: `green`,
+      scheme: 'green',
       primary: `${theme.colors.black}`,
-      secondary: `lime`,
+      secondary: 'lime',
       accent1: `${theme.colors.black}`,
-      accent2: `limegreen`,
-      accent3: `lime`,
-      accent4: `${theme.colors.white}`,
-      accent5: `${theme.colors.white}`,
-      accent6: `${theme.colors.white}`,
-      accent7: `${theme.colors.white}`,
+      accent2: 'limegreen',
+      accent3: 'lime',
+      accent4: 'green',
+      accent5: `${theme.colors.black}`,
+      accent6: 'lime',
+      accent7: `${theme.colors.black}`,
     }
   },
   components: {
