@@ -2,11 +2,110 @@ import { Box, Button, Container, Heading, Text, usePrefersReducedMotion } from "
 import PageHeader from "../components/PageHeader";
 import { motion } from "framer-motion";
 import SvgDoodlePointGuy from "../components/svg/SvgDoodlePointGuy";
+import ParticlesPage from "../components/ParticlesPage";
 
 export default function PageContact() {
   const noAnim = usePrefersReducedMotion()
   return (
     <>
+      <ParticlesPage pOptions={{
+        fullScreen: {
+          enable: true,
+          zIndex: -1
+        },
+        interactivity: {
+          events: {
+            onHover: {
+              enable: true,
+              mode: "bubble"
+            }
+          },
+          modes: {
+            bubble: {
+              distance: 400,
+              duration: 0.3,
+              mix: false,
+              opacity: 1,
+              size: 4,
+              divs: {
+                distance: 200,
+                duration: 0.4,
+                mix: false,
+                selectors: []
+              }
+            },
+          }
+        },
+        particles: {
+          move: {
+            attract: {
+              rotate: {
+                x: 600,
+                y: 1200
+              }
+            },
+            direction: "bottom",
+            enable: true,
+            outModes: {
+              default: 'out'
+            }
+          },
+          number: {
+            density: {
+              enable: true
+            },
+            value: 400
+          },
+          opacity: {
+            random: {
+              enable: true,
+              minimumValue: 0.1
+            },
+            value: {
+              min: 0.1,
+              max: 0.5
+            },
+            animation: {
+              speed: 1,
+              minimumValue: 0.1
+            }
+          },
+          size: {
+            random: {
+              enable: true,
+              minimumValue: 1
+            },
+            value: {
+              min: 1,
+              max: 10
+            },
+            animation: {
+              speed: 40,
+              minimumValue: 0.1
+            }
+          },
+          life: {
+            count: 0,
+            delay: {
+              random: {
+                enable: false,
+                minimumValue: 0
+              },
+              value: 0,
+              sync: false
+            },
+            duration: {
+              random: {
+                enable: false,
+                minimumValue: 0.0001
+              },
+              value: 0,
+              sync: false
+            }
+          },
+        }
+      }}
+      />
       <PageHeader title="CONTACT" />
       <Container position='relative' maxWidth='5xl' paddingY='12' centerContent>
         <Box

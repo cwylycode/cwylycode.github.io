@@ -4,11 +4,92 @@ import pic from '../images/portrait.jpg'
 import { motion } from "framer-motion";
 import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
 import SvgDoodleLaughGuy from "../components/svg/SvgDoodleLaughGuy";
+import ParticlesPage from "../components/ParticlesPage";
+import useThemed from "../hooks/use-themed";
+import useRandomRgb from "../hooks/use-random-rgb";
 
 export default function PageAbout() {
   const noAnim = usePrefersReducedMotion()
   return (
     <>
+      <ParticlesPage pOptions={{
+        fullScreen: {
+          enable: true,
+          zIndex: -1
+        },
+        particles: {
+          number: {
+            value: 40,
+            density: {
+              enable: true,
+              value_area: 800
+            }
+          },
+          color: {
+            value: useThemed({
+              light: '#999999',
+              dark: '#555555',
+              hacker: '#003300',
+              random: useRandomRgb()
+            })
+          },
+          shape: {
+            type: "triangle"
+          },
+          opacity: {
+            value: 0.5,
+            random: true,
+            anim: {
+              enable: false,
+              speed: 1,
+              opacity_min: 0.1,
+              sync: false
+            }
+          },
+          size: {
+            value: 10,
+            random: true,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "right",
+            out_mode: "out",
+          },
+          rotate: {
+            direction: 'random',
+            animation: {
+              enable: true,
+              speed: {
+                min: 10,
+                max: 50
+              }
+            }
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "repulse"
+            },
+            onclick: {
+              enable: true,
+              mode: "repulse"
+            },
+            resize: true
+          },
+          modes: {
+            repulse: {
+              distance: 55.94047932999287,
+              duration: 0.4
+            }
+          }
+        },
+        retina_detect: true
+      }}
+      />
       <PageHeader title="ABOUT" />
       <Container maxWidth='5xl' paddingY='12'>
         <Flex
