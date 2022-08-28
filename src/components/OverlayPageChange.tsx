@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react"
+import { Box, Flex } from "@chakra-ui/react"
 import { motion, Variants } from "framer-motion"
 import WavePage from '../svg/wave_page.svg'
 
@@ -14,12 +14,12 @@ export default function OverlayPageChange({ active, onAnimComplete, animSpeed }:
     inactive: { x: '-100%', transition: { duration: 0 } }
   }
   const animRight: Variants = {
-    active: { x: '0%', rotate: '180deg', transition: { duration: `${animSpeed}`, ease: 'linear' } },
-    inactive: { x: '100%', rotate: '180deg', transition: { duration: 0 } },
+    active: { x: '0%', transition: { duration: `${animSpeed}`, ease: 'linear' } },
+    inactive: { x: '100%', transition: { duration: 0 } },
   }
   return (
     <>
-      <Box
+      <Flex
         as={motion.div}
         id='page-overlay-left'
         variants={animLeft}
@@ -27,30 +27,46 @@ export default function OverlayPageChange({ active, onAnimComplete, animSpeed }:
         animate={active ? 'active' : 'inactive'}
         onAnimationComplete={onAnimComplete}
         position='fixed'
-        left={{ base: '0px', md: '-50px' }}
-        width='100%'
+        top='0px'
+        left={{ base: '0px', md: '52' }}
+        width='calc(100% + 300px)'
         height='100%'
         zIndex='1'
-        backgroundColor='themed.primary'
-        __css={{
-          mask: `linear-gradient(#000 0 0) left/calc(100% - 200px) 100% no-repeat,url(${WavePage}) no-repeat 100%`
-        }}
-      />
-      <Box
+      >
+        <Box flexGrow='1' backgroundColor='themed.primary' />
+        <Box
+          width='300px'
+          backgroundColor='themed.primary'
+          css={{
+            maskImage: `url(${WavePage})`,
+            maskSize: '100% 100%'
+          }}
+        />
+      </Flex>
+      <Flex
         as={motion.div}
         id='page-overlay-right'
         variants={animRight}
         animate={active ? 'active' : 'inactive'}
         initial={false}
         position='fixed'
-        width='100%'
+        top='0px'
+        right='0px'
+        width='calc(100% + 300px)'
         height='100%'
         zIndex='1'
-        backgroundColor='themed.primary'
-        __css={{
-          mask: `linear-gradient(#000 0 0) left/calc(100% - 200px) 100% no-repeat,url(${WavePage}) no-repeat 100%`
-        }}
-      />
+      >
+        <Box
+          transform='rotate(180deg)'
+          width='300px'
+          backgroundColor='themed.primary'
+          css={{
+            maskImage: `url(${WavePage})`,
+            maskSize: '100% 100%'
+          }}
+        />
+        <Box flexGrow='1' backgroundColor='themed.primary' />
+      </Flex>
     </>
   )
 }
