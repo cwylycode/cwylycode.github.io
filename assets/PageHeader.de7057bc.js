@@ -1,1 +1,0 @@
-import{a as r,i as a,j as e,H as d,D as n}from"./index.a9bda040.js";function o({title:i}){return r(a,{direction:"column",alignItems:"center",paddingTop:"5",children:[e(d,{children:i}),e(n,{marginTop:"5",borderWidth:"1px",borderRadius:"full",maxWidth:"80%"})]})}export{o as P};
