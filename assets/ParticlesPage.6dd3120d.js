@@ -1,1 +1,0 @@
-import{u as t,e as o,j as a,F as n,B as r,m as l,P as c,l as d}from"./index.9f404d40.js";function m({pOptions:e}){const i=t(),s=o({base:!1,md:!0});return a(n,{children:s&&!i&&a(r,{id:"page-particles",as:l.div,initial:i?void 0:{opacity:0},animate:{opacity:1,transition:{delay:3}},children:a(c,{init:d,options:e})})})}export{m as P};
