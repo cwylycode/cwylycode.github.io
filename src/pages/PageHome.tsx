@@ -5,6 +5,7 @@ import {
   Image,
   Stack,
   Text,
+  useBreakpointValue,
   usePrefersReducedMotion,
 } from '@chakra-ui/react';
 import useThemed from '../hooks/use-themed';
@@ -17,120 +18,25 @@ import SvgDoodleLookie from '../components/svg/SvgDoodleLookie';
 import SvgDoodleGreeter from '../components/svg/SvgDoodleGreeter';
 import SvgDoodleScreamer from '../components/svg/SvgDoodleScreamer';
 import SvgDoodleDoit from '../components/svg/SvgDoodleDoit';
-import ParticlesPage from '../components/ParticlesPage';
-import useRandomRgb from '../hooks/use-random-rgb';
+import ParticlesHome from '../components/ParticlesHome';
 
 export default function PageHome({ onExplodeClick }: { onExplodeClick: () => void }) {
   const noAnim = usePrefersReducedMotion()
   const { scrollIntoView, targetRef } = useScrollIntoView<HTMLDivElement>()
+  const showParticles = useBreakpointValue({ base: false, md: true })
 
   return (
     <>
-      <ParticlesPage pOptions={{
-        fullScreen: {
-          enable: true,
-          zIndex: -1
-        },
-        particles: {
-          number: {
-            value: 64,
-            density: {
-              enable: true,
-              value_area: 1200
-            }
-          },
-          color: {
-            value: useThemed({
-              light: '#68d391',
-              dark: '#63b3ed',
-              hacker: '#007f00',
-              random: useRandomRgb()
-            })
-          },
-          shape: {
-            type: "star",
-            polygon: {
-              nb_sides: 5
-            },
-          },
-          opacity: {
-            value: 0.75,
-            random: true,
-            anim: {
-              enable: false,
-              speed: 1,
-              opacity_min: 0.1,
-              sync: false
-            }
-          },
-          size: {
-            value: 3,
-            random: true,
-            anim: {
-              enable: true,
-              speed: 12,
-              size_min: 1,
-              sync: false
-            }
-          },
-          line_linked: {
-            enable: true,
-            distance: 100,
-            color: useThemed({
-              light: '#050505',
-              dark: '#777777',
-              hacker: '#006600',
-              random: useRandomRgb()
-            }),
-            opacity: 0.5,
-            width: 1
-          },
-          move: {
-            enable: true,
-            speed: 1,
-            direction: "none",
-            random: true,
-            straight: false,
-            out_mode: "bounce",
-            bounce: false,
-            attract: {
-              enable: true,
-              rotateX: 600,
-              rotateY: 1200
-            }
-          }
-        },
-        interactivity: {
-          detect_on: "window",
-          events: {
-            onhover: {
-              enable: true,
-              mode: ["bubble", 'grab'],
-              parallax: {
-                enable: true,
-                force: 60,
-                smooth: 10
-              }
-            },
-            resize: true
-          },
-          modes: {
-            grab: {
-              distance: 200,
-              line_linked: {
-                opacity: 1
-              }
-            },
-            bubble: {
-              distance: 200,
-              size: 10,
-              duration: 3,
-            },
-          }
-        },
-        retina_detect: true,
-      }}
-      />
+      {showParticles && !noAnim &&
+        <Box
+          id="page-particles"
+          as={motion.div}
+          initial={noAnim ? undefined : { opacity: 0 }}
+          animate={{ opacity: 1, transition: { delay: 3 } }}
+        >
+          <ParticlesHome />
+        </Box>
+      }
       <Container paddingTop={{ base: '10', md: '24' }} >
         <Stack
           spacing='12'
