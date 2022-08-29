@@ -97,7 +97,7 @@ export default function PageShowcase() {
                 animate: { opacity: 1, x: 0, transition: { delay: 2 } }
               }}
             >
-              These are only the highlights of my work (more or less). You can find even more if you <Link href="https://github.com/cwylycode?tab=repositories">visit my repositories</Link> on Github. You'll find odd bits of code and smaller projects and even some projects I've contributed to. Go on and check it out!
+              These are only the highlights of my work (more or less). You can find even more if you <Link href="https://github.com/cwylycode?tab=repositories">visit my repositories</Link> on Github. You'll find odd bits of code and smaller projects and even some various works I've contributed to. Go on and check it out!
             </Text>
             <Spacer minHeight='16' />
             <Flex

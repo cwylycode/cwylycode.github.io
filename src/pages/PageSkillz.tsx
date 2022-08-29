@@ -207,7 +207,7 @@ export default function PageSkillz() {
             >
               {[
                 'Decades of experience with electronic technology, both casually and at an IT professional level.',
-                'Multiple years of experience with general programming concepts and languages, such as Python, JavaScript, the "C" family and even php for some odd reason.',
+                'Many years of experience with general programming concepts and languages, such as Python, JavaScript, the "C" family and even php for some odd reason.',
                 'Knowledge of and experience with various frameworks, such as React and Wordpress.',
                 'Working on and contributing to projects through collaboration - also known as "GitHub".'
               ].map((text, i) => (

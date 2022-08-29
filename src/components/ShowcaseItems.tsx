@@ -43,7 +43,7 @@ export const ShowcaseItems: Array<ShowcaseCardProps> = [
     imgSize: 700,
     link: 'https://richardwyly.com',
     linkText: 'Visit Website!',
-    text: `Yeah, yeah... I built my dad a Wordpress site. But hey, what was he gonna do, hire an "actual" web developer? 🤔 Not likely! Not when he has a son who'll do it for him at way above market rates!\n\n(Don't tell him 🤫)`
+    text: `Yeah, yeah... I built my dad a Wordpress site. But hey, what was he gonna do, hire an "actual" web developer? 🤔 Not likely! Not when he has a son who'll do it for him at twice the market rate!\n\n(Don't tell him 🤫)`
   },
   {
     title: 'React-Tac-Toe',
