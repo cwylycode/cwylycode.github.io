@@ -1,8 +1,8 @@
 import { Box, chakra, Container, Divider, Flex, Icon, List, ListIcon, ListItem, Spacer, Text, Tooltip, useBreakpointValue, usePrefersReducedMotion } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle, FaJava } from "react-icons/fa";
 import { IoLogoCss3, IoLogoHtml5, IoLogoPython, IoLogoSass, IoLogoWordpress } from "react-icons/io";
-import { SiC, SiCplusplus, SiCsharp, SiGit, SiJava, SiJavascript, SiReact, SiTypescript } from "react-icons/si"
+import { SiC, SiCplusplus, SiCsharp, SiGit, SiJavascript, SiReact, SiTypescript } from "react-icons/si"
 import PageHeader from "../components/PageHeader";
 import SvgDoodleTreeGuy from "../components/svg/SvgDoodleTreeGuy";
 import SvgSkillTree from "../components/svg/SvgSkillTree";
@@ -78,7 +78,7 @@ export default function PageSkillz() {
                 },
                 {
                   name: 'java',
-                  logo: SiJava,
+                  logo: FaJava,
                   x: 50,
                   y: 25
                 },
