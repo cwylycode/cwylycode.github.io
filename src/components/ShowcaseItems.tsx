@@ -5,7 +5,6 @@ import { ShowcaseCardProps } from "../components/ShowcaseCard";
 import img_my_site from '../images/my_site.jpg'
 import img_pytris from '../images/pytris.jpg'
 import img_rpi from '../images/rpi.jpg'
-import img_dad_site from '../images/dad_site.jpg'
 import img_react_tac_toe from '../images/react_tac_toe.jpg'
 
 export const ShowcaseItems: Array<ShowcaseCardProps> = [
@@ -35,15 +34,6 @@ export const ShowcaseItems: Array<ShowcaseCardProps> = [
     link: 'https://github.com/cwylycode/RPI_Electronics_Projects',
     linkText: 'Check it out on GitHub!',
     text: `Bought a RaspberryPi kit one day. I used it originally for running a server and doing Linux-related tasks, but then I started playing around with the electronics portion of it and ended up making a few cool projects in Python.\n\nRight now it's a paper weight, but hopefully I'll make some more stuff with it soon!`
-  },
-  {
-    title: 'My Dad\'s Website',
-    img: img_dad_site,
-    imgOffset: { x: 30, y: 15 },
-    imgSize: 700,
-    link: 'https://richardwyly.com',
-    linkText: 'Visit Website!',
-    text: `Yeah, yeah... I built my dad a Wordpress site. But hey, what was he gonna do, hire an "actual" web developer? 🤔 Not likely! Not when he has a son who'll do it for him at twice the market rate!\n\n(Don't tell him 🤫)`
   },
   {
     title: 'React-Tac-Toe',
