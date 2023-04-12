@@ -3,6 +3,7 @@
 import { ShowcaseCardProps } from "../components/ShowcaseCard";
 
 import img_my_site from '../images/my_site.jpg'
+import img_inevitability from '../images/inevitability_book_cover.jpg'
 import img_pytris from '../images/pytris.jpg'
 import img_rpi from '../images/rpi.jpg'
 import img_react_tac_toe from '../images/react_tac_toe.jpg'
@@ -16,6 +17,15 @@ export const ShowcaseItems: Array<ShowcaseCardProps> = [
     link: 'https://cwylycode.github.io',
     linkText: 'Visit Websi-oh you\'re already here...',
     text: `My "professional" developer portfolio website. Made with React, Chakra UI, and a heap of libraries.\n\nThis was fun (and funny) to make and I learned quite a bit about component frameworks, web animations, and handling svg files/data. Also, I find it amusing that I'm showcasing my website on my website. 😝`
+  },
+  {
+    title: 'The Inevitability - FREE ebook',
+    img: img_inevitability,
+    imgOffset: { x: 20, y: 200 },
+    imgSize: 625,
+    link: 'https://cwylycode.github.io/stuff',
+    linkText: 'Download it here!',
+    text: `This is a FREE, full-length sci-fi novel that I wrote about a prisoner who escapes and is forced to save the world from monsters. It's a gritty tale that took many years (on and off) to write it, but I'm glad I got it finished. I'm sure you'll enjoy it - I've been told it's quite the page-turner!`
   },
   {
     title: 'Pytris',
